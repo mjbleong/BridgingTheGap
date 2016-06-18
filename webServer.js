@@ -502,58 +502,6 @@ app.get('/', function (request, response) {
     response.send('Simple web server of files from ' + __dirname);
 });
 
-app.get('/test/:p1', function (request, response) {
-    if (!request.session.login_name) {
-        console.log("no log in");
-        response.status(401).send("no one logged in");
-        return;
-    }
-    console.log('/test called with param1 = ', request.params.p1);
-
-    var param = request.params.p1 || 'info';
-
-    if (param === 'info') {
-        SchemaInfo.find({}, function (err, info) {
-            if (err) {
-                console.error('Doing /user/info error:', err);
-                response.status(500).send(JSON.stringify(err));
-                return;
-            }
-            if (info.length === 0) {
-                response.status(500).send('Missing SchemaInfo');
-                return;
-            }
-            console.log('SchemaInfo', info[0]);
-            response.end(JSON.stringify(info[0]));
-        });
-    } else if (param === 'counts') {
-        var collections = [
-            {name: 'user', collection: User},
-            {name: 'photo', collection: Photo},
-            {name: 'schemaInfo', collection: SchemaInfo}
-        ];
-        async.each(collections, function (col, done_callback) {
-            col.collection.count({}, function (err, count) {
-                col.count = count;
-                done_callback(err);
-            });
-        }, function (err) {
-            if (err) {
-                response.status(500).send(JSON.stringify(err));
-            } else {
-                var obj = {};
-                for (var i = 0; i < collections.length; i++) {
-                    obj[collections[i].name] = collections[i].count;
-                }
-                response.end(JSON.stringify(obj));
-
-            }
-        });
-    } else {
-        response.status(400).send('Bad param ' + param);
-    }
-});
-
 
 app.get('/user/list', function (request, response) {
     if (!request.session.login_name) {

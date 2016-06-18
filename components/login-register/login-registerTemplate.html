@@ -1,3 +1,4 @@
+<h1>Welcome to My Awesome App</h1>
 <div>
 <form class="myform" name="login">
 	<md-input-container>
@@ -10,49 +11,7 @@
 	</md-input-container>
 		<div ng-show="main.error===true">Sorry this username or password is not found. Please try again.</div>
 	
-	<div> <md-button class="md-fab" ng-click="clickFunc()">Login</md-button></div>
+	<div> <md-button class="md-fab" ng-click="main.login(userId, pass)">Login</md-button></div>
 </form>
 </div>
-<form class="reg" name="register">
-	<md-input-container>
-		<label>Username</label>
-		<input name="login_name" ng-model="login_name" required>
-	</md-input-container>
-	<md-input-container>
-		<label>First Name</label>
-		<input name="first_name" ng-model="first_name" required>
-	</md-input-container>
-	<md-input-container>
-		<label>Last Name</label>
-		<input type="last_name" ng-model="last_name" required>
-	</md-input-container>
-	<md-input-container>
-		<label>Password</label>
-		<input type="password" ng-model="password" required>
-	</md-input-container>
-	<md-input-container>
-		<label>Confirm Password</label>
-		<input type="password" ng-model="confirmPassword" required>
-	</md-input-container>
-	<md-input-container>
-		<label>Location</label>
-		<input type="location" ng-model="location" required>
-	</md-input-container>
-	<md-input-container>
-		<label>Description</label>
-		<input type="description" ng-model="description" required>
-	</md-input-container>
-	<md-input-container>
-		<label>Occupation</label>
-		<input type="occupation" ng-model="occupation" required>
-	</md-input-container>
-<!-- 		<div ng-messages="login.userId.$error" ng-show="login.userId.$dirty">
-			<div ng-message="required">This is required!</div>
-		
-		</div>  -->
-		<div ng-show="main.regError===true">User already exists OR entering error. Please fill in all the fields, and make sure password is the same.</div>
-	
-	<div> <md-button class="md-fab" ng-click="registerClickFunc()">Register</md-button></div>
-</form>
-￼
 ￼

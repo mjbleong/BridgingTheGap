@@ -38,11 +38,25 @@ cs142App.config(['$routeProvider',
             });
     }]);
 
-cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$location', '$http', '$route',
-    function ($scope, $resource, $rootScope, $location, $http, $route) {
+
+
+cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$location', '$http', '$route', "$firebaseAuth",
+    function ($scope, $resource, $rootScope, $location, $http, $route, $firebaseAuth) {
+
         $scope.main = {};
+        $scope.authObj = $firebaseAuth();
         $scope.main.addPhotoButton = false;
         $scope.main.hello = null;
+
+
+        $scope.authObj.$onAuthStateChanged(function(firebaseUser) {
+          if (firebaseUser) {
+            $scope.currentUser = firebaseUser.uid;
+            console.log("Signed in as:", firebaseUser.uid);
+          } else {
+            console.log("Signed out");
+          }
+        });
 
         $scope.addPhotoClick = function(event) {   
             $scope.main.addPhotoButton = !$scope.main.addPhotoButton;
@@ -86,14 +100,6 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
         $scope.$on('Close', function() {
             console.log("exit");
             $location.path("/login-register");
-        });
-
-        var TestInfo = $resource('/test/info', {
-          get: {method: 'get', isArray: false}
-        });
-
-        TestInfo.get(function(info) {
-            $scope.main.version = info.version; 
         });
 
         $rootScope.$on( "$routeChangeStart", function (event, next, current) {

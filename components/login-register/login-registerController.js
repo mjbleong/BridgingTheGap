@@ -16,6 +16,30 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
     $scope.password = "";
     $scope.confirmPassword = "";
 
+    $scope.main.login = function(email, password) {
+      firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+        var user = firebase.auth().currentUser;
+        console.log(user);
+        if(user) {
+          $scope.main.loggedIn = true;
+          $location.path("/users");
+          $scope.$apply()
+        } else {
+          console.log("Couldn't log in");
+        }
+      }).catch(function(error) {
+        console.log("error");
+      });
+    };
+
+    $scope.main.logout = function() {
+      firebase.auth().signOut().then(function() {
+        console.log("sign out successful)")
+        $location.path("/login-register");
+      }, function(error) {
+
+      });
+    };
 
     $scope.clickFunc = function(event) {
       var modelObj = {login_name : $scope.userId, password: $scope.pass};
