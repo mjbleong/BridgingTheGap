@@ -1,0 +1,30 @@
+.photoslist {
+	list-style-type: none;
+}
+
+.md-raised {
+	width: 30%;
+}
+
+.clickLinks {
+	width: 100%;
+}
+
+.displayButtons {
+	display: flex;
+	justify-content: center;
+}
+
+.commentForm {
+	background-color: white;
+	color:white;
+}
+
+.likes {
+	background-color: gray;
+	width: 15%;
+}
+
+.fav {
+	background-color: orange;
+}

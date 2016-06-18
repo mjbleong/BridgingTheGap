@@ -1,0 +1,29 @@
+.cs142-main-mytoolbar {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+}
+
+.cs142-main-myelement {
+	padding: 7%;
+	background-color: orange;
+	text-align: center;
+	width: 100%;
+}
+
+.cs142-main-mylink {
+	text-decoration: none;
+	width:100%;
+	padding:7%;
+	color: white;
+}
+
+.cs142-main-myelement:hover {
+    background-color: gray;
+}
+
+

@@ -1,0 +1,24 @@
+<span>
+	<md-button class="md-raised" id="view-buttons"> <a href="/photo-share.html#/users/{{main.currUser._id}}">User Detail</a> </md-button>
+	<md-button class="md-raised"> <a  href="/photo-share.html#/photos/{{main.currUser._id}}">Photos</a> </md-button>
+</span>
+
+<md-card class="photocard">
+	<md-card-header class="headercard"> Hello, I'm {{main.currUser.first_name}} {{main.currUser.last_name}}. I also go by {{main.currUser._id}}. </md-card-header>
+	<md-card-content> 
+		<div> You'll find me most often in: {{main.currUser.location}}. </div>
+		<div> Description: {{main.currUser.description}} </div>
+		<div> Occupation: {{main.currUser.occupation}} </div>
+
+		<div class ="recent" ng-show="main.mostRecentPh">
+		<span> Most Recent Photo posted on: {{main.date}} at {{main.time}} </span>
+		<div><a href="/photo-share.html#/photos/{{main.currUser._id}}/{{main.mostRecentPh.numInArray}}"><img class="thumbnail" src ="/images/{{main.mostRecentPh.file_name}}"></a></div>
+		</div>
+		<div class ="recent" ng-show="main.mostComPh">
+		<span> Most Comments Photo posted on: {{main.dateC}} at {{main.timeC}} </span>
+		<div> *This photo has {{main.numCom}} comment(s)*</div>
+		<div><a href="/photo-share.html#/photos/{{main.currUser._id}}"><img class="thumbnail" src ="/images/{{main.mostComPh.file_name}}"></a></div>
+		</div>
+
+	</md-card-content>
+</md-card>

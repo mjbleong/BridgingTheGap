@@ -1,0 +1,39 @@
+/*
+CSS for the CS142 project #5 main page
+
+Since CSS uses a global name space for classes we should use class names starting with
+cs142-main- here.
+*/
+
+body {
+	margin: 2%;
+	font-family: Brushstroke, fantasy;
+}
+
+.cs142-main-header {
+	font-size: 40px;
+}
+
+ul.ng-scope {
+	height:50px;
+}
+
+a {
+	color: #EE7600;
+}
+
+#content {
+	margin: 2%;
+}
+
+.addph {
+	font-size: 20px;
+}
+
+.smallhead {
+	font-size: 10px;
+}
+
+.listOfUsers {
+	font-size: 10px;
+}

@@ -1,0 +1,56 @@
+Project #8 - Submission form
+Marisa Kwiatkowski
+marisapi@stanford.edu
+
+Please fill in this form and submit it with your project #8.
+
+Enter no more than 5 user stories that you did for the assignment that you would like to be
+graded on. For each story include the following information:
+
+Story number and name: 1 - Extend user profile detail with usage
+Story points: 3
+Brief description to see the story in action: Click on any user detail to see the thumbnails for most comments and most recent and click on the image to get redirected to the view with the full size image — the normal photo view for that user with the photo you clicked on (not Advanced Features).
+
+Story number and name: 6 - Photo like votes
+Story points: 4
+Brief description to see the story in action: Go to any user and like and unlike photos and see them change position so the ones with the most likes are at the top. There will also be a list of users so you can see who liked it.
+
+Story number and name: 7- Favorite lists of photos for users
+Story points: 6
+Brief description to see the story in action: Click on the favorites button on the sidenav to see the favorites of the user you are logged in as! Favorite photos on photos page of your user (not visible on other users) and then go to the favorites view to see favorites thumbnail. Click on the thumbnail to see a popup blow-up of the photo thumbnail and also delete favorites from that page or from the photos page.
+
+Story number and name: 3- Visibility control of photos (extra credit)
+Story points: 4
+Brief description to see the story in action: Click on upload photo in the toolbar and choose which user you would like to be able to view the photo you select — if none are selected, all users will be able to see. Then, logout and you can log-in as someone else to see that that user can see it.
+
+Total Story Points: 17
+
+Marketing Video URL (ensure permissions are set to public viewing): youtube link below (unlisted)
+
+https://youtu.be/hXD9cPyrNXA
+
+
+Is it OK with you if we post your Marketing Video URL on the class discussion forum? yes
+
+Any special instructions for Grading (should be easy to run app from new machine): no
+
+
+
+
+
+************************************ Example *******************
+* As an example for if you did only story 5 your file would look like:
+* 
+* Story number and name:  5 - Activity Feed
+* Story points:  4
+* Brief description to see the story in action:
+* Push the button labeled Activity on the toolbar and view the 10 most recent activities of the
+* current user.
+* 
+* Total Story Points: 4
+* 
+* Marketing Video URL (ensure permissions are set to public viewing): http://www.youtube.com ---
+* 
+* Is it OK with you if we post your Marketing Video URL on the class discussion forum? Yes
+* 
+* Instructions for Grading (should be easy to run app from new machine): None

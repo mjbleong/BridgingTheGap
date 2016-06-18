@@ -1,0 +1,76 @@
+<span>
+	<md-button class="md-raised"> <a class="clickLinks" href="/photo-share.html#/users/{{main.currUser._id}}">User Detail</a> </md-button>
+	<md-button class="md-raised"> <a class="clickLinks" href="/photo-share.html#/photos/{{main.currUser._id}}">Photos</a> </md-button>
+</span>
+
+<div ng-if="main.photosLength===0"> This user has no photos! </div>
+
+<div ng-if="main.photosLength!==0">
+
+	<a href="/photo-share.html#/photos/{{main.currUser._id}}/0"> 	<md-checkbox ng-model="main.isChecked" ng-init="main.isChecked=false">
+  		Enable Advanced Features
+	</md-checkbox> </a>
+
+
+	<div id="displayPhotosNormal">
+		<ul class = "photoslist">
+		  <li ng-repeat="photo in main.allPhotosCurr">
+			<md-card class="photocard">
+
+				<md-card-header> {{main.currUserFullName}}, posted on {{photo.date_time}} 
+				<div ng-show="photo.user_id === main.loggedInId">
+					<div ng-show="main.sessionCurrUser.favorites_list.indexOf(photo._id)===-1"> 
+						<md-button class="fav" ng-click="favorite($event, photo._id)">Fav<md-icon><i class="material-icons">star_border</i> </md-icon> </md-button>
+					</div>
+					<div ng-show="main.sessionCurrUser.favorites_list.indexOf(photo._id)!==-1"> 
+						<md-button class="fav" ng-click="unfavorite($event, photo._id)">UnFav<md-icon><i class="material-icons">star</i> </md-icon> </md-button>
+					</div>
+				</div>
+
+			</md-card-header>
+				<img ng-src="images/{{photo.file_name}}"></img>
+
+
+				<div ng-show="photo.likes.indexOf(main.loggedIn)===-1"> 
+					<md-button ng-disabled="main.inUse" class="likes" ng-click="like($event, photo._id)">Like<md-icon><i class="material-icons">favorite_border</i> </md-icon> </md-button>
+				</div>
+
+				<div ng-show="photo.likes.indexOf(main.loggedIn)!==-1"> 
+					<md-button ng-disabled="main.inUse" class="likes" ng-click="unlike($event, photo._id)">Unlike<md-icon><i class="material-icons">favorite</i> </md-icon> </md-button>
+				</div>
+
+				<span> currently, {{photo.likes.length}} like(s) on this photo </span>
+				<span> likes : {{photo.likes}} </span>
+
+				<md-card-title> 
+					<div ng-show="photo.comments.length>=1">Comments:</div>
+				</md-card-title> 
+				<md-card-content> 
+					<ul>
+						<md-list-item ng-repeat="comment in photo.comments">
+						<div class="md-list-item-text">({{comment.date_time}}) <a href="photo-share.html#/users/{{comment.user._id}}">{{comment.user.first_name}}</a>: {{comment.comment}} 
+						</div>
+						</md-list-item>
+					</ul>
+					<form class="commentForm" name="comment">
+						<md-input-container>
+							<label>Add a comment</label>
+							<input name="newComment" ng-model="newComment" required></input>
+						</md-input-container>
+						<span> <md-button class="md-fab" ng-click="commentClickFunc($event, photo._id, newComment)">Enter</md-button></span>
+					</form>
+				</md-card-content>
+			</md-card>
+		  </li>
+		</ul> 
+	</div>
+
+</div>
+
+
+
+
+
+
+
+

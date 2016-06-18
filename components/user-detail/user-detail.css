@@ -1,0 +1,23 @@
+.photocard {
+	text-align: center;
+	background-color: #003c00;
+	color: white;
+}
+
+.headercard {
+	color: black;
+	background-color: #ffdb99;
+}
+
+.recent {
+	background-color: white;
+	color: black;
+
+}
+
+.thumbnail {
+	padding: 5px;
+	vertical-align: center;
+	height: 60px;
+	width: 105px;
+}

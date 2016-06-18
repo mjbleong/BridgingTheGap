@@ -1,0 +1,19 @@
+<div class="favtitle"> My Favorites </div>
+<div class="favsub"> Go to your profile photos to add to your favorites list. You can remove from favorites list on your profile or by clicking the x button above the photo.</div>
+
+<ul class = "favlist">
+	  <li ng-repeat="photo in main.photosArray">
+		<md-card class="thumb">
+			<div><md-button class="del" ng-click="unfavorite($event, photo._id)"><md-icon><i class="material-icons">highlight_off</i> </md-icon> </md-button>
+			<div ><img ng-click="openMod($event, photo._id, photo.file_name, photo.date_time)" class="thumbnail" ng-src="/images/{{photo.file_name}}"></img></div></div>
+		</md-card>
+	</li>
+</ul> 
+
+<div ng-show="main.opened" id="popup" class="modal">
+	<md-card>
+		<md-button class="md-fab" ng-click="closeClick()">Close</md-button>
+		<img ng-src="/images/{{main.currFile}}"></img>
+		<md-card-content> Posted on {{main.currDT}} </md-card-content>
+	</md-card>
+</div>
