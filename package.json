@@ -16,6 +16,7 @@
     "angular-material": "^1.0.4",
     "angular-resource": "^1.5.5",
     "angular-route": "^1.4.9",
+    "angular-youtube-embed": "^1.2.0",
     "async": "^1.5.0",
     "body-parser": "^1.15.1",
     "express": "^4.13.3",
@@ -24,6 +25,7 @@
     "firebase": "^3.0.5",
     "jshint": "^2.9.1-rc2",
     "mongoose": "^4.3.4",
-    "multer": "^1.1.0"
+    "multer": "^1.1.0",
+    "owl.carousel": "^2.1.4"
   }
 }

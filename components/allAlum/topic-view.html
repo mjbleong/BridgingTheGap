@@ -1,0 +1,34 @@
+<div class="arr-container">
+    <span class="arrow back" ng-mouseover="goBackward()" ng-mouseleave="stopBackward()"> &lt&lt </span>
+    <span class="arrow forward" ng-mouseover="goForward()" ng-mouseleave="stopForward()"> &gt&gt </span>
+</div>
+
+<div class="container3">
+    <header class="header">
+     <h1>Most Recent Videos</h1>
+     <div class="button-div">
+     <md-button class="allButton"><a ui-sref="alum.allvids({ page: 88})" style="text-decoration: none"> See All </a></md-button>"
+    </div>
+    </header>
+    
+    <!-- Each image is 350px by 233px -->
+    <div class="photobanner">
+        <span ng-repeat="video in main.mostRecArray|limitTo:1">
+            <iframe class="first" ng-src="{{make(video.url)}}"></iframe>
+<!-- <youtube-video class="first" video-id="video.url"></youtube-video>
+ -->        </span>
+
+    	<span ng-repeat="video in main.mostRecArray" ng-if="$index > 0">
+    		<iframe class="video" ng-src="{{make(video.url)}}"></iframe>
+		</span>
+
+        <span ng-repeat="video in main.mostRecArray|limitTo:4">
+            <iframe class="video" ng-src="{{make(video.url)}}"></iframe>
+        </span>
+
+    </div>
+
+</div>
+
+
+

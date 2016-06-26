@@ -1,0 +1,27 @@
+<div class="profile">
+  <div layout="row" ng-app="myApp" class="icondemoFontIconsWithLigatures" ng-cloak>
+
+    <div flex="30" layout="column" class="boxWithHeight" layout-padding>
+      <section flex="40" class="profile-picture"><img src="https://firebasestorage.googleapis.com/v0/b/project-2333752665176102876.appspot.com/o/IMG_6492.jpg?alt=media&token=349f445a-e731-4bd7-80df-161c2fa19ec2" class="responsive-img" alt=""><button type="button">Upload Photo</button></section>
+
+      <section flex>Matthew Leong</section>
+      <section flex>Description</section>
+      <md-button id="edit-button" ng-click="">Edit Profile</md-button>
+    </div>
+    <div flex="70" layout="column" class="boxWithHeight" layout-padding>
+    	<h1 id="my-videos-title">My Videos</h1>
+      <section class="flex-container" flex="70">
+      	<md-list-item ng-repeat="videoURL in main.urlsArray">
+  			<iframe class="video" ng-src="{{make(videoURL)}}"></iframe>
+  		</md-list-item>
+      </section>
+    </div>
+  </div>
+
+  <webcam id="my-video"></webcam>
+  <md-button ng-click="main.takeImage()">Snapshot</md-button>
+
+          <span class="addph"> <input type="file" accept="image/*"  onchange="angular.element(this).scope().inputFileNameChanged(this)"> </span>
+
+  <img id="my-screenshot" ng-src="{{main.imageDataURI}}"/>
+</div>

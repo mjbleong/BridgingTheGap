@@ -1,62 +1,101 @@
 'use strict';
 
-var cs142App = angular.module('cs142App', ['ngRoute', 'ngMaterial','ngResource', 'firebase']);
+var cs142App = angular.module('cs142App', ['ngRoute', 'ngMaterial','ngResource', 'firebase', 'youtube-embed','ui.router', 'ui.router.router', 'ngCookies']);
 
-cs142App.config(['$routeProvider',
-    function ($routeProvider) {
-        $routeProvider.
-            when('/login-register', {
-                templateUrl: 'components/login-register/login-registerTemplate.html',
-                controller: 'LoginRegisterController'
-            }).
-            when('/users', {
-                templateUrl: 'components/user-list/user-listTemplate.html',
-                controller: 'UserListController'
-            }).
-            when('/users/:userId', {
-                templateUrl: 'components/user-detail/user-detailTemplate.html',
-                controller: 'UserDetailController'
-            }).
-            when('/photos/:userId', {
-                templateUrl: 'components/user-photos/user-photosTemplate.html',
-                controller: 'UserPhotosController'
-            }).
-            when('/photos/:userId/:photoId', {
-                templateUrl: 'components/user-photos/user-photosTemplate-extra.html',
-                controller: 'UserPhotosController'
-            }).
-            when('/login-register', {
-                templateUrl: 'components/login-register/login-registerTemplate.html',
-                controller: 'LoginRegisterController'
-            }).
-            when('/favorites', {
-                templateUrl: 'components/favorites/favoritesTemplate.html',
-                controller: 'FavoritesController'
-            }).
-            otherwise({
-                redirectTo: '/users'
-            });
-    }]);
+cs142App.config(
+    function ($stateProvider, $urlRouterProvider) {
+  
+      $urlRouterProvider.otherwise("/login-register");
+      // Now set up the states
+      $stateProvider
+        .state('state1', {
+          url: "/state1",
+          templateUrl: "components/allAlum/profile-view.html"
+        })
+        .state('login-register', {
+          url: "/login-register",
+          templateUrl: 'components/login-register/login-registerTemplate.html',
+          controller: 'LoginRegisterController'
+        })
+        .state('users', {
+          url: "/users",
+          templateUrl: 'components/user-list/user-listTemplate.html',
+          controller: 'UserListController'
+        })
+        .state('profile', {
+          url: "/profile",
+          templateUrl: 'components/profile/profileTemplate.html',
+          controller: 'ProfileController'
+        })
+        .state('upload', {
+          url: "/upload-video",
+          templateUrl: 'components/upload-video/uploadVideo.html',
+          controller: 'UploadVideoController'
+        })
+        .state('alum', {
+          url: "/alum",
+          templateUrl: 'components/allAlum/allAlumTemplate.html',
+          controller: 'AlumController'
+        })
+        .state('alum.list', {
+          url: "/list",
+          templateUrl: "components/allAlum/profile-view.html"
+        })
+        .state('alum.topic', {
+          url: "/topic",
+          templateUrl: "components/allAlum/topic-view.html"
+        })
+        .state('alum.allvids', {
+          url: "/allvids/:page",
+          templateUrl: "components/allAlum/all-vids-view.html",
+          controller: 'AlumController'
+        })
+    ;
+
+
+      });
 
 
 
-cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$location', '$http', '$route', "$firebaseAuth",
-    function ($scope, $resource, $rootScope, $location, $http, $route, $firebaseAuth) {
+
+cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$location', '$http', '$route', "$firebaseAuth", '$cookies',
+    function ($scope, $resource, $rootScope, $location, $http, $route, $firebaseAuth, $cookies) {
 
         $scope.main = {};
         $scope.authObj = $firebaseAuth();
         $scope.main.addPhotoButton = false;
         $scope.main.hello = null;
+        $scope.main.loggedIn = true;
 
-
+        $scope.currentUser = "sdjkhf";
         $scope.authObj.$onAuthStateChanged(function(firebaseUser) {
           if (firebaseUser) {
             $scope.currentUser = firebaseUser.uid;
             console.log("Signed in as:", firebaseUser.uid);
+            $cookies.put("userName", firebaseUser.uid);
           } else {
+            $cookies.remove("userName");
             console.log("Signed out");
           }
         });
+
+        $scope.main.studentHome = function() {
+            //$scope.main.loggedIn = true;
+                console.log("go to student home");
+                $location.path("/alum");
+        };
+
+        $scope.main.profileHome = function() {
+            //$scope.main.loggedIn = true;
+                console.log("go to profile");
+                $location.path("/profile");
+        };
+
+        $scope.main.uploadVideo = function() {
+            //$scope.main.loggedIn = true;
+                console.log("go to upload");
+                $location.path("/upload-video");
+        };
 
         $scope.addPhotoClick = function(event) {   
             $scope.main.addPhotoButton = !$scope.main.addPhotoButton;
@@ -166,6 +205,28 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
     }
 ]);
 
+
+// cs142App.factory("userPersistenceService", [
+//     "$cookies", function($cookies) {
+//         var userName = "";
+
+//         return {
+//             setCookieData: function(username) {
+//                 console.log($scope.currentUser);
+//                 userName = username;
+//                 $cookies.put("userName", $scope.currentUser);
+//             },
+//             getCookieData: function() {
+//                 userName = $cookies.get("userName");
+//                 return userName;
+//             },
+//             clearCookieData: function() {
+//                 userName = "";
+//                 $cookies.remove("userName");
+//             }
+//         }
+//     }
+// ]);
 
 cs142App.config(function ($mdThemingProvider) {
 $mdThemingProvider.theme('default')

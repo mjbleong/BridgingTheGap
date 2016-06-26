@@ -41,6 +41,7 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
       });
     };
 
+
     $scope.clickFunc = function(event) {
       var modelObj = {login_name : $scope.userId, password: $scope.pass};
       $scope.main.error = null;

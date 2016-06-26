@@ -1,0 +1,56 @@
+<div class="large">
+
+
+
+<div class="outer-div">
+<span ng-repeat="user in main.userArray">
+  <div ng-click="clickedFace(user.intro_url)" class="outer-link">
+    <figure>
+      <img class="img-circle" ng-src="{{user.profile_picture_url}}" alt=""></img>
+      <figcaption class="caption">{{user.firstname}}</figcaption>
+    </figure>
+  </div>
+ </span>
+
+</div>
+
+<div ng-show="main.showVidBox" class="popup">
+	<md-button class="closevid" ng-click="closeVid()"><md-icon><i class="material-icons">highlight_off</i> </md-icon> </md-button>
+	<youtube-video class="video-pop" video-id="main.currURL"></youtube-video>
+</div>
+
+</div>
+
+<!--             <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2">
+            <div> hellop </div>
+                <div ng-include="'components/user-list/user-listTemplate.html'" ng-controller="UserListController">
+            </div>
+            </md-sidenav> -->
+
+
+<!-- <div> hello break here </div>
+
+
+<div class="container" flex layout="row">
+    <md-content flex id="content">
+         <ul class="ch-grid">
+          <span ng-repeat="user in main.userArray">
+          <li id="{{user.$id}}">
+          	<md-card>
+            <a ng-href="/#/users/{{student}}">
+            	<img class="img-circle" ng-src="/components/allAlum/{{user.$id}}.png"></img>
+                    <div class="ch-info">
+                        <h3 style="text-decoration:none">Interests</h3>
+                        <p style="text-decoration:none">{{user.interests}}</p>
+                    </div>
+                    <div style="text-decoration:none" class="ch-label">
+                        {{user.firstname}}
+                    </div>
+                    <div style="color:black"> <i>{{user.plans}}</i></div>
+            </a>
+        </md-card>
+          </li>
+        </span>
+        </ul> 
+    </md-content>
+</div> -->

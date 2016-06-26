@@ -1,0 +1,79 @@
+.profile body[ng-cloak] {
+  display:none;
+}
+.proifile div[flex="30"] {
+  background-color: #DFDFDF;  
+}
+
+.profile section[flex="40"] {
+  background-color: #D4E5FA;
+}
+.profile section[flex="70"] {
+  background-color: #E8FCD6;
+}
+.profile section[flex="20"] {
+ background-color: #FFD5E3;
+}
+.profile section[flex=""] {
+ background-color: rgba(0, 128, 0, 0.35);
+}
+
+.profile iframe {
+  border-style: none;
+}
+
+.profile .flex-container {
+  display: -webkit-inline-flex; /* Safari */
+  display: inline-flex;
+}
+
+#my-videos-title {
+  margin: 0px;
+}
+
+.profile button {
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.profile-picture:hover button {
+    display: block;
+}
+
+.profile-picture{
+  padding: 0px;
+  position: relative;
+}
+
+.profile .md-button {
+  background-color: #00fdff;
+}
+
+.md-button:not([disabled]):hover {
+    background-color: rgb(255,138,101);
+}
+
+.profile img {
+  width:100% ;
+}
+/* Important to set height for column layout */
+.boxWithHeight {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.a, section {
+/*  border: 5px solid rgba(85, 97, 85, 0.27);
+*/  margin: 5px;  
+}
+
+.profile section {
+  background-color: #dedede;
+}
+
+/*
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
+*/
