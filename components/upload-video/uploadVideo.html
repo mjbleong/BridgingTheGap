@@ -1,62 +1,63 @@
 <div id='main-container'>
-
+​
   <div id="videos">
-    <button type='button' ng-click='clipchamp()'>
+    <button type='button' id='upload-vid-button' ng-click='clipchamp()'>
       uploadVideo
     </button> 
-    <button id='test-button' type='button' ng-click='showStuff()'>
+    <button type='button' id='test-button' ng-click='showStuff()'>
       show stuff
     </button>
-	</div>
-
+  </div>
+​
   <div id="video-data" ng-show='upload.show'>
-
+​
     <div id="video-title">
         <strong>Video Title</strong><br>
         <span>{{70 - upload.title.length}} characters left...</span>
         <br>
         <input type="text" ng-model='upload.title' name="video_title" maxlength='70' placeholder='Write your title...'>
     </div>
-
+​
     <br><br>
-
+​
     <div id="video-description"> 
         <strong>Video Description</strong><br>
         Give a short description of your video <br>
-        <span>{{140 - upload.description.length}} character left...</span><br>
+        <span>{{140 - upload.description.length}} characters left...</span><br>
         <textarea rows='4' cols='50' id='vid-description-box' name='video_description' ng-model='upload.description' maxlength='140' placeholder='Write your description...' ng-trim='false'></textarea>
     </div>
+    
   </div>
-
+​
   <br>
   <br>
-
+​
 <div ng-show='upload.show'>
   <h4> Tag Video </h4>
-
+​
   <div id='tagging-sect'>
     <div ng-repeat='(tag, value) in checkboxModel'>
       <!--{{tag}}-->
       <div class='first'>
         <strong>{{tag}}</strong>
         <form name="myForm" ng-repeat='(key, value) in checkboxModel[tag]'>
-
+​
           <label>
             <input type="checkbox" ng-model="checkboxModel[tag][key]">
             {{key}}
           </label><br/>
-
+​
          </form>
       </div>
     </div>
   </div>
-
+​
   <button id='post-video-button' type='button' ng-click='upload.postVideo()'>
     Post Video
   </button>
 </div>
 </div>
-
+​
 </div>
-
+​
 </div>
