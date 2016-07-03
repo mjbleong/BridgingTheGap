@@ -1,82 +1,112 @@
 'use strict';
 
-cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resource', '$http', '$rootScope','$location','$firebaseAuth', '$cookies',
-  function ($scope, $routeParams, $resource, $http, $rootScope, $location, $firebaseAuth, $cookies) {
+cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resource', '$http', '$rootScope','$location','$firebaseAuth', '$cookies','$route',
+  function ($scope, $routeParams, $resource, $http, $rootScope, $location, $firebaseAuth, $cookies, $route) {
+    $scope.upload = {};
 
-  	// need to get name out here... scoping problem when inside clipchamp
-  	$scope.fname = "";
-  	$scope.lname = "";
+    $scope.upload.show = false;
+    $scope.upload.videoId = 'bloopid2';
+    $scope.checkboxModel = {};
+    $scope.upload.title = '';
+    $scope.upload.description = '';
+    $scope.upload.description_char_count = 0;
+
+    firebase.database().ref('tags').once('value').then(function(snapshot) {
+      $scope.checkboxModel = snapshot.val();
+    });
+
+    $scope.showStuff = function() {
+      $scope.upload.show = true;
+    }
+
+    $scope.upload.postVideo = function() {
+      console.log($scope.checkboxModel);
+      for (var category in $scope.checkboxModel) {
+        console.log(category);
+        for (var tag in $scope.checkboxModel[category]) {
+          if ($scope.checkboxModel[category][tag] == true) {
+            firebase.database().ref('videos/' + $scope.upload.videoId + '/tags/' + tag).set('');
+            firebase.database().ref('tags/' + category + '/' + tag + '/' + $scope.upload.videoId).set('');  
+          }
+        }
+      }
+      firebase.database().ref('videos/' + $scope.upload.videoId + '/title').set($scope.upload.title);
+      firebase.database().ref('videos/' + $scope.upload.videoId + '/description').set($scope.upload.description);
+    }
+
+    // need to get name out here... scoping problem when inside clipchamp
+    $scope.fname = "";
+    $scope.lname = "";
     
     var user_id = $cookies.get("userName");
-  	firebase.database().ref('users/' + user_id).once('value').then(function(snapshot) {
-		  $scope.fname = snapshot.val().firstname;
-		  $scope.lname = snapshot.val().lastname;
-	});
+    
+    firebase.database().ref('users/' + user_id).once('value').then(function(snapshot) {
+      $scope.fname = snapshot.val().firstname;
+      $scope.lname = snapshot.val().lastname;
+    });
 
-  	$scope.clipchamp = function() {
+  	$scope.clipchamp = function(data) {
 
-		var currDate = new Date();
+  		var currDate = new Date();
 
-		var yt_title = $scope.fname + ' ' + $scope.lname + ' ' + currDate;
+  		var yt_title = $scope.fname + ' ' + $scope.lname + ' ' + currDate;
 
-		var dbDate = '' + currDate;
+  		var dbDate = '' + currDate;
 
-		var process = clipchamp({
-            resolution: "720p",
-            preset: "web",
-            title: "Click submit and you're done. Thanks!",
-            output: "youtube",
-            youtube: {
-            	title: yt_title,
-	            description: 'wut wut'
-            },
-            onUploadComplete: function(data) {
-            	console.log("hithereee");
+  		var process = clipchamp({
 
-            	// code for the modal window
-                var modal = document.getElementById('myModal');
-                var span = document.getElementsByClassName("close")[0];
-                span.onclick = function() {
-                    modal.style.display = "none";
-                };
-                modal.style.display = "block";
+        resolution: "720p",
+        preset: "web",
+        title: "Click submit and you're done. Thanks!",
+        output: "youtube",
+        youtube: {
+        	title: yt_title,
+          description: 'wut wut'
+        },
 
-                //function to extract id from youtube url
-                function getId(url) {
-				    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-				    var match = url.match(regExp);
+        onUploadComplete: function(data) {
+          $scope.upload.show = true;
 
-				    if (match && match[2].length == 11) {
-				        return match[2];
-				    } else {
-				        return 'error';
-				    }
-				}
+          $route.reload();
 
-				var myId = getId(data.url);
+          //function to extract id from youtube url
+          function getId(url) {
+    		    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    		    var match = url.match(regExp);
 
-				var dbDate = new Date();
+    		    if (match && match[2].length == 11) {
+    		        return match[2];
+    		    } else {
+    		        return 'error';
+    		    }
+		      };
 
-				var newPostKey = firebase.database().ref('users/' + $scope.currentUser + "/videos")
-					.push('').key;
+      		var myId = getId(data.url);
 
-				firebase.database().ref('videos/' + newPostKey).set({
-						author_id: $scope.currentUser,
-						date: dbDate,
-						title: "dfhadfjadp",
-						url: myId
-				});
+      		var dbDate = new Date();
 
-                var iframe = document.createElement("iframe");
-                iframe.width='420';
-                iframe.height='315';
-                iframe.src= '//www.youtube.com/embed/' + myId;
-                var element = document.getElementById('videos');
-                element.appendChild(iframe);
-            },
-            
-        });
-		process.open();
-  	}
+      		var newPostKey = firebase.database().ref('users/' + $scope.currentUser + "/videos")
+      			.push('').key;
+
+      		firebase.database().ref('videos/' + newPostKey).set({
+      				author_id: $scope.currentUser,
+      				date: dbDate,
+      				title: "dfhadfjadp",
+      				url: myId
+      		});
+
+          $scope.upload.videoId = newPostKey;
+
+          var iframe = document.createElement("iframe");
+          iframe.width='420';
+          iframe.height='315';
+          iframe.src= '//www.youtube.com/embed/' + myId;
+          var element = document.getElementById('videos');
+          element.appendChild(iframe);
+        }      
+      });
+
+	process.open();
+	}
   }
   ]);

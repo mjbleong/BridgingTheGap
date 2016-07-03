@@ -1,3 +1,66 @@
 .body {
 	font-family: Roboto, Noto, sans-serif;
 }
+
+#content, html, body {
+
+}
+
+#vid-description-box {
+}
+
+#main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+}
+
+#videos {
+  display: flex;
+  flex-direction: column; /* what it do? */
+  justify-content: center;
+  align-items: center;
+  background-color: #e6e6e6;
+  height: 300px;
+  width: 300px;
+  margin: 40px;
+  border: solid;
+  border-width: 2px;
+  border-color: blue;
+}
+
+#video-title input {
+  width: 300px;
+}
+
+#video-title {
+  background-color: #e6e6e6;
+}
+
+#video-description { 
+  background-color: #e6e6e6;
+}
+
+#tagging-sect {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.first {
+  font-size: large;
+  float: left;
+  margin: 24px;
+  /*margin-left: 24px;*/
+  width: 100%;
+  background: #e6e6e6;
+  height: 40%;
+  overflow: scroll; 
+}
+
+#post-video-button {
+  margin-top: 100px;
+}
