@@ -1,0 +1,2 @@
+thing();
+console.log("in");

@@ -1,7 +1,37 @@
 <div> all-vids </div>
 
-<div ng-if="page===88"> 
+<div ng-if="main.page==88" class="vidPageFlex"> 
 
+<span ng-repeat="video in main.videosArray">
+    <md-card class="mdcard">
+         <span id="{{video.url}}" class="thumbnail-container">
+            <img class="thumbnail" ng-click="generateFrame(video.url, video.$id, video.views)" id="{{video.url}}-child" src="http://img.youtube.com/vi/{{video.url}}/0.jpg"></img>
+            <i ng-click="generateFrame(video.url, video.$id, video.views)" class="material-icons play-circle" id="play-circle-{{video.url}}">play_circle_outline</i>
+         </span>
+         <md-card-content>
+        <div ng-show="video.likes[main.user_id]==null"> 
+            <md-button ng-disabled="main.inUse" class="likes" ng-click="like($event, video.$id, video.likes)">Like<md-icon><i class="material-icons">favorite_border</i> </md-icon> </md-button> 
+            Click to like.
+        </div>
+        <div ng-show="video.likes[main.user_id]!=null"> 
+            <md-button ng-disabled="main.inUse" class="likes" ng-click="unlike($event, video.$id, video.likes)">Unlike<md-icon><i class="material-icons">favorite</i> </md-icon> </md-button>
+            You liked this.
+        </div>
+            <b>Title:</b> {{video.title}}
+            <br>
+            <b>Likes:</b> currently, {{getLikeData(video.likes, video.$id)}} like(s) on this photo 
+            <br>
+            <b>Date:</b> {{video.date}}
+            <br>
+            <b>Views:</b> {{video.views}}
+            <md-button ng-href="/#/viewProfile/{{video.author_id}}"> Go to {{video.author_id}}'s profile</md-button>
 
+         </md-card-content>
+         </span>
+    </md-card>
+
+</span>
 
 </div>
+
+

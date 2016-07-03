@@ -1,34 +1,91 @@
+<div ng-repeat="thing in main.allOfThem">
 <div class="arr-container">
-    <span class="arrow back" ng-mouseover="goBackward()" ng-mouseleave="stopBackward()"> &lt&lt </span>
-    <span class="arrow forward" ng-mouseover="goForward()" ng-mouseleave="stopForward()"> &gt&gt </span>
+    <span class="arrow back" ng-mouseover="goBackward(thing.id)" ng-mouseleave="stopBackward(thing.id)"> &lt&lt </span>
+    <span class="arrow forward" ng-mouseover="goForward(thing.id)" ng-mouseleave="stopForward(thing.id)"> &gt&gt </span>
 </div>
-
 <div class="container3">
+
     <header class="header">
-     <h1>Most Recent Videos</h1>
+     <h1>{{thing.name}}</h1>
      <div class="button-div">
-     <md-button class="allButton"><a ui-sref="alum.allvids({ page: 88})" style="text-decoration: none"> See All </a></md-button>"
+        <md-button class="allButton"><a ui-sref="alum.allvids({page: 88})" style="text-decoration: none"> See All </a></md-button>
     </div>
-    </header>
-    
+    </header>    
     <!-- Each image is 350px by 233px -->
     <div class="photobanner">
-        <span ng-repeat="video in main.mostRecArray|limitTo:1">
-            <iframe class="first" ng-src="{{make(video.url)}}"></iframe>
-<!-- <youtube-video class="first" video-id="video.url"></youtube-video>
- -->        </span>
+        <span ng-repeat="video in thing|limitTo:1">
+            <md-card id="{{thing.id}}" class="first mdcard">
+                 <span id="{{video.url}}" class="thumbnail-container">
+                    <img class="thumbnail" ng-click="generateFrame(video.url, video.$id, video.views)" id="{{video.url}}-child" src="http://img.youtube.com/vi/{{video.url}}/0.jpg"></img>
+                    <i ng-click="generateFrame(video.url, video.$id, video.views)" class="material-icons play-circle" id="play-circle-{{video.url}}">play_circle_outline</i>
+                 </span>
+                 <md-card-content>
+                <div ng-show="video.likes[main.user_id]==null"> 
+                    <md-button ng-disabled="main.inUse" class="likes" ng-click="like($event, video.$id, video.likes)">Like<md-icon><i class="material-icons">favorite_border</i> </md-icon> </md-button> 
+                    Click to like.
+                </div>
+                <div ng-show="video.likes[main.user_id]!=null"> 
+                    <md-button ng-disabled="main.inUse" class="likes" ng-click="unlike($event, video.$id, video.likes)">Unlike<md-icon><i class="material-icons">favorite</i> </md-icon> </md-button>
+                    You liked this.
+                </div>
 
-    	<span ng-repeat="video in main.mostRecArray" ng-if="$index > 0">
-    		<iframe class="video" ng-src="{{make(video.url)}}"></iframe>
+                    <b>Title:</b> {{video.title}}
+                    <br>
+                   <b>Likes:</b> <span> currently, {{getLikeData(video.likes, video.$id)}} like(s) on this photo 
+                    <br>
+                    <b>Date:</b> {{video.date}}
+                    <br>
+                    <b>Views:</b> {{video.views}}
+                    <md-button ng-href="/#/viewProfile/{{video.author_id}}"> Go to {{video.author_id}}'s profile</md-button>
+                 </md-card-content>
+            </md-card>
+<!-- 
+             <img class="first" ng-click="generateFrame(video.url, video.$id, video.views)" id="{{video.url}}-child" src="http://img.youtube.com/vi/{{video.url}}/0.jpg"></img><span style="position: relative; width: 0; height: 0"><img id="{{video.url}}-play" class="play-but" style="position: absolute; top: -120px; left: -210px;" src="http://i.imgur.com/TxzC70f.png" ng-click="generateFrame(video.url, video.$id, video.views)"></img>
+ -->
+        </span>
+
+    	<span ng-repeat="video in thing" ng-if="$index > 0">
+            <md-card class="mdcard">
+                 <span id="{{video.url}}" class="thumbnail-container">
+                    <img class="thumbnail" ng-click="generateFrame(video.url, video.$id, video.views)" id="{{video.url}}-child" src="http://img.youtube.com/vi/{{video.url}}/0.jpg"></img>
+                    <i ng-click="generateFrame(video.url, video.$id, video.views)" class="material-icons play-circle" id="play-circle-{{video.url}}">play_circle_outline</i>
+                 </span>
+                 <md-card-content>
+                <div ng-show="video.likes[main.user_id]==null"> 
+                    <md-button ng-disabled="main.inUse" class="likes" ng-click="like($event, video.$id, video.likes)">Like<md-icon><i class="material-icons">favorite_border</i> </md-icon> </md-button> 
+                    Click to like.
+                </div>
+                <div ng-show="video.likes[main.user_id]!=null"> 
+                    <md-button ng-disabled="main.inUse" class="likes" ng-click="unlike($event, video.$id, video.likes)">Unlike<md-icon><i class="material-icons">favorite</i> </md-icon> </md-button>
+                    You liked this.
+                </div>
+                    <b>Title:</b> {{video.title}}
+                    <br>
+                    <b>Likes:</b> currently, {{getLikeData(video.likes, video.$id)}} like(s) on this photo 
+                    <br>
+                    <b>Date:</b> {{video.date}}
+                    <br>
+                    <b>Views:</b> {{video.views}}
+                    <md-button ng-href="/#/viewProfile/{{video.author_id}}"> Go to {{video.author_id}}'s profile</md-button>
+
+                 </md-card-content>
+                 </span>
+            </md-card>
+
+<!--                          <img ng-click="generateFrame(video.url, video.$id, video.views)" id="{{video.url}}-child" src="http://img.youtube.com/vi/{{video.url}}/0.jpg"></img><span style="position: relative; width: 0; height: 0"><img id="{{video.url}}-play" class="play-but" style="position: absolute; top: -120px; left: -210px;" src="http://i.imgur.com/TxzC70f.png" ng-click="generateFrame(video.url, video.$id, video.views)"></img> -->
 		</span>
 
-        <span ng-repeat="video in main.mostRecArray|limitTo:4">
-            <iframe class="video" ng-src="{{make(video.url)}}"></iframe>
-        </span>
+            
 
     </div>
 
 </div>
+
+</div>
+
+
+
+
 
 
 
