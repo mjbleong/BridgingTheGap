@@ -69,6 +69,9 @@
         <link rel="stylesheet" type="text/css" href="components/profile/profile.css" />
         <script type="text/javascript" src="node_modules/webcam/dist/webcam.min.js"></script>
 
+        <script src="components/view-profile/viewProfileController.js"></script>
+        <link rel="stylesheet" type="text/css" href="components/view-profile/view-profile.css"/>
+
         <!-- Mark added -->
         <script src="components/upload-video/uploadVideoController.js"></script>
        <link rel="stylesheet" type="text/css" href="components/upload-video/uploadVideo.css" />
@@ -85,6 +88,7 @@
         <md-button class="md-fab" ng-click="main.studentHome()">Student</md-button>
         <md-button class="md-fab" ng-click="main.profileHome()">My Profile</md-button>
         <md-button class="md-fab" ng-click="main.uploadVideo()">Upload</md-button>
+        <md-button class="md-fab" ng-click="main.viewProfile()">View Profile</md-button>
 <!--         <span ng-if="main.loggedIn"><md-button  class="md-fab" ng-click="addPhotoClick()">Add Photo</md-button></span> -->
         <!-- <span class="addph" ng-if="main.addPhotoButton===true"> <input type="file" accept="image/*"  onchange="angular.element(this).scope().inputFileNameChanged(this)"> </span>
         <span ng-if="main.addPhotoButton===true">

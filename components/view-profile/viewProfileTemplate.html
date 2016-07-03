@@ -1,0 +1,107 @@
+<div class="profile">
+<div layout="row" ng-app="myApp" class="icondemoFontIconsWithLigatures" ng-cloak>
+   <div flex="30" layout="column" class="boxWithHeight" layout-padding>
+      <section flex="40" class="profile-picture">
+         <img src="{{main.user.profile_picture_url}}" class="responsive-img" alt="">
+         <md-button id="upload-photo-button">Set Profile Picture</md-button>
+      </section>
+      <div class="user-info" ng-if="!editing">
+         <section flex>{{main.user.firstname}} {{main.user.lastname}}</section>
+         <section flex>Interests: {{main.user.interests}}</section>
+      </div>
+      <div class="user-info-editing" ng-if="editing">
+         <section flex>{{main.user.firstname}} {{main.user.lastname}}</section>
+         <section flex><textarea elastic id="edit-text-area" type="text" name="comment1" ng-model="main.user.interests" required></textarea></section>
+      </div>
+      <md-button ng-if="!editing" id="edit-button" ng-click="toggleEditMode()">Edit Profile</md-button>
+      <md-button ng-if="editing" id="save-edits-button" ng-click="toggleEditMode()">Save Profile</md-button>
+      <!-- The Modal -->
+      <div id="upload-modal" class="modal">
+         <!-- Modal content -->
+         <div class="modal-content" id="modal-upload-or-webcam-parent">
+            <span class="close">x</span>
+            <div id="modal-upload-or-webcam">
+               <div layout="row">
+                  <div flex="50" layout="column" class="boxWithHeight modal-left" layout-padding>
+                     <b>Upload A File</b>
+                     <span> <input type="file" accept="image/*"  onchange="angular.element(this).scope().inputFileNameChanged(this)"> </span>
+                     <span>
+                        <md-button ng-click="uploadPhoto()">Upload</md-button>
+                     </span>
+                  </div>
+                  <div flex="50" layout="column" class="boxWithHeight" id="modal-right"layout-padding>
+                     <b>Take a Profile Picture</b>
+                     <div id="webcam-container" ng-if="showLiveWebcam">
+                        <webcam id="live-webcam"
+                           on-stream="onStream(stream)"
+                           on-error="onError(err)"
+                           on-streaming="onSuccess()"
+                           channel="channel"
+                           placeholder="'images/ajax-loader.gif'">
+                           <div class="alert alert-error" ng-show="webcamError">
+                              <span>Webcam could not be started. Did you give access to it?</span>
+                           </div>
+                        </webcam>
+                     </div>
+                     <md-button ng-show="showLiveWebcam" ng-click="makeSnapshot()">Take snapshot!</md-button>
+                     <canvas id="snapshot" class="well pull-right" ng-hide="showLiveWebcam"></canvas>
+                     <md-button ng-click="uploadSnapshot()" ng-hide="showLiveWebcam">Upload Snapshot </md-button>
+                     <md-button ng-click="toggleShowLiveWebcam()" ng-hide="showLiveWebcam">Retake Photo</md-button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div flex="70" layout="column" class="boxWithHeight" layout-padding>
+      <h1 id="my-videos-title">My Videos</h1>
+      <section class="flex-container" flex="70">
+         <div class="list-container">
+            <md-list layout="row">
+               <md-list-item>
+                  <a href="#/upload-video">
+                     <div id="add-video-button-container">
+                        <div id="add-video-button" layout="column" >
+                           <i class="material-icons" id="add-video-icon">video_call</i>
+                           <div><b>Add Video</b></div>
+                        </div>
+                     </div>
+                  </a>
+               </md-list-item>
+               <md-list-item ng-repeat="video in main.videosArray">
+                  <md-card>
+                     <div id="{{video.url}}" class="thumbnail-container">
+                        <img ng-click="generateFrame(video.url)" id="{{video.url}}-child" class="thumbnail" src="http://img.youtube.com/vi/{{video.url}}/0.jpg"></img>
+                        <i ng-click="generateFrame(video.url)" class="material-icons play-circle" id="play-circle-{{video.url}}">play_circle_outline</i>
+                     </div>
+                     <md-card-content>
+                        <b>Title:</b> {{video.title}}
+                        <br>
+                        <b>Views:</b> {{video.views}}
+                     </md-card-content>
+                  </md-card>
+               </md-list-item>
+            </md-list>
+         </div>
+      </section>
+      <h1 id="my-profile-video-title">My Intro Video</h1>
+      <section class="flex-container" flex="70">
+         <div class="profile-video-container" ng-if="main.user.intro_url != ''">
+            <md-card>
+               <div id="{{main.user.intro_url}}" class="thumbnail-container">
+                  <img ng-click="generateFrame(main.user.intro_url)" id="{{main.user.intro_url}}-child" class="thumbnail" src="http://img.youtube.com/vi/{{main.user.intro_url}}/0.jpg"></img>
+                  <i ng-click="generateFrame(main.user.intro_url)" class="material-icons play-circle" id="play-circle-{{main.user.intro_url}}">play_circle_outline</i>
+               </div>
+               <md-card-content>
+                  <b>Title:</b> {{main.introVideo.title}}
+                  <br>
+                  <b>Views:</b> {{main.introVideo.views}}
+               </md-card-content>
+            </md-card>
+         </div>
+         <div class="profile-video-nonexistant" ng-if="main.user.intro_url == ''">
+            You have not made your profile video yet! Make it here!
+         </div>
+      </section>
+   </div>
+</div>

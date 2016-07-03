@@ -27,6 +27,11 @@ cs142App.config(
           templateUrl: 'components/profile/profileTemplate.html',
           controller: 'ProfileController'
         })
+        .state('viewProfile', {
+          url: "/viewProfile/:userID",
+          templateUrl: 'components/view-profile/viewProfileTemplate.html',
+          controller: 'ViewProfileController'
+        })
         .state('upload', {
           url: "/upload-video",
           templateUrl: 'components/upload-video/uploadVideo.html',
@@ -112,6 +117,11 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
                 console.log("go to upload");
                 $location.path("/upload-video");
         };
+
+        $scope.main.viewProfile = function() {
+          console.log("about to view profile");
+          $location.path("/viewProfile/Hxg6yr8TafQWhU4njnTVhINDdvX2");
+        }
 
         $scope.addPhotoClick = function(event) {   
             $scope.main.addPhotoButton = !$scope.main.addPhotoButton;
