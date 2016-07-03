@@ -1,6 +1,6 @@
 'use strict';
 
-var cs142App = angular.module('cs142App', ['ngRoute', 'ngMaterial','ngResource', 'firebase', 'youtube-embed','ui.router', 'ui.router.router', 'ngCookies']);
+var cs142App = angular.module('cs142App', ['ngRoute', 'ngMaterial','ngResource', 'firebase', 'youtube-embed','ui.router', 'ui.router.router', 'ngCookies', 'webcam']);
 
 cs142App.config(
     function ($stateProvider, $urlRouterProvider) {
@@ -22,8 +22,8 @@ cs142App.config(
           templateUrl: 'components/user-list/user-listTemplate.html',
           controller: 'UserListController'
         })
-        .state('profile', {
-          url: "/profile",
+        .state('myProfile', {
+          url: "/myProfile",
           templateUrl: 'components/profile/profileTemplate.html',
           controller: 'ProfileController'
         })
@@ -104,7 +104,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
         $scope.main.profileHome = function() {
             //$scope.main.loggedIn = true;
                 console.log("go to profile");
-                $location.path("/profile");
+                $location.path("/myProfile");
         };
 
         $scope.main.uploadVideo = function() {

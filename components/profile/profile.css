@@ -19,9 +19,35 @@
 }
 
 .profile {
-  
+
 }
 
+#modal-right {
+  height:100%;
+  overflow: hidden;
+  border-left-style: solid;
+  border-left-color: black;
+  border-left-width: 2px;
+}
+
+#snapshot {
+  height: 100%;
+  width: 93%;
+}
+
+
+#modal-upload-or-webcam {
+  height: 100%;
+}
+
+.modal-left {
+
+}
+
+.webcam-live{
+  width:100%;
+  height:100%;
+}
 
 .play-circle {
   position: absolute;
@@ -159,7 +185,7 @@
     padding: 20px;
     border: 1px solid #888;
     width: 40%; /* Could be more or less, depending on screen size */
-    height: 30%;
+    height: 50%;
 }
 
 /* The Close Button */
