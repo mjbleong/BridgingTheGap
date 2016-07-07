@@ -18,37 +18,6 @@
  background-color: rgba(0, 128, 0, 0.35);
 }
 
-.profile {
-
-}
-
-#modal-right {
-  height:100%;
-  overflow: hidden;
-  border-left-style: solid;
-  border-left-color: black;
-  border-left-width: 2px;
-}
-
-#snapshot {
-  height: 100%;
-  width: 93%;
-}
-
-
-#modal-upload-or-webcam {
-  height: 100%;
-}
-
-.modal-left {
-
-}
-
-.webcam-live{
-  width:100%;
-  height:100%;
-}
-
 .play-circle {
   position: absolute;
   font-size:100px;
@@ -78,20 +47,6 @@
   
 }
 
-#add-video-button-container {
-  display: table;
-  height: 150px;
-  width: 250px;
-}
-
-#add-video-button {
-  background-color: gray;
-  text-align: center;
-  vertical-align: middle;
-  display: table-cell;
-
-}
-
 #add-video-icon {
   font-size:100px;
 }
@@ -104,9 +59,6 @@
   width: 250px;
 }
 
-#edit-text-area {
-  width: 100% ;
-}
 .profile iframe {
   border-style: none;
 }
@@ -118,17 +70,6 @@
 
 #my-videos-title {
   margin: 0px;
-}
-
-#upload-photo-button {
-  display: none;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-}
-
-.profile-picture:hover #upload-photo-button {
-    display: block;
 }
 
 .profile-picture{
@@ -161,48 +102,6 @@
 .profile section {
   background-color: #dedede;
 }
-
-
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 40%; /* Could be more or less, depending on screen size */
-    height: 50%;
-}
-
-/* The Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
 
 
 /*
