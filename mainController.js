@@ -8,9 +8,10 @@ cs142App.config(
       $urlRouterProvider.otherwise("/login-register");
       // Now set up the states
       $stateProvider
-        .state('state1', {
-          url: "/state1",
-          templateUrl: "components/allAlum/profile-view.html"
+        .state('buttons', {
+          url: "/buttons",
+          templateUrl: "production/admin-angular/buttons.html",
+          controller: 'buttonsController'
         })
         .state('login-register', {
           url: "/login-register",
