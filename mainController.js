@@ -80,8 +80,8 @@ cs142App.directive('elastic', [
     }
 ]);
 
-cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$location', '$http', '$route', "$firebaseAuth", '$cookies',
-    function ($scope, $resource, $rootScope, $location, $http, $route, $firebaseAuth, $cookies) {
+cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$location', '$http', '$route', "$firebaseAuth", '$cookies', '$firebaseObject',
+    function ($scope, $resource, $rootScope, $location, $http, $route, $firebaseAuth, $cookies, $firebaseObject) {
 
         $scope.main = {};
         $scope.authObj = $firebaseAuth();
@@ -93,6 +93,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
         $scope.authObj.$onAuthStateChanged(function(firebaseUser) {
           if (firebaseUser) {
             $scope.currentUser = firebaseUser.uid;
+            $scope.main.user = $firebaseObject(firebase.database().ref("users/" + $scope.currentUser));
             console.log("Signed in as:", firebaseUser.uid);
             $cookies.put("userName", firebaseUser.uid);
           } else {
@@ -123,6 +124,12 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
           console.log("about to view profile");
           $location.path("/viewProfile/Hxg6yr8TafQWhU4njnTVhINDdvX2");
         }
+
+
+        $scope.main.myProfile = function() {
+         console.log("see my prof");
+         $location.path("/myProfile");
+       }
 
         $scope.addPhotoClick = function(event) {   
             $scope.main.addPhotoButton = !$scope.main.addPhotoButton;
