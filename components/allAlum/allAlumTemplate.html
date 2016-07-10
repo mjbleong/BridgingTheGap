@@ -1,4 +1,105 @@
 
+<script type="text/javascript" src="../../assets/widgets/tabs-ui/tabs.js"></script>
+<script type="text/javascript">
+    /* jQuery UI Tabs */
+
+    $(function() { "use strict";
+        $(".tabs").tabs();
+    });
+
+    $(function() { "use strict";
+        $(".tabs-hover").tabs({
+            event: "mouseover"
+        });
+    });
+</script>
+
+
+    <div class="example-box-wrapper">
+        <div class="content-box tabs">
+            <h3 class="content-box-header bg-primary">
+                <span>View Videos</span>
+                <ul>
+                    <li>
+                        <a href="#tabs-example-1" ui-sref="alum.topic" title="Tab 1">
+                            Featured
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#tabs-example-2" ui-sref="alum.list" title="Tab 2">
+                            By Alum
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#tabs-example-3" title="Tab 3">
+                            By Topic
+                        </a>
+                    </li>
+                </ul>
+            </h3>
+            <div id="tabs-example-1">
+                <div class="contain">
+
+
+
+
+<div ng-repeat="subset in main.allOfThem">
+        <h1>{{subset.name}}</h1>
+  <div class="row">
+    <div class="row__inner">
+
+      <div class="tile" ng-repeat="video in subset">
+        <div class="tile__media">
+          <img class="tile__img" ng-src="http://img.youtube.com/vi/{{video.url}}/0.jpg" alt=""  />
+        </div>
+        <div class="tile__details">
+          <div class="tile__title">
+            Top Gear
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
+</div>
+            </div>
+            <div id="tabs-example-2">
+                
+<div class="large">
+
+
+
+<div class="outer-div">
+<span ng-repeat="user in main.userArray">
+  <div ng-click="clickedFace(user.intro_url)" class="outer-link">
+    <figure>
+      <img class="img-circle" ng-src="{{user.profile_picture_url}}" alt=""></img>
+      <figcaption class="caption">{{user.firstname}}</figcaption>
+    </figure>
+  </div>
+ </span>
+
+</div>
+
+<div ng-show="main.showVidBox" class="popup">
+  <md-button class="closevid" ng-click="closeVid()"><md-icon><i class="material-icons">highlight_off</i> </md-icon> </md-button>
+  <youtube-video class="video-pop" video-id="main.currURL"></youtube-video>
+</div>
+
+</div>
+
+
+            </div>
+            <div id="tabs-example-3">
+                Tab 3 content goes here ...
+            </div>
+        </div>
+
+
+
 <!-- <ul class="cs142-main-mytoolbar">
 <li class="cs142-main-myelement" ng-repeat="user in main.userArray">
 	{{user}}
@@ -10,7 +111,7 @@
 
 <!-- partials/state1.html -->
 
-<md-toolbar layout="row" layout-align="center end" class="md-tall">
+<!-- <md-toolbar layout="row" layout-align="center end" class="md-tall">
 	<div flex flex-sm="100" flex-gt-sm="95" flex-gt-md="80" layout="column">
 		<h2>Hear Our Stories</h2>
 		<span flex> </span>
@@ -23,10 +124,10 @@
 			</md-tab>
 		</md-tabs>
 	</div>
-</md-toolbar>
+</md-toolbar> -->
 
-<div ui-view></div>
-
+<!-- <div ui-view></div>
+ -->
 
 
 

@@ -1,6 +1,169 @@
 <!DOCTYPE html> 
 <html ng-app="cs142App" ng-controller="MainController" lang="en">
 <head>
+
+        <script src="/assets/widgets/owlcarousel/owlcarousel.js" type="text/javascript" ></script>
+        <link rel="stylesheet" type="text/css" href="../../assets/widgets/owlcarousel/owlcarousel.css">
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+
+
+<!-- tabs below -->
+
+
+<script type="text/javascript" src="../../assets/widgets/tabs/tabs-responsive.js"></script>
+<script type="text/javascript">
+    /* Responsive tabs */
+    $(function() { "use strict";
+        $('.nav-responsive').tabdrop();
+    });
+</script>
+
+<script type="text/javascript" src="../../assets/widgets/tabs/tabs.js"></script>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../assets/images/icons/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../assets/images/icons/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../assets/images/icons/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="../../assets/images/icons/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="../../assets/images/icons/favicon.png">
+
+
+
+    <link rel="stylesheet" type="text/css" href="../../assets/bootstrap/css/bootstrap.css">
+
+
+<!-- HELPERS -->
+
+<link rel="stylesheet" type="text/css" href="../../assets/helpers/animate.css">
+<link rel="stylesheet" type="text/css" href="../../assets/helpers/backgrounds.css">
+<link rel="stylesheet" type="text/css" href="../../assets/helpers/boilerplate.css">
+<link rel="stylesheet" type="text/css" href="../../assets/helpers/border-radius.css">
+<link rel="stylesheet" type="text/css" href="../../assets/helpers/grid.css">
+<link rel="stylesheet" type="text/css" href="../../assets/helpers/page-transitions.css">
+<link rel="stylesheet" type="text/css" href="../../assets/helpers/spacing.css">
+<link rel="stylesheet" type="text/css" href="../../assets/helpers/typography.css">
+<link rel="stylesheet" type="text/css" href="../../assets/helpers/utils.css">
+<link rel="stylesheet" type="text/css" href="../../assets/helpers/colors.css">
+
+<!-- ELEMENTS -->
+
+<link rel="stylesheet" type="text/css" href="../../assets/elements/badges.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/buttons.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/content-box.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/dashboard-box.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/forms.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/images.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/info-box.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/invoice.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/loading-indicators.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/menus.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/panel-box.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/response-messages.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/responsive-tables.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/ribbon.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/social-box.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/tables.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/tile-box.css">
+<link rel="stylesheet" type="text/css" href="../../assets/elements/timeline.css">
+
+
+
+<!-- ICONS -->
+
+<link rel="stylesheet" type="text/css" href="../../assets/icons/fontawesome/fontawesome.css">
+<link rel="stylesheet" type="text/css" href="../../assets/icons/linecons/linecons.css">
+<link rel="stylesheet" type="text/css" href="../../assets/icons/spinnericon/spinnericon.css">
+
+
+<!-- WIDGETS -->
+
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/accordion-ui/accordion.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/calendar/calendar.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/carousel/carousel.css">
+
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/charts/justgage/justgage.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/charts/morris/morris.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/charts/piegage/piegage.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/charts/xcharts/xcharts.css">
+
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/chosen/chosen.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/colorpicker/colorpicker.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/datatable/datatable.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/datepicker/datepicker.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/datepicker-ui/datepicker.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/daterangepicker/daterangepicker.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/dialog/dialog.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/dropdown/dropdown.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/dropzone/dropzone.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/file-input/fileinput.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/input-switch/inputswitch.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/input-switch/inputswitch-alt.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/ionrangeslider/ionrangeslider.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/jcrop/jcrop.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/jgrowl-notifications/jgrowl.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/loading-bar/loadingbar.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/maps/vector-maps/vectormaps.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/markdown/markdown.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/modal/modal.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/multi-select/multiselect.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/multi-upload/fileupload.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/nestable/nestable.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/noty-notifications/noty.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/popover/popover.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/pretty-photo/prettyphoto.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/progressbar/progressbar.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/range-slider/rangeslider.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/slidebars/slidebars.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/slider-ui/slider.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/summernote-wysiwyg/summernote-wysiwyg.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/tabs-ui/tabs.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/theme-switcher/themeswitcher.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/timepicker/timepicker.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/tocify/tocify.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/tooltip/tooltip.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/touchspin/touchspin.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/uniform/uniform.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/wizard/wizard.css">
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/xeditable/xeditable.css">
+
+<!-- SNIPPETS -->
+
+<link rel="stylesheet" type="text/css" href="../../assets/snippets/chat.css">
+<link rel="stylesheet" type="text/css" href="../../assets/snippets/files-box.css">
+<link rel="stylesheet" type="text/css" href="../../assets/snippets/login-box.css">
+<link rel="stylesheet" type="text/css" href="../../assets/snippets/notification-box.css">
+<link rel="stylesheet" type="text/css" href="../../assets/snippets/progress-box.css">
+<link rel="stylesheet" type="text/css" href="../../assets/snippets/todo.css">
+<link rel="stylesheet" type="text/css" href="../../assets/snippets/user-profile.css">
+<link rel="stylesheet" type="text/css" href="../../assets/snippets/mobile-navigation.css">
+
+<!-- APPLICATIONS -->
+
+<link rel="stylesheet" type="text/css" href="../../assets/applications/mailbox.css">
+
+<!-- Admin theme -->
+
+<link rel="stylesheet" type="text/css" href="../../assets/themes/admin/layout.css">
+<link rel="stylesheet" type="text/css" href="../../assets/themes/admin/color-schemes/default.css">
+
+<!-- Components theme -->
+
+<link rel="stylesheet" type="text/css" href="../../assets/themes/components/default.css">
+<link rel="stylesheet" type="text/css" href="../../assets/themes/components/border-radius.css">
+
+<!-- Admin responsive -->
+
+<link rel="stylesheet" type="text/css" href="../../assets/helpers/responsive-elements.css">
+<link rel="stylesheet" type="text/css" href="../../assets/helpers/admin-responsive.css">
+
+
+
+
+    <!-- hereeee -->
+
+
     <title>{{main.title || "CS142 Class Project"}}</title>
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -56,6 +219,7 @@
 
         
         <script src="components/allAlum/allAlumController.js"></script>
+          <link rel="stylesheet" type="text/css" href="components/allAlum/allAlum.css">
 
         <script src="https://www.youtube.com/iframe_api"></script>
         <script src="./node_modules/angular-youtube-embed/src/angular-youtube-embed.js" type="text/javascript" >
@@ -1175,7 +1339,7 @@
         <div class="sidebar-submenu">
 
             <ul>
-                <li><a href="gmaps.html" title="gMaps"><span>gMaps</span></a></li>
+                <li><a ng-href="/#/alum" title="gMaps"><span>alum</span></a></li>
                 <li><a href="vector-maps.html" title="Vector maps"><span>Vector maps</span></a></li>
                 <li><a href="mapael.html" title="Mapael"><span>Mapael</span></a></li>
             </ul>
