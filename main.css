@@ -37,3 +37,9 @@ a {
 .listOfUsers {
 	font-size: 10px;
 }
+
+.img-circle {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+}

@@ -4,6 +4,69 @@ var cs142App = angular.module('cs142App', ['ngRoute', 'ngMaterial','ngResource',
 
 cs142App.config(
     function ($stateProvider, $urlRouterProvider) {
+
+      // firebase.database().ref('tag-categories/paying-for-college/name').set('Paying for College');
+      //   firebase.database().ref('tag-categories/paying-for-college/tags/financial-aid').set('');
+      //   firebase.database().ref('tag-categories/paying-for-college/tags/loans').set('');
+      //   firebase.database().ref('tag-categories/paying-for-college/tags/work-study').set('');
+      //   firebase.database().ref('tag-categories/paying-for-college/tags/employment').set('');
+      //   firebase.database().ref('tag-categories/paying-for-college/tags/scholarships').set('');
+      //   firebase.database().ref('tag-categories/paying-for-college/tags/budgeting').set('');
+
+      //   firebase.database().ref('tag-categories/paying-for-college/tags/financial-aid/name').set('Financial Aid');
+      //   firebase.database().ref('tag-categories/paying-for-college/tags/loans/name').set('Loans');
+      //   firebase.database().ref('tag-categories/paying-for-college/tags/work-study/name').set('Work Study');
+      //   firebase.database().ref('tag-categories/paying-for-college/tags/employment/name').set('Employment');
+      //   firebase.database().ref('tag-categories/paying-for-college/tags/scholarships/name').set('Scholarships');
+      //   firebase.database().ref('tag-categories/paying-for-college/tags/budgeting/name').set('Budgeting');
+
+      //    firebase.database().ref('tag-categories/finding-community/name').set('Finding Community');
+      //   firebase.database().ref('tag-categories/finding-community/tags/cultural-groups').set('');
+      //   firebase.database().ref('tag-categories/finding-community/tags/clubs').set('');
+      //   firebase.database().ref('tag-categories/finding-community/tags/close-friends').set('');
+      //   firebase.database().ref('tag-categories/finding-community/tags/dorm-life').set('');
+      //   firebase.database().ref('tag-categories/finding-community/tags/greek-life').set('');
+      //   firebase.database().ref('tag-categories/finding-community/tags/sports').set('');
+      //   firebase.database().ref('tag-categories/finding-community/tags/making-friends').set('');
+      //   firebase.database().ref('tag-categories/finding-community/tags/roommates').set('');
+
+      //   firebase.database().ref('tag-categories/finding-community/tags/cultural-groups/name').set('Cultural Groups');
+      //   firebase.database().ref('tag-categories/finding-community/tags/clubs/name').set('Clubs');
+      //   firebase.database().ref('tag-categories/finding-community/tags/close-friends/name').set('Close Friends');
+      //   firebase.database().ref('tag-categories/finding-community/tags/dorm-life/name').set('Dorm Life');
+      //   firebase.database().ref('tag-categories/finding-community/tags/greek-life/name').set('Greek Life');
+      //   firebase.database().ref('tag-categories/finding-community/tags/sports/name').set('Sports');
+      //   firebase.database().ref('tag-categories/finding-community/tags/making-friends/name').set('Making Friends');
+      //   firebase.database().ref('tag-categories/finding-community/tags/roommates/name').set('Roommates');
+
+      //   firebase.database().ref('tag-categories/significant-others/name').set('Significant Others');
+      //   firebase.database().ref('tag-categories/significant-others/tags/dating').set('');
+      //   firebase.database().ref('tag-categories/significant-others/tags/long-distance-relationships').set('');
+      //   firebase.database().ref('tag-categories/significant-others/tags/partners').set('');
+      //   firebase.database().ref('tag-categories/significant-others/tags/break-ups').set('');
+      //   firebase.database().ref('tag-categories/significant-others/tags/unhealthy-relationships').set('');
+
+      //   firebase.database().ref('tag-categories/significant-others/tags/dating/name').set('Dating');
+      //   firebase.database().ref('tag-categories/significant-others/tags/long-distance-relationships/name').set('Long Distance Relationships');
+      //   firebase.database().ref('tag-categories/significant-others/tags/partners/name').set('Partners');
+      //   firebase.database().ref('tag-categories/significant-others/tags/break-ups/name').set('Break Ups');
+      //   firebase.database().ref('tag-categories/significant-others/tags/unhealthy-relationships/name').set('Unhealthy Relationships');
+
+      //   firebase.database().ref('tag-categories/applying-to-college/name').set('Applying to College');
+      //   firebase.database().ref('tag-categories/applying-to-college/tags/personal-essays').set('');
+      //   firebase.database().ref('tag-categories/applying-to-college/tags/scholarships').set('');
+      //   firebase.database().ref('tag-categories/applying-to-college/tags/choosing-a-college').set('');
+      //   firebase.database().ref('tag-categories/applying-to-college/tags/transferring').set('');
+      //   firebase.database().ref('tag-categories/applying-to-college/tags/tests').set('');
+
+      //   firebase.database().ref('tag-categories/applying-to-college/tags/personal-essays/name').set('Personal Essays');
+      //   firebase.database().ref('tag-categories/applying-to-college/tags/scholarships/name').set('Scholarships');
+      //   firebase.database().ref('tag-categories/applying-to-college/tags/choosing-a-college/name').set('Choosing A College');
+      //   firebase.database().ref('tag-categories/applying-to-college/tags/transferring/name').set('Transferring');
+      //   firebase.database().ref('tag-categories/applying-to-college/tags/tests/name').set('Tests');
+
+
+
   
       $urlRouterProvider.otherwise("/login-register");
       // Now set up the states
@@ -57,10 +120,7 @@ cs142App.config(
           controller: 'AlumController'
         })
     ;
-
-
       });
-
 
 cs142App.directive('elastic', [
     '$timeout',
@@ -238,7 +298,6 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
             };
     }
 ]);
-
 
 // cs142App.factory("userPersistenceService", [
 //     "$cookies", function($cookies) {

@@ -338,6 +338,7 @@
         },
 
         'select' : function(value, method){
+            console.log(value);
             if (typeof value === 'string'){ value = [value]; }
 
             var that = this,
@@ -391,9 +392,11 @@
                     }
                 }
             }
+
         },
 
         'deselect' : function(value){
+            console.log(value);
             if (typeof value === 'string'){ value = [value]; }
 
             var that = this,

@@ -2,6 +2,8 @@
 
 cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resource', '$http', '$rootScope','$location','$firebaseAuth', '$cookies','$route',
   function ($scope, $routeParams, $resource, $http, $rootScope, $location, $firebaseAuth, $cookies, $route) {
+    
+
     $scope.upload = {};
 
     $scope.upload.show = false;
@@ -10,26 +12,68 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
     $scope.upload.title = '';
     $scope.upload.description = '';
     $scope.upload.description_char_count = 0;
+    $scope.upload.tab = 1;
+    $scope.upload.video_src = 'hello';
 
-    firebase.database().ref('tags').once('value').then(function(snapshot) {
+    firebase.database().ref('tag-categories').once('value').then(function(snapshot) {
       $scope.checkboxModel = snapshot.val();
+      for (var cat in $scope.checkboxModel) {
+        for (var tag_o in $scope.checkboxModel[cat].tags) {
+            $scope.checkboxModel[cat].tags[tag_o]['checked'] = false;
+        }
+      }
+      console.log($scope.checkboxModel);
     });
+
+    $scope.upload.switchTabForward = function() {
+      document.getElementById('tab-' + $scope.upload.tab).style.backgroundColor = '#99ccff';
+      $scope.upload.tab = $scope.upload.tab + 1;
+      document.getElementById('tab-' + $scope.upload.tab).style.backgroundColor = '#00bca4';
+    }
+
+    $scope.upload.switchTabBackward = function() {
+      document.getElementById('tab-' + $scope.upload.tab).style.backgroundColor = '#99ccff';
+      $scope.upload.tab = $scope.upload.tab - 1;
+      document.getElementById('tab-' + $scope.upload.tab).style.backgroundColor = '#00bca4';
+    }
+
+
+
+    // $scope.seeCheckbox = function(category,tag) {
+    //   var tag_table = document.getElementById('upload-show-tags');
+    //   var tag_name = $scope.checkboxModel[category].tags[tag].name;
+    //   var tag_div = document.createElement("div");
+    //   tag_div.innerHTML = ' ' + tag_name + ' ';
+    //   tag_div.style.backgroundColor = 'red';
+    //   tag_div.style.margin = '5px';
+    //   tag_div.style.height = '24px';
+    //   tag_div.class = 'upload-tag-div';
+
+    //   tag_table.appendChild(tag_div);
+    // }
+
+    $scope.upload.switchTab = function(tabNum) {
+      $scope.upload.tab = tabNum;
+    }
 
     $scope.showStuff = function() {
       $scope.upload.show = true;
+      $scope.upload.video_src = 'hello';
+      console.log($scope.upload.video_src);
     }
 
     $scope.upload.postVideo = function() {
       console.log($scope.checkboxModel);
       for (var category in $scope.checkboxModel) {
-        console.log(category);
-        for (var tag in $scope.checkboxModel[category]) {
-          if ($scope.checkboxModel[category][tag] == true) {
-            firebase.database().ref('videos/' + $scope.upload.videoId + '/tags/' + tag).set('');
-            firebase.database().ref('tags/' + category + '/' + tag + '/' + $scope.upload.videoId).set('');  
+        for (var tag in $scope.checkboxModel[category].tags) {
+          if ($scope.checkboxModel[category].tags[tag].checked == true) {
+            console.log('bloopi')
+            firebase.database().ref('videos/' + $scope.upload.videoId + '/tags/' + category + '/' + tag).set('');
+            firebase.database().ref('tag-categories/' + category + '/tags/' + tag + '/' + $scope.upload.videoId).set('');  
           }
         }
       }
+      console.log('hi');
       firebase.database().ref('videos/' + $scope.upload.videoId + '/title').set($scope.upload.title);
       firebase.database().ref('videos/' + $scope.upload.videoId + '/description').set($scope.upload.description);
     }
@@ -97,12 +141,20 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
 
           $scope.upload.videoId = newPostKey;
 
-          var iframe = document.createElement("iframe");
-          iframe.width='420';
-          iframe.height='315';
-          iframe.src= '//www.youtube.com/embed/' + myId;
-          var element = document.getElementById('videos');
-          element.appendChild(iframe);
+          var iframe1 = document.createElement("iframe");
+          iframe1.width='420';
+          iframe1.height='315';
+          iframe1.src= '//www.youtube.com/embed/' + myId;
+
+          var iframe2 = document.createElement('iframe');
+          iframe2.width='420';
+          iframe2.height='315';
+          iframe2.src='//www.youtube.com/embed/' + myId;
+
+          var element1 = document.getElementById('videos');
+          var element2 = document.getElementById('showVideo');
+          element1.appendChild(iframe1);
+          element2.appendChild(iframe2);
         }      
       });
 
