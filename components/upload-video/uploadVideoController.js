@@ -15,6 +15,14 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
     $scope.upload.tab = 1;
     $scope.upload.video_src = 'hello';
 
+    $scope.upload.tagStyle = 
+    {
+      'applying-to-college': {'background-color': 'red'},
+      'paying-for-college': {'background-color': 'green'},
+      'finding-community': {'background-color': 'blue'},
+      'significant-others': {'background-color': '#ff9900'}
+    };
+
     firebase.database().ref('tag-categories').once('value').then(function(snapshot) {
       $scope.checkboxModel = snapshot.val();
       for (var cat in $scope.checkboxModel) {
@@ -24,6 +32,10 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
       }
       console.log($scope.checkboxModel);
     });
+
+    $scope.upload.removeTag = function(cat,tag) {
+      $scope.checkboxModel[cat].tags[tag].checked = false;
+    }
 
     $scope.upload.switchTabForward = function() {
       document.getElementById('tab-' + $scope.upload.tab).style.backgroundColor = '#99ccff';
@@ -36,7 +48,6 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
       $scope.upload.tab = $scope.upload.tab - 1;
       document.getElementById('tab-' + $scope.upload.tab).style.backgroundColor = '#00bca4';
     }
-
 
 
     // $scope.seeCheckbox = function(category,tag) {
@@ -58,7 +69,6 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
 
     $scope.showStuff = function() {
       $scope.upload.show = true;
-      $scope.upload.video_src = 'hello';
       console.log($scope.upload.video_src);
     }
 

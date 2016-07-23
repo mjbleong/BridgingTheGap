@@ -18,7 +18,7 @@
       <div id="form-wizard-3" class="form-wizard">
         <ul>
           <li>
-            <a  class='wizard-tab'>
+            <a class='wizard-tab' id='wizard-tab-1'>
               <label id='tab-1' class="wizard-step">1</label>
               <span class="wizard-description">
                 Make Video
@@ -27,7 +27,7 @@
             </a>
           </li>
           <li>
-            <a class='wizard-tab'>
+            <a class='wizard-tab' id='wizard-tab-2'>
               <label id='tab-2' class="wizard-step">2</label>
                 <span class="wizard-description">
                   Title and Description
@@ -36,7 +36,7 @@
             </a>
           </li>
           <li>
-            <a class='wizard-tab'>
+            <a class='wizard-tab' id='wizard-tab-3'>
               <label id='tab-3' class="wizard-step">3</label>
               <span class="wizard-description">
                 Tag Video
@@ -116,9 +116,10 @@
             </div>
             <div class='upload-show-tags-sect'>
               <div id='upload-show-tags'>
+
                 <div id='upload-indi-cat'  ng-repeat='(category, value) in checkboxModel'>
                   <div id='upload-indi-tags' ng-repeat='(tag, value) in checkboxModel[category].tags'>
-                      <span class='upload-tag-div' ng-show='checkboxModel[category].tags[tag].checked'> {{checkboxModel[category].tags[tag].name}}</span>
+                      <button ng-style='upload.tagStyle[category]' class="btn ra-100 btn-success" ng-show='checkboxModel[category].tags[tag].checked' ng-click='upload.removeTag(category,tag)'> {{checkboxModel[category].tags[tag].name}} </button>
                   </div>
                 </div>
               </div>
@@ -126,12 +127,11 @@
               <div id='tagging-sect'>
 
                 <div ng-repeat='(category, value) in checkboxModel'>
-                  <span class='upload-cat-header'>{{tag}}</span>
-                  <div class='upload-tag-sect' id='upload-tag-sect-{{category}}'>
+                  <div class='upload-tag-sect' ng-style='upload.tagStyle[category]' id='upload-tag-sect-{{category}}'>
                     <strong>{{checkboxModel[category].name}}</strong>
                     <form name="myForm" ng-repeat='(tag, value) in checkboxModel[category].tags'>
                     <label class='upload-checkbox'>
-                      <input  type="checkbox" ng-click='seeCheckbox(category,tag)' ng-model="checkboxModel[category].tags[tag].checked">            
+                      <input  type="checkbox" ng-model="checkboxModel[category].tags[tag].checked">            
                       {{checkboxModel[category].tags[tag].name}}
                     </label><br/>
                   </div>

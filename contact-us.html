@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-<title> The Perfect User Interface Framework | Monarch </title>
+<title> Contact us | Monarch </title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<link rel='stylesheet' type='text/css' href='main.css'>
 
 <!-- Favicons -->
 
@@ -175,40 +173,14 @@
     });
 </script>
 
-
-<script type='text/javascript'>
-$(document).ready(function(){
-  // Add smooth scrolling to all links
-  $("a").on('click', function(event) {
-    console.log(this);
-
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      event.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-      console.log(hash);
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function(){
-   
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
-  });
-});
-</script>
-
 </head>
 
-<body class="body-alt">
-<link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
+<body>
+
+<!-- Parsley -->
+
+<script type="text/javascript" src="../../assets/widgets/parsley/parsley.js"></script>
+
 
 <div id="page-wrapper">
 <div class="main-header header-fixed bg-header wow fadeInDown">
@@ -226,19 +198,19 @@ $(document).ready(function(){
     </div><!-- .header-logo -->
     <ul class="header-nav collapse">
         <li>
-            <a id='fe-home-button' href="#" title="Homepages">
+            <a href="index.html" title="Homepages">
                 Home
                <!--  <i class="glyph-icon icon-angle-down"></i> -->
             </a>
         </li>
         <li>
-            <a  href="#our-mission" title="Hero sections">
+            <a href="#" title="Hero sections">
                 Our Mission
                 <!-- <i class="glyph-icon icon-angle-down"></i> -->
             </a>
         </li>
         <li class="sf-mega">
-            <a id='fe-about-us-button' href="#about-us"  title="Features">
+            <a href="#" title="Features">
                 About Us
                 <!-- <i class="glyph-icon icon-angle-down"></i> -->
             </a>
@@ -265,86 +237,78 @@ $(document).ready(function(){
 </div><!-- .container -->
 </div><!-- .main-header -->
 
-<!-- Fullpage.js -->
-
-<script type="text/javascript" src="../../assets/widgets/fullpage/fullpage.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#fullpage').fullpage({
-            anchors: ['firstPage'],
-            autoScrolling: false,
-            css3: true
-        });
-    });
-</script>
 
 
-<div id='fullpage'>
-
-<div id='diswot' class="hero-box poly-bg-7 font-inverse">
+<div class="hero-box hero-box-smaller bg-gradient-5 font-inverse">
     <div class="container">
-        <h1 class="hero-heading wow fadeInDown" data-wow-duration="0.6s">Video overlays</h1>
-        <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-        <div class="scroller-icon">
-            <div class="glyph-icon icon-angle-down font-white"></div>
+        <h1 style="margin-top='150px'" class="pad0A hero-heading font-size-28 wow fadeInDown" data-wow-duration="0.6s">Contact us</h1>
+    </div>
+    <div class="hero-overlay bg-black"></div>
+</div>
+
+<div class="mrg25T pad25T pad25B">
+    <div class="container mrg25T mrg25B row">
+        <div class="col-md-8">
+            <form class="form-horizontal bordered-row" id="demo-form" data-parsley-validate="">
+                <div class="content-box">
+                    <h3 class="content-box-header bg-default">
+                        Send us an email
+                    </h3>
+                    <div class="content-box-wrapper">
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Name:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" placeholder="Required Field" required class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Email:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" data-parsley-type="email" placeholder="Email address" required class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Message:</label>
+                                <div class="col-sm-6">
+                                    <textarea id="" name="" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label"></label>
+                                <div class="col-sm-6">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-pane">
+                        <button class="btn btn-info">Send</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-md-4">
+            <div class="divider mrg25T mrg25B"></div>
+            <h3>Get in touch</h3>
+            <ul class="contact-list mrg15T mrg25B reset-ul">
+                <li>
+                    <i class="glyph-icon icon-home"></i>
+                    531 Lasuen Mall PO 15358 <br> &nbsp &nbsp &nbsp Stanford, CA
+                </li>
+                <li>
+                    <i class="glyph-icon icon-envelope-o"></i>
+                    bridgethegapcrew@gmail.com
+                </li>
+            </ul>
+            <div class="divider mrg25T mrg25B"></div>
+            <h3 class="mrg15B">About us</h3>
+            <p class="font-gray-dark">We are bridging the communication gap between high school and college students from low-income, first generation areas in order to increase college preparedness and to strengthen the college-going community</p>
         </div>
     </div>
 </div>
 
-<!-- anchor point!! -->
-<a name='our-mission'></a>
-
-<div class="hero-box bg-black font-inverse">
-    <div class="container">
-        
-        <h1 class="hero-heading wow fadeInDown" data-wow-duration="0.6s">Our Mission</h1>
-        <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s">We are a group of four Stanford undergrads working on a platform to connect high school students with college-going alumni from their local communities. We hope that by bridging the communication gap between these groups, high school students can begin their college journeys with more preparation for the challenges they may face, and the support of belonging to a wider community of college-attending alumni.</p>
-    </div>
-    <div class="hero-video video-example-2"></div>
-    <div class="hero-overlay bg-black opacity-30"></div>
-</div>
-
-<!-- anchor point!! -->
-<a name='about-us'></a>
-
-<h3 class="p-title">
-        <span>BTG SQUAD BOIIIII</span>
-    </h3>
-    <div class="row">
-
-        <div class="icon-box col-md-4">
-            <img alt="about-us-04" src="images/photoofme.jpg" style="border-radius: 50%; max-width: 50%; text-align: center;"/>
-            <h3 class="icon-title">Mo Rozco</h3>
-            <p class="icon-content">Jelly Bean Specialist. Special abilities: recording clipchamp videos, cleaning up his room 2 minutes before BTG Squad arrives.</p>
-        </div>
-        <div class="icon-box col-md-4">
-            <img alt="about-us-04" src="https://www.mentorroom.org/wp-content/uploads/2013/09/Itzel.png" style="border-radius: 50%; max-width: 50%; text-align: center;"/>
-            <h3 class="icon-title">'SA</h3>
-            <p class="icon-content">AKA Snack Master 3000. Great at making kids eat their veggies. Weakness: Peanuts.</p>
-        </div>
-        <div class="icon-box col-md-4">
-            <img alt="about-us-04" src="https://www.mentorroom.org/wp-content/uploads/2013/09/Chris.png" style="border-radius: 50%; max-width: 50%; text-align: center;"/>
-            <h3 class="icon-title">Bongi Boy</h3>
-            <p class="icon-content">Most likely to spend 3 hours at work on the toilet reading new stories on his phone. Watch out San Mateo, there's a new kid in town! ;)</p>
-        </div>
-    </div>
-
-<div class="poly-bg-7 hero-box hero-right font-inverse hero-box-smaller">
-    <div class="container clearfix">
-        <div class="col-md-7">
-            <h3 class="hero-heading wow fadeInDown mrg20B" data-wow-duration="0.6s">Overlay &amp; Pattern</h3>
-            <p class="hero-text wow bounceInUp mrg25B" data-wow-duration="0.9s" data-wow-delay="0.2s">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-            <a href="#" class="btn-outline-inverse hero-btn wow fadeInUp" data-wow-delay="0.4s" title="Purchase Button">Find out more</a>
-        </div>
-        <div class="col-md-5 img-holder wow fadeInUp">
-            <img src="../../assets/image-resources/objects/phone-1.png" alt="">
-        </div>
-    </div>
-</div>
-</div>
-
-
+</div></div>
 
 
     <!-- FRONTEND ELEMENTS -->
