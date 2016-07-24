@@ -22,6 +22,68 @@ cs142App.controller('AlumController', ['$scope', '$resource', '$firebaseObject',
 
         $scope.main.showVidBox = false;
 
+        $scope.main.modalOpen = false;
+
+        $scope.generateFrame = function (urlOrUser, fbID, views, subset) {
+            $scope.main.modalOpen = true;
+            console.log(fbID);
+        if (fbID) {
+            var currVid = $firebaseObject(firebase.database().ref().child("videos").child(fbID));
+            var currLikes = $firebaseObject(firebase.database().ref().child("videos").child(fbID).child("likes"));
+            console.log(currLikes);
+            // var currVid2 = $firebaseObject(firebase.database().ref("videos/" + fbID + "/title"));
+            $scope.main.currVid = currVid;
+            var element = document.getElementById("alum-innerHTML");
+            var elementInnerString = "";
+            elementInnerString += '<iframe src="//www.youtube.com/embed/' + urlOrUser + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="400px" height="200px" allowfullscreen></iframe>';
+            elementInnerString += '<div>' + views +' views</div>';
+            element.innerHTML = elementInnerString;
+        } else {
+            var title = document.getElementById("alum-modal-title-forChange");
+            title.innerHTML = " " + urlOrUser.firstname + " " + urlOrUser.lastname;
+            $scope.main.currVid = {};
+            $scope.main.currVid.author_id = urlOrUser.$id;
+            var element = document.getElementById("alum-innerHTML");
+            element.innerHTML = '<iframe src="//www.youtube.com/embed/' + urlOrUser.intro_url + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="400px" height="200px" allowfullscreen></iframe>';
+        }
+
+            
+
+        }
+
+        $scope.main.findTags = function(tags) {
+            if (tags == undefined) { return ""; }
+            //console.log(tags["applying-to-college"]);
+            var string = "";
+            if (tags["applying-to-college"] != undefined) {
+                string += " applying-to-college";
+            }
+            if (tags["finding-community"] != undefined) {
+                string += " finding-community";
+            }
+            if (tags["paying-for-college"] != undefined) {
+                string += " paying-for-college";
+            }
+            if (tags["significant-others"] != undefined) {
+                string += " significant-others";
+            }
+            //console.log(string);
+            return string;
+        }
+
+        $scope.main.closeClick = function() {
+            $scope.main.modalOpen = false;
+            var element = document.getElementById("alum-innerHTML");
+            element.innerHTML = "";
+        }
+
+        $scope.main.seeProfileClick = function(user) {
+            $scope.main.modalOpen = false;
+            var element = document.getElementById("alum-innerHTML");
+            element.innerHTML = "";
+            $location.path("/viewProfile/" + user);
+        }
+
         $scope.clickedFace = function (url) {
             $scope.main.showVidBox = true;
             $scope.main.currURL = url;
@@ -31,11 +93,13 @@ cs142App.controller('AlumController', ['$scope', '$resource', '$firebaseObject',
             $scope.main.showVidBox = false;
         }
 
-        $scope.make = function (link) {
-            var youtube = "https://youtube.com/embed/" + link;
-            var newLink = $sce.trustAsResourceUrl(youtube);
-            return newLink;
-        }
+        // $scope.main.make = function (link) {
+        //     console.log("makingvid");
+        //     console.log(link);
+        //     var youtube = "https://youtube.com/embed/" + link;
+        //     var newLink = $sce.trustAsResourceUrl(youtube);
+        //     return newLink;
+        // }
 
         // var messagesRef = new Firebase("https://project-2333752665176102876.firebaseio.com/");
         // var query = messagesRef.orderByChild("date").limitToLast(2);
@@ -137,48 +201,66 @@ cs142App.controller('AlumController', ['$scope', '$resource', '$firebaseObject',
         }
 
         // youtube faster
-        $scope.generateFrame = function (videoID, fbID, views) {
-            // var currVid = firebase.database().ref().child("videos").orderByChild("");
-            // var currVid = $firebaseObject(vid.orderByChild("url").equalTo(videoID));
-            // console.log(currVid);
+        // $scope.generateFrame = function (videoID, fbID, views, subset) {
+        //     console.log("subset:");
+        //     console.log(subset);
+        //     // var currVid = firebase.database().ref().child("videos").orderByChild("");
+        //     // var currVid = $firebaseObject(vid.orderByChild("url").equalTo(videoID));
+        //     // console.log(currVid);
 
-            // var vid = firebase.database().ref().child("videos");
-            // vid.orderByChild("url").equalTo(videoID).once('value').then(function(snapshot) {
-            //     console.log(snapshot.val());
-            // });
-            //console.log(fbID);
-            //console.log($firebaseObject(vid.child(fbID).child('views')));
+        //     // var vid = firebase.database().ref().child("videos");
+        //     // vid.orderByChild("url").equalTo(videoID).once('value').then(function(snapshot) {
+        //     //     console.log(snapshot.val());
+        //     // });
+        //     //console.log(fbID);
+        //     //console.log($firebaseObject(vid.child(fbID).child('views')));
 
-            console.log(views);
-            var newViews = Number(views) + 1;
-            firebase.database().ref('/videos/' + fbID + '/views').set(newViews);
+        //     console.log(views);
+        //     var newViews = Number(views) + 1;
+        //     firebase.database().ref('/videos/' + fbID + '/views').set(newViews);
 
-            // currVid.$loadd().then(function() {
-            //     console.log(currVid.id)
-            // })
+        //     // currVid.$loadd().then(function() {
+        //     //     console.log(currVid.id)
+        //     // })
 
-            // currVid.on('value', function(snapshot) {
-            //     console.log(snapshot.value);
-            //   //updateStarCount(postElement, snapshot.val());
-            // });
-             console.log(videoID);
-             var iframe = document.createElement("iframe");
-             var oldPic = document.getElementById(videoID);
-             var oldChild = document.getElementById(videoID + "-child");
-             iframe.setAttribute("src", "//www.youtube.com/embed/" + videoID + "?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1");
-             iframe.setAttribute("frameborder", "0");
-             iframe.setAttribute("id", "youtube-iframe");
-             iframe.setAttribute("width", "350px");
-             iframe.setAttribute("height", "197px");
-             console.log(oldChild.className);
-             iframe.setAttribute("class", oldChild.className);
-             //appendChild
-             oldPic.replaceChild(iframe, oldChild);
-             // var oldPlay = document.getElementById(videoID + "-play");
-             // oldPlay.setAttribute("style", "display:none");
-        }
+        //     // currVid.on('value', function(snapshot) {
+        //     //     console.log(snapshot.value);
+        //     //   //updateStarCount(postElement, snapshot.val());
+        //     // });
+        //      console.log(videoID);
+        //      //var iframe = document.createElement("iframe");
+        //      var oldPic = document.getElementById(videoID + "-" + subset);
+        //      console.log(oldPic);
+        //      var oldChild = document.getElementById(videoID + "-" + subset + "-child");
+        //      console.log(oldChild);
 
-        $scope.main.video = {};
+
+        //      // iframe.setAttribute("src", "//www.youtube.com/embed/" + videoID + "?autoplay=1&autohide=2d&showinfo=0&border=0&wmode=opaque&enablejsapi=1");
+        //      // iframe.setAttribute("frameborder", "0");
+        //      // iframe.setAttribute("class", "youtube-iframe");
+        //      // iframe.setAttribute('allowFullScreen', '');
+
+
+        //      // iframe.setAttribute("width", "350px");
+        //      // iframe.setAttribute("height", "197px");
+        //      var iframe = '<iframe src="//www.youtube.com/embed/' + videoID + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" class="random" allowfullscreen=""></iframe>'
+        //      console.log(oldChild.className);
+        //      //iframe.setAttribute("class", oldChild.className);
+        //      //console.log(String(iframe));
+        //      // iframe.setAttribute("top", "40px");
+        //      //appendChild
+        //      //oldPic.replaceChild(iframe, oldChild);
+        //      oldPic.innerHTML = iframe;
+
+        //     // var newDiv = document.createElement("div");
+        //     // var parent = document.getElementById(videoID + "-" + subset + "-overlayParent");
+        //     // var oldDiv = document.getElementById(videoID + "-" + subset + "-overlay");
+        //     // parent.replaceChild(newDiv, oldDiv);
+        //      // var oldPlay = document.getElementById(videoID + "-play");
+        //      // oldPlay.setAttribute("style", "display:none");
+        // }
+
+        //$scope.main.video = {};
 
         $scope.getLikeData = function(likes, photoFBId) {
             if (likes!=null) {
@@ -222,8 +304,5 @@ cs142App.controller('AlumController', ['$scope', '$resource', '$firebaseObject',
          
 
     }]);
-
-//work on: adding button to go to profile w/ connecting link --- likes to videos (change schema) --- adding other vids once we have tags --- making all vids page
-
 
 

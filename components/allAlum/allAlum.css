@@ -1,8 +1,42 @@
-body,
-html {
+.alum-flex {
+  display: flex;
+  flex-direction: row;
+}
+
+
+#alum-modal-view-video {
+    position: fixed; /* Stay in place */
+    z-index: 50; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.alum-modal-content-2 {
+    margin: 200px auto;
+}
+
+
+
+
+#tabs-example-2 {
+  height: 100%;
+}
+
+.alum-row-container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+
+#alum-tabs-example-1 {
   padding: 0 10px;
   margin: 0;
-  background: #0e0f11;
+  background: white;
   color: #ecf0f1;
   font-family: 'Open Sans', sans-serif;
   min-height: 100vh;
@@ -12,53 +46,33 @@ html {
   width: 100%;
 }
 
-* {
-  box-sizing: border-box;
-}
 
-h1,
-p {
+.alum-header {
   text-align: center;
+  color: black;
 }
 
-p {
-  width: 100%;
-  max-width: 500px;
-  margin: auto;
-}
 
-a:link,
-a:hover,
-a:active,
-a:visited {
-  transition: color 150ms;
-  color: #95a5a6;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #7f8c8d;
-  text-decoration: underline;
-}
-
-.contain {
+.alum-contain {
   width: 100%;
 }
 
-.row {
+.alum-row {
   overflow-x: scroll;
   width: 100%;
 }
 
-.row__inner {
+.alum-row__inner {
   transition: 450ms transform;
   font-size: 0;
   white-space: nowrap;
   margin: 70.3125px 0;
   padding-bottom: 10px;
+/*  padding-left: 125px;
+  padding-right: 125px;*/
 }
 
-.tile {
+.alum-tile {
   position: relative;
   display: inline-block;
   width: 250px;
@@ -70,13 +84,13 @@ a:hover {
   transform-origin: center left;
 }
 
-.tile__img {
+.alum-tile__img {
   width: 250px;
   height: 140.625px;
   object-fit: cover;
 }
 
-.tile__details {
+.alum-tile__details {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -88,8 +102,8 @@ a:hover {
   transition: 450ms opacity;
 }
 
-.tile__details:after,
-.tile__details:before {
+.alum-tile__details:after,
+.alum-tile__details:before {
   content: '';
   position: absolute;
   top: 50%;
@@ -97,7 +111,7 @@ a:hover {
   display: #000;
 }
 
-.tile__details:after {
+.alum-tile__details:after {
   margin-top: -25px;
   margin-left: -25px;
   width: 50px;
@@ -110,7 +124,7 @@ a:hover {
   z-index: 1;
 }
 
-.tile__details:before {
+.alum-tile__details:before {
   content: '▶';
   left: 0;
   width: 100%;
@@ -121,46 +135,45 @@ a:hover {
   z-index: 2;
 }
 
-.tile:hover .tile__details {
+.alum-tile:hover .alum-tile__details {
   opacity: 1;
 }
 
-.tile__title {
+.alum-tile__title {
   position: absolute;
   bottom: 0;
   padding: 10px;
 }
 
-.row__inner:hover {
+/*.alum-row__inner:hover {
   transform: translate3d(-125px, 0, 0);
-}
+}*/
 
-.row__inner:hover .tile {
+.alum-row__inner:hover .tile {
   opacity: 0.3;
 }
 
-.row__inner:hover .tile:hover {
+/*.alum-row__inner:hover .alum-tile:hover {
   transform: scale(2);
   opacity: 1;
-}
+}*/
 
-.tile:hover ~ .tile {
+/*.alum-tile:hover ~ .alum-tile {
   transform: translate3d(250px, 0, 0);
-}
+}*/
 
 
 /*carousel above*/
 
 
 
-
+/*
 .vidPageFlex {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
-/* see more/all button*/
 .button-div {
   display: flex;
   justify-content: center;
@@ -172,7 +185,6 @@ a:hover {
   color: white;
 }
 
-/*scrolling images*/
 .container3 {
  width: 1000px;
  overflow: hidden;
@@ -235,7 +247,6 @@ a:hover {
   right: 100px;
 }
 
-/*photobanner*/
 .photobanner {
  height: 340px;
  width: 3200px;
@@ -251,8 +262,6 @@ a:hover {
 }
 
 .thumbnail {
-/*    width: 350px;
-    height: 197px;*/
     width: 100%;
     height: 220px;
     cursor: pointer; 
@@ -307,7 +316,6 @@ a:hover {
 }
 
 
-/*the popup*/
 .large {
 	height: 100%;
   height: 200px;
@@ -332,39 +340,43 @@ a:hover {
   width:100%;
   width: 400px;
 }
+*/
 
-.img-circle {
+.alum-img-circle {
 	border-radius: 50%;
 	height: 225px;
 	width: 225px;
 }
 
-.label-tab {
+/*.label-tab {
 	text-decoration : none;
-}
+}*/
 
-.outer-div {
+.alum-outer-div {
 	padding-top: 40px;
-/*  font-size: 0;*/
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.outer-link {
+.alum-outer-link {
   font-size: 16px; 
   display: inline-block;
   margin-bottom: 8px;
-  width: calc(50% - 4px);
-  margin-right: 8px;
+  width: 100%;
+  margin-right: 20px;
 }
 
-.caption {
+
+.alum-caption {
 	width: 180px;
 	text-align: center;
-	padding: 20px;
+  padding-top: 20px;
+  margin: 0;
+  width: 225px;
 }
 
+/*
 .outer-link:nth-of-type(2n) {
   margin-right: 0;
 }
@@ -382,3 +394,4 @@ a:hover {
     margin-right: 0;
   }
 }
+*/
