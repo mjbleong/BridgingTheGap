@@ -5,7 +5,11 @@ Since CSS uses a global name space for classes we should use class names startin
 cs142-main- here.
 */
 
-body {
+#diswot {
+	height: 600px;
+}
+
+/*body {
 	margin: 2%;
 	font-family: Roboto, Noto, sans-serif;
 }
@@ -39,7 +43,14 @@ a {
 }
 
 .img-circle {
+<<<<<<< HEAD
 	border-radius: 50%;
 	height: 200px;
 	width: 200px;
 }
+=======
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+}*/
+>>>>>>> d2104e2ba29cf9e2eabb4249d84839b37743e132
