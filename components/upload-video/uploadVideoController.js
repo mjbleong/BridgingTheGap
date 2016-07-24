@@ -77,15 +77,14 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
       for (var category in $scope.checkboxModel) {
         for (var tag in $scope.checkboxModel[category].tags) {
           if ($scope.checkboxModel[category].tags[tag].checked == true) {
-            console.log('bloopi')
             firebase.database().ref('videos/' + $scope.upload.videoId + '/tags/' + category + '/' + tag).set('');
             firebase.database().ref('tag-categories/' + category + '/tags/' + tag + '/' + $scope.upload.videoId).set('');  
           }
         }
       }
-      console.log('hi');
       firebase.database().ref('videos/' + $scope.upload.videoId + '/title').set($scope.upload.title);
       firebase.database().ref('videos/' + $scope.upload.videoId + '/description').set($scope.upload.description);
+      firebase.database().ref('videos/' + $scope.upload.videoId + '/timestamp').set(Date.now());  
     }
 
     // need to get name out here... scoping problem when inside clipchamp
@@ -105,8 +104,6 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
 
       var yt_title = $scope.fname + ' ' + $scope.lname + ' ' + currDate;
 
-      var dbDate = '' + currDate;
-
       var process = clipchamp({
 
         resolution: "720p",
@@ -115,7 +112,7 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
         output: "youtube",
         youtube: {
           title: yt_title,
-          description: 'wut wut'
+          description: '[no description]'
         },
 
         onUploadComplete: function(data) {
@@ -144,9 +141,10 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
 
           firebase.database().ref('videos/' + newPostKey).set({
               author_id: $scope.currentUser,
-              date: dbDate,
-              title: "dfhadfjadp",
-              url: myId
+              title: 'no-title',
+              url: myId,
+              views: 0,
+              likes: ''
           });
 
           $scope.upload.videoId = newPostKey;
