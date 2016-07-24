@@ -1,69 +1,77 @@
-.profile body[ng-cloak] {
-  display:none;
-}
-.proifile div[flex="30"] {
-  background-color: #DFDFDF;  
+#myProfile-add-video-thumbnail{
+  opacity: 0;
 }
 
-.profile section[flex="40"] {
-  background-color: #D4E5FA;
+.myProfile-page{
+  overflow-x: hidden;
 }
-.profile section[flex="70"] {
-  background-color: #E8FCD6;
-}
-.profile section[flex="20"] {
- background-color: #FFD5E3;
-}
-.profile section[flex=""] {
- background-color: rgba(0, 128, 0, 0.35);
+#myProfile-profile-description-box{
+  color: black;
 }
 
-.profile {
-
+.myProfile-headings {
+  text-align: center;
+  background-color: #14496C;
+  padding: 5px;
+  color: white;
 }
 
-#modal-right {
-  height:100%;
-  overflow: hidden;
-  border-left-style: solid;
-  border-left-color: black;
-  border-left-width: 2px;
+#myProfile-profile-box {
+  max-height:400px;
 }
 
-#snapshot {
-  height: 100%;
-  width: 93%;
-}
-
-
-#modal-upload-or-webcam {
-  height: 100%;
-}
-
-.modal-left {
-
-}
-
-.webcam-live{
+.myProfile-profile-box-parent {
   width:100%;
-  height:100%;
+  background-color: #14496C;
+  padding: 0px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
-.play-circle {
+.myProfile-Picture {
+  margin-top: 0px;
+  width: inherit;
+  position: relative;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  position: relative;
+}
+
+.myProfile-profile-box-parent:hover #myProfile-set-profile-picture-button{
+  display:block;
+}
+
+.panel-content:hover #myProfile-set-profile-picture-button {
+    display: block;
+}
+
+#myProfile-snapshot {
+  padding: 0px;
+  width: 100%;
+}
+
+.webcam-live {
+  width: 100%;
+}
+
+#myProfile-set-profile-picture-button {
+  display: none;
   position: absolute;
-  font-size:100px;
-  left: 50%;
-  top: 50%;
-  margin-top: -50px;
-  margin-left: -50px;
-  opacity: 0.7;
-  color: gray;
+  top: 10px;
+  left: 20px;
+  z-index: 100;
 }
 
-.thumbnail {
-  width:250px;
-  height:150px;
+#myProfile-set-profile-picture-button:hover {
+  background-color:#00bca4;
 }
+
+.myProfile-list-container{
+  width: 100%;
+  overflow-x:scroll;
+  overflow-y:hidden;
+}
+
 
 .thumbnail-container {
   position: relative;
@@ -71,141 +79,3 @@
   cursor: hand;
 }
 
-.list-container{
-  width: 100%;
-  overflow-x:scroll;
-  overflow-y:hidden;
-  
-}
-
-#add-video-button-container {
-  display: table;
-  height: 150px;
-  width: 250px;
-}
-
-#add-video-button {
-  background-color: gray;
-  text-align: center;
-  vertical-align: middle;
-  display: table-cell;
-
-}
-
-#add-video-icon {
-  font-size:100px;
-}
-
-#add-video-button:hover {
-  background-color: orange;
-}
-
-.video {
-  width: 250px;
-}
-
-#edit-text-area {
-  width: 100% ;
-}
-.profile iframe {
-  border-style: none;
-}
-
-.profile .flex-container {
-  display: -webkit-inline-flex; /* Safari */
-  display: inline-flex;
-}
-
-#my-videos-title {
-  margin: 0px;
-}
-
-#upload-photo-button {
-  display: none;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-}
-
-.profile-picture:hover #upload-photo-button {
-    display: block;
-}
-
-.profile-picture{
-  padding: 0px;
-  position: relative;
-}
-
-.profile .md-button {
-  background-color: #00fdff;
-}
-
-.md-button:not([disabled]):hover {
-    background-color: rgb(255,138,101);
-}
-
-.profile-picture img {
-  width:100% ;
-}
-/* Important to set height for column layout */
-.boxWithHeight {
-  box-sizing: border-box;
-  height: 100%;
-}
-
-.a, section {
-/*  border: 5px solid rgba(85, 97, 85, 0.27);
-*/  margin: 5px;  
-}
-
-.profile section {
-  background-color: #dedede;
-}
-
-
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 40%; /* Could be more or less, depending on screen size */
-    height: 50%;
-}
-
-/* The Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
-
-/*
-Copyright 2016 Google Inc. All Rights Reserved. 
-Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
-*/

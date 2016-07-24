@@ -11,22 +11,25 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
     var videoIDsArray = $firebaseArray(userVideosRef);
 
     $scope.main.user = $firebaseObject(firebase.database().ref("/users/" + user_id));
+    
+    $scope.userProfiles = {};
 
     $scope.editing = false;
     $scope.main.introVideo = null;
 
-    var mainVideosRef = firebase.database().ref().child("videos");
-    $scope.main.videosArray = [];
-    mainVideosRef.orderByChild("author_id").equalTo(user_id).on("child_added", function(videoObj) {
-      var video = videoObj.val();
-      if (video.url == $scope.main.user.intro_url) {
-        console.log($scope.main.user.intro_url);
-        $scope.main.introVideo = video;
-      } else {
-        $scope.main.videosArray.push(video);
-      }
+    var mainVideosRef = firebase.database().ref().child("videos").orderByChild("author_id").equalTo(user_id);
+    // $scope.main.videosArray = [];
+    $scope.main.videosArray = $firebaseArray(mainVideosRef);
 
-    });
+    // mainVideosRef.orderByChild("author_id").equalTo(user_id).on("child_added", function(videoObj) {
+    //   var video = videoObj.val();
+    //   if (video.url == $scope.main.user.intro_url) {
+    //     console.log($scope.main.user.intro_url);
+    //     $scope.main.introVideo = video;
+    //   } else {
+    //     $scope.main.videosArray.push(video);
+    //   }
+    // });
 
     $scope.showLiveWebcam = false;
     // $scope.main.videosArray = $firebaseArray(mainVideosRef);
@@ -34,12 +37,13 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
     $scope.toggleEditMode = function() {
       console.log('toggle');
       console.log($scope.editing);
-      if ($scope.editing === true) {
-        $scope.editing = false;
-        $scope.main.user.$save();
-      } else {
-        $scope.editing = true;
-      }
+      $scope.main.user.$save();
+      // if ($scope.editing === true) {
+      //   // $scope.editing = false;
+      //   $scope.main.user.$save();
+      // } else {
+      //   // $scope.editing = true;
+      // }
     }
 
     $scope.make = function(link) {
@@ -48,23 +52,55 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
       return newLink;
     }
 
-    $scope.generateFrame = function(videoID) {
-      console.log(videoID);
-      var iframe = document.createElement("iframe");
-      iframe.setAttribute("src", "//www.youtube.com/embed/" + videoID + "?autoplay=1&autohide=2d&showinfo=0&border=0&wmode=opaque&enablejsapi=1");
-      iframe.setAttribute("frameborder", "0");
-      iframe.setAttribute("id", "youtube-iframe");
-      var oldPic = document.getElementById(videoID);
-      var oldChild = document.getElementById(videoID + "-child");
-      oldPic.replaceChild(iframe, oldChild);
-      var playButtonId = 'play-circle-' + String(videoID);
-      var playButtonParent = document.getElementById(videoID);
-      console.log(playButtonParent);
-      var playButton = document.getElementById(playButtonId);
-      console.log(playButton);
-      playButtonParent.removeChild(playButton);
-    }
+    // $scope.generateFrame = function(videoID) {
+    //   console.log(videoID);
+    //   var iframe = document.createElement("iframe");
+    //   iframe.setAttribute("src", "//www.youtube.com/embed/" + videoID + "?autoplay=1&autohide=2d&showinfo=0&border=0&wmode=opaque&enablejsapi=1");
+    //   iframe.setAttribute("frameborder", "0");
+    //   iframe.setAttribute("id", "youtube-iframe");
+    //   var oldPic = document.getElementById(videoID);
+    //   var oldChild = document.getElementById(videoID + "-child");
+    //   oldPic.replaceChild(iframe, oldChild);
+    //   var playButtonId = 'play-circle-' + String(videoID);
+    //   var playButtonParent = document.getElementById(videoID);
+    //   console.log(playButtonParent);
+    //   var playButton = document.getElementById(playButtonId);
+    //   console.log(playButton);
+    //   playButtonParent.removeChild(playButton);
+    // }
 
+
+$scope.userProfiles.generateFrame = function (urlOrUser, fbID, views, subset) {
+           $scope.userProfiles.modalOpen = true;
+           console.log(fbID);
+       if (fbID) {
+           var currVid = $firebaseObject(firebase.database().ref().child("videos").child(fbID));
+           var currLikes = $firebaseObject(firebase.database().ref().child("videos").child(fbID).child("likes"));
+           console.log(currLikes);
+           // var currVid2 = $firebaseObject(firebase.database().ref("videos/" + fbID + "/title"));
+           $scope.userProfiles.currVid = currVid;
+           var element = document.getElementById("alum-innerHTML");
+           var elementInnerString = "";
+           elementInnerString += '<iframe src="//www.youtube.com/embed/' + urlOrUser + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="400px" height="200px" allowfullscreen></iframe>';
+           elementInnerString += '<div>' + views +' views</div>';
+           element.innerHTML = elementInnerString;
+       } else {
+           var title = document.getElementById("alum-modal-title-forChange");
+           title.innerHTML = " " + urlOrUser.firstname + " " + urlOrUser.lastname;
+           $scope.userProfiles.currVid = {};
+           $scope.userProfiles.currVid.author_id = urlOrUser.$id;
+           var element = document.getElementById("alum-innerHTML");
+           element.innerHTML = '<iframe src="//www.youtube.com/embed/' + urlOrUser.intro_url + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="400px" height="200px" allowfullscreen></iframe>';
+       }
+
+           
+
+  }
+  $scope.main.closeClick = function() {
+           $scope.userProfiles.modalOpen = false;
+           var element = document.getElementById("alum-innerHTML");
+           element.innerHTML = "";
+  }
 
     var selectedPhotoFile; // Holds the last file selected by the user
 
@@ -92,9 +128,15 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
       // Upload file and metadata to the object 'images/mountains.jpg'
       var uploadTask = storageRef.child('profile-pictures/' + file.name).put(file);
 
+      var insertedSpinner = false;
+
       // Listen for state changes, errors, and completion of the upload.
       uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
         function(snapshot) {
+          if (!insertedSpinner) {
+            insertSpinner();
+            insertedSpinner = true;
+          }
           // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
           var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log('Upload is ' + progress + '% done');
@@ -127,45 +169,47 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
           var downloadURL = uploadTask.snapshot.downloadURL;
           console.log("Success: " + downloadURL);
           firebase.database().ref('/users/' + user_id + '/profile_picture_url').set(downloadURL);
-
+          removeSpinner();
+          $location.path('/myProfile');
         });
 
 
     };
 
     // Get the modal
-    var modal = document.getElementById('upload-modal');
+    var modal = document.getElementById('modal-upload-or-webcam');
     // Get the button that opens the modal
-    var btn = document.getElementById("upload-photo-button");
+    var btn = document.getElementById("myProfile-set-profile-picture-button");
     // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    var span = document.getElementsByClassName("close")[1];
     // When the user clicks on the button, open the modal 
     btn.onclick = function(event) {
-      $route.reload();
+      // $route.reload();
       modal.style.display = "block";
       $scope.showLiveWebcam = true;
       if (secondClick) { //if the user closes then reopens the webcam, refresh page. TODO: Fix this
         $window.location.reload();
       }
     }
+
     var secondClick = false;
-    // When the user clicks on <span> (x), close the modal
+    // // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         modal.style.display = "none";
         $scope.showLiveWebcam = false;
         videoStream.getVideoTracks()[0].stop();
         secondClick = true;
-      }
-      // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-        $scope.showLiveWebcam = false;
-        videoStream.getVideoTracks()[0].stop();
-        secondClick = true;
-        $route.reload();
-      }
     }
+      // When the user clicks anywhere outside of the modal, close it
+    // window.onclick = function(event) {
+    //   if (event.target == modal) {
+    //     modal.style.display = "none";
+    //     $scope.showLiveWebcam = false;
+    //     videoStream.getVideoTracks()[0].stop();
+    //     secondClick = true;
+    //     $route.reload();
+    //   }
+    // }
 
     //Webcam Controller Stuff
     var _video = null,
@@ -215,7 +259,7 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
      */
     $scope.makeSnapshot = function makeSnapshot() {
       if (_video) {
-        var patCanvas = document.querySelector('#snapshot');
+        var patCanvas = document.querySelector('#myProfile-snapshot');
         if (!patCanvas) return;
 
         patCanvas.width = _video.width;
@@ -237,6 +281,7 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
         console.log(rightModal.clientHeight);
         console.log(parent.style.height);
         parent.style.height = rightModal.clientHeight;
+
         console.log(parent.style.height);
       }
     };
@@ -336,7 +381,7 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
     function insertSpinner() {
       console.log("tried to insert spinner");
       var spinner = document.createElement("img");
-      spinner.setAttribute("src", "images/ajax-loader.gif");
+      spinner.setAttribute("src", "images/gears-loader.gif");
       spinner.setAttribute("id", "upload-spinner");
       var child = document.getElementById("modal-upload-or-webcam");
       var parent = document.getElementById("modal-upload-or-webcam-parent");
