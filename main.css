@@ -9,6 +9,16 @@ cs142-main- here.
 	height: 600px;
 }
 
+#fe-nav-bar {
+	opacity: 0.5;
+}
+
+#fe-main-text {
+	background-color: blue;
+	opacity: 50%;
+}
+
+
 /*body {
 	margin: 2%;
 	font-family: Roboto, Noto, sans-serif;
