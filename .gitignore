@@ -1,3 +1,7 @@
 .DS_Store
+<<<<<<< HEAD
 assets/.DS_Store
 
+=======
+node_modules/.DS_Store
+>>>>>>> 8c269327ccac5c924ec3a9fd39af6a4f09bb6d90

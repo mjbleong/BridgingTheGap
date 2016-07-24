@@ -15,88 +15,406 @@
 </script>
 
 
+<div id="alum-modal-view-video" ng-show="main.modalOpen">
+<div class="modal fade display-block" tabindex="1">
+    <div class="modal-dialog">
+        <div class="modal-content alum-modal-content-2">
+            <div class="modal-header">
+                <button type="button" class="close" aria-hidden="true" ng-click="main.closeClick()">&times;</button>
+                <h4 class="modal-title" id="alum-modal-title-forChange">{{main.currVid.title}}</h4>
+            </div>
+            <div class="modal-body" id="alum-innerHTML">
+                <p>Modal content here ...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="main.closeClick()">Continue Exploring</button>
+                <button id="alum-go-to-but" type="button" class="btn btn-primary" ng-click="main.seeProfileClick(main.currVid.author_id)">See Profile</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
     <div class="example-box-wrapper">
-        <div class="content-box tabs">
-            <h3 class="content-box-header bg-primary">
+
+
+
+        <div class="content-box tabs" style="max-width:1000px;">
+            <h3 class="content-box-header bg-primary" style="display:flex;">
                 <span>View Videos</span>
                 <ul>
                     <li>
-                        <a href="#tabs-example-1" ui-sref="alum.topic" title="Tab 1">
+                        <a href="#alum-tabs-exampl-1" title="Tab 1">  <!-- uisrefthing would go here -->
                             Featured
                         </a>
                     </li>
                     <li>
-                        <a href="#tabs-example-2" ui-sref="alum.list" title="Tab 2">
+                        <a href="#alum-tabs-example-2" title="Tab 2">
                             By Alum
                         </a>
                     </li>
                     <li>
-                        <a href="#tabs-example-3" title="Tab 3">
+                        <a href="#alum-tabs-example-3" title="Tab 3">
                             By Topic
                         </a>
                     </li>
                 </ul>
             </h3>
-            <div id="tabs-example-1">
-                <div class="contain">
+            <div id="alum-tabs-exampl-1">
 
 
 
+<div class="panel">
+<div class="panel-body">
+<div>
+<h3 class="title-hero">
+    Most Recent
+</h3>
+<div class="example-box-wrapper">
 
-<div ng-repeat="subset in main.allOfThem">
-        <h1>{{subset.name}}</h1>
-  <div class="row">
-    <div class="row__inner">
+    <div class="owl-carousel-1 slider-wrapper carousel-wrapper">
 
-      <div class="tile" ng-repeat="video in subset">
-        <div class="tile__media">
-          <img class="tile__img" ng-src="http://img.youtube.com/vi/{{video.url}}/0.jpg" alt=""  />
+        <div ng-click="generateFrame(main.mostRecArray[0].url, main.mostRecArray[0].$id, main.mostRecArray[0].views)">
+            <div class="thumbnail-box thumbnail-box-inverse">
+                <div class="thumb-content">
+                    <div class="center-vertical">
+                        <div class="center-content">
+                            <h3 class="thumb-heading animated bounceIn" style="color:white; font-weight: bold;">
+                                {{main.mostRecArray[0].title}}
+                                <small style="color:white; font-weight: bold;">{{main.mostRecArray[0].url}}</small>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="thumb-overlay bg-black"></div>
+                <img ng-src="https://img.youtube.com/vi/{{main.mostRecArray[0].url}}/maxresdefault.jpg" alt="" />
+            </div>
         </div>
-        <div class="tile__details">
-          <div class="tile__title">
-            Top Gear
-          </div>
+
+        <div ng-click="generateFrame(main.mostRecArray[1].url, main.mostRecArray[1].$id, main.mostRecArray[1].views)">
+            <div class="thumbnail-box thumbnail-box-inverse">
+                <div class="thumb-content">
+                    <div class="center-vertical">
+                        <div class="center-content">
+                            <h3 class="thumb-heading animated bounceIn" style="color:white; font-weight: bold;">
+                                {{main.mostRecArray[1].title}}
+                                <small style="color:white">{{main.mostRecArray[1].url}}</small>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="thumb-overlay bg-black"></div>
+                <img ng-src="https://img.youtube.com/vi/{{main.mostRecArray[1].url}}/maxresdefault.jpg" alt="" />
+            </div>
         </div>
-      </div>
+
+        <div ng-click="generateFrame(main.mostRecArray[2].url, main.mostRecArray[2].$id, main.mostRecArray[2].views)">
+            <div class="thumbnail-box thumbnail-box-inverse">
+                <div class="thumb-content">
+                    <div class="center-vertical">
+                        <div class="center-content">
+                            <h3 class="thumb-heading animated bounceIn" style="color:white; font-weight: bold;">
+                                {{main.mostRecArray[2].title}}
+                                <small style="color:white">{{main.mostRecArray[2].url}}</small>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="thumb-overlay bg-black"></div>
+                <img ng-src="https://img.youtube.com/vi/{{main.mostRecArray[2].url}}/maxresdefault.jpg" alt="" />
+            </div>
+        </div>                
+        <div ng-click="generateFrame(main.mostRecArray[3].url, main.mostRecArray[3].$id, main.mostRecArray[3].views)">
+            <div class="thumbnail-box thumbnail-box-inverse">
+                <div class="thumb-content">
+                    <div class="center-vertical">
+                        <div class="center-content">
+                            <h3 class="thumb-heading animated bounceIn" style="color:white; font-weight: bold;">
+                                {{main.mostRecArray[3].title}}
+                                <small style="color:white">{{main.mostRecArray[3].url}}</small>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="thumb-overlay bg-black"></div>
+                <img ng-src="https://img.youtube.com/vi/{{main.mostRecArray[3].url}}/maxresdefault.jpg" alt="" />
+            </div>
+        </div>
+        <div ng-click="generateFrame(main.mostRecArray[4].url, main.mostRecArray[4].$id, main.mostRecArray[4].views)">
+            <div class="thumbnail-box thumbnail-box-inverse">
+                <div class="thumb-content">
+                    <div class="center-vertical">
+                        <div class="center-content">
+                            <h3 class="thumb-heading animated bounceIn" style="color:white; font-weight: bold;">
+                                {{main.mostRecArray[4].title}}
+                                <small style="color:white">{{main.mostRecArray[4].url}}</small>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="thumb-overlay bg-black"></div>
+                <img ng-src="https://img.youtube.com/vi/{{main.mostRecArray[4].url}}/maxresdefault.jpg" alt="" />
+            </div>
+        </div>
+        <div ng-click="generateFrame(main.mostRecArray[5].url, main.mostRecArray[5].$id, main.mostRecArray[5].views)">
+            <div class="thumbnail-box thumbnail-box-inverse">
+                <div class="thumb-content">
+                    <div class="center-vertical">
+                        <div class="center-content">
+                            <h3 class="thumb-heading animated bounceIn" style="color:white; font-weight: bold;">
+                                {{main.mostRecArray[5].title}}
+                                <small style="color:white">{{main.mostRecArray[5].url}}</small>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="thumb-overlay bg-black"></div>
+                <img ng-src="https://img.youtube.com/vi/{{main.mostRecArray[5].url}}/maxresdefault.jpg" alt="" />
+            </div>
+        </div>   
+        <div ng-click="generateFrame(main.mostRecArray[6].url, main.mostRecArray[6].$id, main.mostRecArray[6].views)">
+            <div class="thumbnail-box thumbnail-box-inverse">
+                <div class="thumb-content">
+                    <div class="center-vertical">
+                        <div class="center-content">
+                            <h3 class="thumb-heading animated bounceIn" style="color:white; font-weight: bold;">
+                                {{main.mostRecArray[6].title}}
+                                <small style="color:white">{{main.mostRecArray[6].url}}</small>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="thumb-overlay bg-black"></div>
+                <img ng-src="https://img.youtube.com/vi/{{main.mostRecArray[6].url}}/maxresdefault.jpg" alt="" />
+            </div>
+        </div>
+        <div ng-click="generateFrame(main.mostRecArray[7].url, main.mostRecArray[7].$id, main.mostRecArray[7].views)">
+            <div class="thumbnail-box thumbnail-box-inverse">
+                <div class="thumb-content">
+                    <div class="center-vertical">
+                        <div class="center-content">
+                            <h3 class="thumb-heading animated bounceIn" style="color:white; font-weight: bold;">
+                                {{main.mostRecArray[7].title}}
+                                <small style="color:white">{{main.mostRecArray[7].url}}</small>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="thumb-overlay bg-black"></div>
+                <img ng-src="https://img.youtube.com/vi/{{main.mostRecArray[7].url}}/maxresdefault.jpg" alt="" />
+            </div>
+        </div>
+        <div ng-click="generateFrame(main.mostRecArray[8].url, main.mostRecArray[8].$id, main.mostRecArray[8].views)">
+            <div class="thumbnail-box thumbnail-box-inverse">
+                <div class="thumb-content">
+                    <div class="center-vertical">
+                        <div class="center-content">
+                            <h3 class="thumb-heading animated bounceIn" style="color:white; font-weight: bold;">
+                                {{main.mostRecArray[8].title}}
+                                <small style="color:white">{{main.mostRecArray[8].url}}</small>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="thumb-overlay bg-black"></div>
+                <img ng-src="https://img.youtube.com/vi/{{main.mostRecArray[8].url}}/maxresdefault.jpg" alt="" />
+            </div>
+        </div>          
+
 
 
     </div>
-  </div>
+</div>
+</div>
+</div>
+</div>
 
-</div>
-</div>
+
+                <!-- <div class="alum-contain">
+
+                  <div ng-repeat="subset in main.allOfThem" class="alum-row-container">
+                          <h1 class="alum-header">{{subset.name}}</h1>
+                          <div></div>
+                    <div class="alum-row">
+                      <div class="alum-row__inner">
+                        <div class="alum-tile" ng-repeat="video in subset">
+
+          <div class="thumbnail-box thumbnail-box-inverse">
+              <div class="thumb-content">
+                  <div class="center-vertical">
+                      <div class="center-content">
+                          <h3 class="thumb-heading animated bounceIn">
+                              {{video.title}}
+                              <small>{{video.date}}</small>
+                                <i class="glyph-icon tooltip-button demo-icon icon-play-circle" title=".icon-play-circle"></i>
+
+                          </h3>
+                      </div>
+                  </div>
+              </div>
+              <div class="thumb-overlay bg-black"></div>
+              <div ng-click="generateFrame(video.url, video.$id, video.views, 'all')">
+              <div id="{{video.url}}-all">
+              <img ng-src="http://img.youtube.com/vi/{{video.url}}/0.jpg" alt="" id="{{video.url}}-all-child" class="random" />
+            </div> </div>
+          </div>
+
+                <div ng-show="video.likes[main.user_id]==null"> 
+                    <md-button ng-disabled="main.inUse" class="likes" ng-click="like($event, video.$id, video.likes)">Like<md-icon><i class="material-icons">favorite_border</i> </md-icon> </md-button> 
+                    Click to like.
+                </div>
+                <div ng-show="video.likes[main.user_id]!=null"> 
+                    <md-button ng-disabled="main.inUse" class="likes" ng-click="unlike($event, video.$id, video.likes)">Unlike<md-icon><i class="material-icons">favorite</i> </md-icon> </md-button>
+                    You liked this.
+                </div>
+                   <b>Likes:</b> <span> {{getLikeData(video.likes, video.$id)}}
+                    <br>
+
+
+                        </div>
+
+
+                      </div>
+                    </div>
+
+                  </div>
+                  </div> -->
             </div>
-            <div id="tabs-example-2">
+            <div id="alum-tabs-example-2">
                 
-<div class="large">
 
 
+                  <div class="alum-outer-div">
+                  <span ng-repeat="user in main.userArray">
+                    <div ng-click="generateFrame(user)" class="alum-outer-link">
 
-<div class="outer-div">
-<span ng-repeat="user in main.userArray">
-  <div ng-click="clickedFace(user.intro_url)" class="outer-link">
-    <figure>
-      <img class="img-circle" ng-src="{{user.profile_picture_url}}" alt=""></img>
-      <figcaption class="caption">{{user.firstname}}</figcaption>
-    </figure>
-  </div>
- </span>
+                        <img class="alum-img-circle" ng-src="{{user.profile_picture_url}}" alt=""></img>
+                        <figcaption class="alum-caption">
+                          {{user.firstname}} <br>
+                          {{user.college}}
+                        </figcaption>
 
-</div>
+                    </div>
+                   </span>
 
-<div ng-show="main.showVidBox" class="popup">
-  <md-button class="closevid" ng-click="closeVid()"><md-icon><i class="material-icons">highlight_off</i> </md-icon> </md-button>
-  <youtube-video class="video-pop" video-id="main.currURL"></youtube-video>
-</div>
+                  </div>
 
-</div>
+                  <div ng-show="main.showVidBox" class="popup">
+                    <md-button class="closevid" ng-click="closeVid()"><md-icon><i class="material-icons">highlight_off</i> </md-icon> </md-button>
+                    <youtube-video class="video-pop" video-id="main.currURL"></youtube-video>
+                  </div>
 
 
             </div>
-            <div id="tabs-example-3">
-                Tab 3 content goes here ...
+            <div id="alum-tabs-example-3">
+                
+
+
+<link rel="stylesheet" type="text/css" href="../../assets/frontend-elements/portfolio-navigation.css">
+
+
+<script type="text/javascript" src="../../assets/widgets/mixitup/mixitup.js"></script>
+<script type="text/javascript" src="../../assets/widgets/mixitup/images-loaded.js"></script>
+<script type="text/javascript" src="../../assets/widgets/mixitup/isotope.js"></script>
+<script type="text/javascript" src="../../assets/widgets/mixitup/portfolio-demo.js"></script>
+
+<div class="portfolio-controls mrg10L mrg10R radius-all-4 portfolio-nav-alt bg-blue clearfix controls">
+    <div class="container text-center">
+        <ul class="float-none">
+            <li class="filter" data-filter="hover_2">View all</li>
+            <li class="filter" data-filter="applying-to-college">Applying to College</li>
+            <li class="filter" data-filter="finding-community">Finding Community</li>
+            <li class="filter" data-filter="paying-for-college">Paying for College</li>
+            <li class="filter" data-filter="significant-others">Significant Others</li>
+        </ul>
+    </div>
+</div>
+
+
+<!--         <div ng-click="generateFrame(main.mostRecArray[3].url, main.mostRecArray[3].$id, main.mostRecArray[3].views)">
+            <div class="thumbnail-box thumbnail-box-inverse">
+                <div class="thumb-content">
+                    <div class="center-vertical">
+                        <div class="center-content">
+                            <h3 class="thumb-heading animated bounceIn" style="color:white; font-weight: bold;">
+                                {{main.mostRecArray[3].title}}
+                                <small style="color:white">{{main.mostRecArray[3].url}}</small>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="thumb-overlay bg-black"></div>
+                <img ng-src="https://img.youtube.com/vi/{{main.mostRecArray[3].url}}/maxresdefault.jpg" alt="" />
+            </div>
+        </div> -->
+
+
+<div class="clearfix">
+  <ul id="portfolio-grid" class="reset-ul row">
+      <li ng-repeat="video in main.videosArray" class="col-lg-3 col-sm-6 col-md-4 mix hover_2 {{main.findTags(video.tags)}}" data-cat="3"> 
+          <div class="thumbnail-box thumbnail-box-inverse"> 
+              <div class="thumb-content">
+                  <div class="center-vertical">
+                      <div class="center-content">
+                          <h3 class="thumb-heading animated bounceIn" style="color:white; font-weight: bold;">
+                              {{video.title}}
+                              <small style="color:white">{{video.date}}</small>
+                                <i class="glyph-icon tooltip-button demo-icon icon-play-circle" title=".icon-play-circle"></i>
+
+                          </h3>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="thumb-overlay bg-black"></div>
+                <div ng-click="generateFrame(video.url, video.$id, video.views)">
+                    <img ng-src="http://img.youtube.com/vi/{{video.url}}/0.jpg" alt="" />
+                </div>
+              </div>
+
+<!--                 <div ng-show="video.likes[main.user_id]==null"> 
+                    <md-button ng-disabled="main.inUse" class="likes" ng-click="like($event, video.$id, video.likes)">Like<md-icon><i class="material-icons">favorite_border</i> </md-icon> </md-button> 
+                    Click to like.
+                </div>
+                <div ng-show="video.likes[main.user_id]!=null"> 
+                    <md-button ng-disabled="main.inUse" class="likes" ng-click="unlike($event, video.$id, video.likes)">Unlike<md-icon><i class="material-icons">favorite</i> </md-icon> </md-button>
+                    You liked this.
+                </div>
+                   <b>Likes:</b> <span> currently, {{getLikeData(video.likes, video.$id)}} like(s) on this photo 
+                    <br> -->
+
+            </div>
+      </li>
+<!--     </span> -->
+
+  </ul>
+</div>
+
+
+
+
+
             </div>
         </div>
+
+
+
+
+
+
+
+<!-- Bootstrap Carousel -->
+
+<!--<link rel="stylesheet" type="text/css" href="../../assets/widgets/carousel/carousel.css">-->
+<!--<script type="text/javascript" src="../../assets/widgets/carousel/carousel.js"></script>-->
+
+<!-- Owl carousel -->
+
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/owlcarousel/owlcarousel.css">
+<script type="text/javascript" src="../../assets/widgets/owlcarousel/owlcarousel.js"></script>
+<script type="text/javascript" src="../../assets/widgets/owlcarousel/owlcarousel-demo.js"></script>
 
 
 
