@@ -3,7 +3,7 @@
 .ms-container {
     position: relative;
 }
-/*.ms-container .glyph-icon {
+.ms-container .glyph-icon {
     font-size: 20px;
     line-height: 30px;
     position: absolute;
@@ -13,7 +13,7 @@
     height: 30px;
     margin: -15px 0 0 -15px;
     text-align: center;
-}*/
+}
 .ms-container:after {
     font-size: 0;
     line-height: 0;

@@ -48,16 +48,16 @@
         <div class="tab-content">
           <div class="tab-pane active" id="step-1" ng-show='upload.tab == 1'>
             <div class='upload-head-nav'>
-              <h3 class="content-box-header bg-red">
+              <h3 class="content-box-header upload-content-box-header bg-red">
                     Make Video
               </h3>
             </div>
 
-            <div class="content-box">
+            <div class="upload-content-box content-box">
               <div class='tab-name'>
               </div>
-              <div class="content-box-wrapper-upload-video">
-                <div id="videos">
+              <div class="upload-content-box-wrapper-upload-video">
+                <div id="upload-videos">
                   <div id='upload-clipchamp' ng-show='!upload.show' ng-click='clipchamp()'>
                     <img src="http://www.bestcatvideos.co.uk/images/submitavideo.png" alt="Mountain View" style="width:265px;height:195px;">
                     Click here to upload video
@@ -72,28 +72,28 @@
           </div>
         </div>
         <div class="tab-pane active" id="step-2" ng-show='upload.tab == 2'>
-          <h3 class="content-box-header bg-black">
+          <h3 class="content-box-header upload-content-box-header bg-black">
             Title and Description
           </h3>
-          <div class="content-box">
-              <div class="content-box-wrapper-title-desc">
+          <div class="upload-content-box content-box">
+              <div class="upload-content-box-wrapper-title-desc">
                   
-                <div id='showVideo'></div>
+                <div id='upload-showVideo'></div>
 
                 <div id='video-title-desc'>
 
-                  <div id="video-title">
+                  <div id="upload-video-title">
                       <h3>Video Title</h3>
                       <span><small>{{70 - upload.title.length}} characters left...</small></span>
                       <br>
                       <input type="text" ng-model='upload.title' name="video_title" maxlength='70' placeholder='Write your title...'>
                   </div>
                   ​
-                  <div id="video-description"> 
+                  <div id="upload-video-description"> 
                       <h3>Video Description</h3>
                       Give a short description of your video <br>
                       <span><small>{{140 - upload.description.length}} characters left...</small></span><br>
-                      <textarea rows='4' cols='55' id='vid-description-box' name='video_description' ng-model='upload.description' maxlength='140' placeholder='Write your description...' ng-trim='false'></textarea>
+                      <textarea rows='4' cols='55' id='upload-vid-description-box' name='video_description' ng-model='upload.description' maxlength='140' placeholder='Write your description...' ng-trim='false'></textarea>
                   </div>
 
                   <div class='upload.buttons'>
@@ -108,10 +108,10 @@
           </div>
       </div>
       <div class="tab-pane active" id="step-3" ng-show='upload.tab == 3'>
-          <h3 class="content-box-header bg-green">
+          <h3 class="content-box-header upload-content-box-header bg-green">
               Tagging
           </h3>          
-          <div class="content-box">
+          <div class="upload-content-box content-box">
             <div class='tab-name'>
             </div>
             <div class='upload-show-tags-sect'>
@@ -124,7 +124,7 @@
                 </div>
               </div>
             </div>
-              <div id='tagging-sect'>
+              <div id='upload-tagging-sect'>
 
                 <div ng-repeat='(category, value) in checkboxModel'>
                   <div class='upload-tag-sect' ng-style='upload.tagStyle[category]' id='upload-tag-sect-{{category}}'>
