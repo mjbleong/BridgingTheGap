@@ -4,7 +4,6 @@ var cs142App = angular.module('cs142App', ['ngRoute', 'ngMaterial','ngResource',
 
 cs142App.config(
     function ($stateProvider, $urlRouterProvider) {
-  
       $urlRouterProvider.otherwise("/login-register");
       // Now set up the states
       $stateProvider
@@ -56,11 +55,9 @@ cs142App.config(
           templateUrl: "components/allAlum/all-vids-view.html",
           controller: 'AlumController'
         })
+        
     ;
-
-
       });
-
 
 cs142App.directive('elastic', [
     '$timeout',
@@ -238,7 +235,6 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
             };
     }
 ]);
-
 
 // cs142App.factory("userPersistenceService", [
 //     "$cookies", function($cookies) {

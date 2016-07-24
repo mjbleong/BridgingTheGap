@@ -1,4 +1,172 @@
-<div id='main-container'>
+<!-- Bootstrap Wizard -->
+
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/wizard/wizard.css">
+<script type="text/javascript" src="../../assets/widgets/wizard/wizard.js"></script>
+
+
+<!-- Boostrap Tabs -->
+
+<script type="text/javascript" src="../../assets/widgets/tabs/tabs.js"></script>
+
+
+<div class="panel">
+  <div class="panel-body">
+    <h3 class="title-hero">
+        Follow these steps to upload a video...
+    </h3>
+    <div class="example-box-wrapper">
+      <div id="form-wizard-3" class="form-wizard">
+        <ul>
+          <li>
+            <a class='wizard-tab' id='wizard-tab-1'>
+              <label id='tab-1' class="wizard-step">1</label>
+              <span class="wizard-description">
+                Make Video
+                <small></small>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class='wizard-tab' id='wizard-tab-2'>
+              <label id='tab-2' class="wizard-step">2</label>
+                <span class="wizard-description">
+                  Title and Description
+                  <small></small>
+                </span>
+            </a>
+          </li>
+          <li>
+            <a class='wizard-tab' id='wizard-tab-3'>
+              <label id='tab-3' class="wizard-step">3</label>
+              <span class="wizard-description">
+                Tag Video
+                <small></small>
+              </span>
+            </a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="step-1" ng-show='upload.tab == 1'>
+            <div class='upload-head-nav'>
+              <h3 class="content-box-header bg-red">
+                    Make Video
+              </h3>
+            </div>
+
+            <div class="content-box">
+              <div class='tab-name'>
+              </div>
+              <div class="content-box-wrapper-upload-video">
+                <div id="videos">
+                  <div id='upload-clipchamp' ng-show='!upload.show' ng-click='clipchamp()'>
+                    <img src="http://www.bestcatvideos.co.uk/images/submitavideo.png" alt="Mountain View" style="width:265px;height:195px;">
+                    Click here to upload video
+                  </div>
+                </div>
+              </div>
+              <div class='upload.buttons' ng-show='upload.show'>                  
+                <button type='button' ng-click='upload.switchTabForward()'>Next Step</button>
+                
+              </div>
+              <button type='button' ng-click='showStuff()'>use default video id</button>
+          </div>
+        </div>
+        <div class="tab-pane active" id="step-2" ng-show='upload.tab == 2'>
+          <h3 class="content-box-header bg-black">
+            Title and Description
+          </h3>
+          <div class="content-box">
+              <div class="content-box-wrapper-title-desc">
+                  
+                <div id='showVideo'></div>
+
+                <div id='video-title-desc'>
+
+                  <div id="video-title">
+                      <h3>Video Title</h3>
+                      <span><small>{{70 - upload.title.length}} characters left...</small></span>
+                      <br>
+                      <input type="text" ng-model='upload.title' name="video_title" maxlength='70' placeholder='Write your title...'>
+                  </div>
+                  ​
+                  <div id="video-description"> 
+                      <h3>Video Description</h3>
+                      Give a short description of your video <br>
+                      <span><small>{{140 - upload.description.length}} characters left...</small></span><br>
+                      <textarea rows='4' cols='55' id='vid-description-box' name='video_description' ng-model='upload.description' maxlength='140' placeholder='Write your description...' ng-trim='false'></textarea>
+                  </div>
+
+                  <div class='upload.buttons'>
+                    <button ng-click='upload.switchTabForward()'>Forward</button>
+                    <button ng-click='upload.switchTabBackward()'>Back</button>
+                  </div>
+
+                </div>
+
+
+              </div>
+          </div>
+      </div>
+      <div class="tab-pane active" id="step-3" ng-show='upload.tab == 3'>
+          <h3 class="content-box-header bg-green">
+              Tagging
+          </h3>          
+          <div class="content-box">
+            <div class='tab-name'>
+            </div>
+            <div class='upload-show-tags-sect'>
+              <div id='upload-show-tags'>
+
+                <div id='upload-indi-cat'  ng-repeat='(category, value) in checkboxModel'>
+                  <div id='upload-indi-tags' ng-repeat='(tag, value) in checkboxModel[category].tags'>
+                      <button ng-style='upload.tagStyle[category]' class="btn ra-100 btn-success" ng-show='checkboxModel[category].tags[tag].checked' ng-click='upload.removeTag(category,tag)'> {{checkboxModel[category].tags[tag].name}} </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div id='tagging-sect'>
+
+                <div ng-repeat='(category, value) in checkboxModel'>
+                  <div class='upload-tag-sect' ng-style='upload.tagStyle[category]' id='upload-tag-sect-{{category}}'>
+                    <strong>{{checkboxModel[category].name}}</strong>
+                    <form name="myForm" ng-repeat='(tag, value) in checkboxModel[category].tags'>
+                    <label class='upload-checkbox'>
+                      <input  type="checkbox" ng-model="checkboxModel[category].tags[tag].checked">            
+                      {{checkboxModel[category].tags[tag].name}}
+                    </label><br/>
+                  </div>
+                </div>
+              </div>
+
+              <div id='upload-upload-button'>
+                <button ng-click='upload.postVideo()'>Post Video</button>
+              </div>
+
+              <div class='upload.buttons'>
+                <button ng-click='upload.switchTabForward()'>Forward</button>
+                <button ng-click='upload.switchTabBackward()'>Back</button>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+​
+</form>
+</div>
+</div>
+</div>
+
+
+<!-- <div id='main-container'>
+
+
 ​
   <div id="videos">
     <button type='button' id='upload-vid-button' ng-click='clipchamp()'>
@@ -36,9 +204,9 @@
   <h4> Tag Video </h4>
 ​
   <div id='tagging-sect'>
-    <div ng-repeat='(tag, value) in checkboxModel'>
+    <div ng-repeat='(tag, value) in checkboxModel'> -->
       <!--{{tag}}-->
-      <div class='first'>
+<!--       <div class='first'>
         <strong>{{tag}}</strong>
         <form name="myForm" ng-repeat='(key, value) in checkboxModel[tag]'>
 ​
@@ -60,4 +228,4 @@
 ​
 </div>
 ​
-</div>
+</div> -->

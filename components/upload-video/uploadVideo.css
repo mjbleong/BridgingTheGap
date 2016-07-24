@@ -7,6 +7,7 @@
 }
 
 #vid-description-box {
+  resize: none;
 }
 
 #main-container {
@@ -17,29 +18,23 @@
 }
 
 #videos {
-  display: flex;
-  flex-direction: column; /* what it do? */
-  justify-content: center;
-  align-items: center;
-  background-color: #e6e6e6;
-  height: 300px;
-  width: 300px;
-  margin: 40px;
-  border: solid;
-  border-width: 2px;
-  border-color: blue;
+  margin: 25px;
 }
 
 #video-title input {
-  width: 300px;
+  width: 350px;
 }
 
 #video-title {
-  background-color: #e6e6e6;
+  width: 40%;
+  height: 20%;
+  margin: 25px;
+ /* background-color: #e6e6e6;*/
 }
 
 #video-description { 
-  background-color: #e6e6e6;
+  margin: 25px;
+  /*background-color: #e6e6e6;*/
 }
 
 #tagging-sect {
@@ -48,19 +43,172 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  background-color: #bfbfbf;
 }
 
-.first {
+.upload-tag-sect {
   font-size: large;
   float: left;
   margin: 24px;
   /*margin-left: 24px;*/
-  width: 100%;
+  width: 200px;
   background: #e6e6e6;
-  height: 40%;
+  height: 300px;
   overflow: scroll; 
 }
 
 #post-video-button {
   margin-top: 100px;
+}
+
+.content-box-wrapper-upload-video {
+    display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#upload-clipchamp {
+  display: flex;
+  flex-direction: column; /* what it do? */
+  justify-content: center;
+  align-items: center;
+  background-color: #9feaa4;
+  height: 300px;
+  width: 300px;
+  border: solid;
+  border-width: 2px;
+  border-color: #e6e6e6;
+}
+
+.upload-buttons {
+  display: flex;
+  flex-direction: column; /* what it do? */
+  justify-content: center;
+  align-items: center;
+}
+
+.content-box {
+    display: flex;
+  flex-direction: column; /* what it do? */
+  justify-content: center;
+  align-items: center;
+}
+
+.content-box-wrapper-title-desc {
+  display: flex;
+  flex-direction: row; /* what it do? */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#showVideo {
+  width: 420px;
+  height: 315px;
+  background-color: grey;
+  float: left;
+  margin: 25px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#video-title-desc {
+
+}
+
+#upload-tag-sect-applying-to-college {
+  background-color: #F0F8FF;
+}
+
+#upload-tag-sect-finding-community {
+  background-color: #F0F8FF;
+}
+
+#upload-tag-sect-paying-for-college {
+
+  background-color: #F0F8FF;
+}
+
+#upload-tag-sect-significant-others {
+  background-color: #F0F8FF;
+}
+
+.upload-checkbox {
+  margin-left: 8px;
+}
+
+.upload-tag-sect strong {
+  margin-left: 8px;
+  margin-bottom: 10px; 
+}
+
+#upload-show-tags {
+  float: left;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  font-size: large;
+  margin: 24px;
+  /*margin-left: 24px;*/
+  width: 380px;
+  background-color: #F0F8FF;
+  height: 150px;
+  overflow: scroll; 
+}
+
+.upload-show-tags-sect {
+  display: flex;
+  flex-direction: column; /* what it do? */
+  justify-content: center;
+  align-items: center;
+  background-color: #bfbfbf;
+  width: 100%;
+}
+
+.upload-tag-div {
+  margin: 3px;
+  /*display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;*/
+  background-color: red;
+}
+
+#upload-indi-tags {
+/*    float: left;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;*/
+}
+
+#upload-indi-cat {
+  float: left;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.content-box-header {
+  display: flex;
+  flex-direction: column; /* what it do? */
+  justify-content: center;
+  align-items: center;
+}
+
+.bbutton {
+  float: left;
+}
+
+.fbutton {
+  float: left;
+}
+
+.upload-head-nav {
+
+}
+
+#upload-show-tags button {
+  margin: 5px;
 }
