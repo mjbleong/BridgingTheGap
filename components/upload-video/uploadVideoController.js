@@ -159,8 +159,8 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
           iframe2.height='315';
           iframe2.src='//www.youtube.com/embed/' + myId;
 
-          var element1 = document.getElementById('videos');
-          var element2 = document.getElementById('showVideo');
+          var element1 = document.getElementById('upload-videos');
+          var element2 = document.getElementById('upload-showVideo');
           element1.appendChild(iframe1);
           element2.appendChild(iframe2);
         }      
