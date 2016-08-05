@@ -178,3 +178,7 @@
 #upload-show-tags button {
   margin: 5px;
 }
+
+.wizard-tab:hover {
+  text-decoration: none;
+}

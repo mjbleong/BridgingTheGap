@@ -3,7 +3,6 @@
 cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource', '$firebaseArray', '$firebaseObject', '$sce', '$firebaseAuth', '$cookies', '$location', '$route', '$window',
   function($scope, $routeParams, $resource, $firebaseArray, $firebaseObject, $sce, $firebaseAuth, $cookies, $location, $route, $window) {
 
-
     var user_id = $cookies.get("userName");
 
     var userVideosRef = firebase.database().ref().child("users").child(user_id).child("videos");

@@ -18,12 +18,13 @@ cs142App.controller('AlumController', ['$scope', '$resource', '$firebaseObject',
         // download the data into a local object
         var videosArray = $firebaseArray(vid);
         $scope.main.videosArray = videosArray;
-        console.log("vidarr");
-        console.log(videosArray);
 
         $scope.main.showVidBox = false;
 
         $scope.main.modalOpen = false;
+
+        console.log($scope.main.user_id);
+        console.log($scope.main.loggedIn);
 
         $scope.generateFrame = function (urlOrUser, fbID, views, subset) {
             $scope.main.modalOpen = true;

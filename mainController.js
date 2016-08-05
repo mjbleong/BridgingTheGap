@@ -72,7 +72,8 @@ cs142App.directive('elastic', [
     }
 ]);
 
-cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$location', '$http', '$route', "$firebaseAuth", '$cookies', '$firebaseObject','$state',
+
+cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$location', '$http', '$route', "$firebaseAuth", '$cookies', '$firebaseObject', '$state',
     function ($scope, $resource, $rootScope, $location, $http, $route, $firebaseAuth, $cookies, $firebaseObject, $state) {
 
         $scope.main = {};
@@ -87,69 +88,71 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
         }
 
         $scope.currentUser = "sdjkhf";
+
         $scope.authObj.$onAuthStateChanged(function(firebaseUser) {
+
           if (firebaseUser) {
+
             $scope.currentUser = firebaseUser.uid;
             console.log($scope.currentUser);
             $scope.main.user = $firebaseObject(firebase.database().ref("users/" + $scope.currentUser));
-            console.log("Signed in as:", firebaseUser.uid);
+            // console.log("f in as:", firebaseUser.uid);
             $cookies.put("userName", firebaseUser.uid);
+            $location.path('/alum');
+
           } else {
             $cookies.remove("userName");
             console.log("Signed out");
           }
+
         });
 
-        // $scope.main.studentHome = function() {
-        //         console.log("go to student home");
-        //         $location.path("/alum");
+        // $scope.logoutClick = function(event) {
+        //   firebase.auth().signOut().then(function() {
+        //     console.log("sign out successful)");
+        //     $scope.main.loggedIn = false //is this necessary?
+        //     $scope.main.hello = null;
+        //     $location.path("/login-register");
+        //   }, function(error) {
+        //     //no errors?
+        //   });
         // };
 
-        // $scope.main.profileHome = function() {
-        //         console.log("go to profile");
-        //         $location.path("/myProfile");
-        // };
+    $scope.main.logout = function() {
+      firebase.auth().signOut().then(function() {
+        $scope.main.loggedIn = false;
+        console.log("sign out successful)");
+        $location.path("/login-register");
+      }, function(error) {
+        //error in
+      });
+    };
 
-        // $scope.main.uploadVideo = function() {
-        //         console.log("go to upload");
-        //         $location.path("/upload-video");
-        // };
-
-        // $scope.main.viewProfile = function() {
-        //   console.log("about to view profile");
-        //   $location.path("/viewProfile/Hxg6yr8TafQWhU4njnTVhINDdvX2");
-        // }
-
-
-       //  $scope.main.myProfile = function() {
-       //   console.log("see my prof");
-       //   $location.path("/myProfile");
-       // }
 
 
 
         $scope.main.title = 'Users';
-        // var session = $resource('/getSession').get({});
-        // $scope.main.loggedIn = session.login_name;
-        // console.log(session.login_name);
+
+
 
         $scope.$on('Close', function() {
             console.log("exit");
             $location.path("/login-register");
         });
 
-        $rootScope.$on('$stateChangeStart', function (event, next, current) {
+
+        $rootScope.$on( "$stateChangeStart", function (event, next, current) {
           if (!$scope.main.loggedIn) {
             console.log("no one in");
              // no logged user, redirect to /login-register unless already there
             if (next.templateUrl !== "components/login-register/login-registerTemplate.html") {
-              event.preventDefault();
-              $state.go('login-register');
+                event.preventDefault();
+                $state.go("login-register");
             }
           } else {
             console.log("loggedin");
           }
-       }); 
+        }); 
 
         var selectedPhotoFile;   // Holds the last file selected by the user
 
@@ -202,28 +205,6 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
             };
     }
 ]);
-
-// cs142App.factory("userPersistenceService", [
-//     "$cookies", function($cookies) {
-//         var userName = "";
-
-//         return {
-//             setCookieData: function(username) {
-//                 console.log($scope.currentUser);
-//                 userName = username;
-//                 $cookies.put("userName", $scope.currentUser);
-//             },
-//             getCookieData: function() {
-//                 userName = $cookies.get("userName");
-//                 return userName;
-//             },
-//             clearCookieData: function() {
-//                 userName = "";
-//                 $cookies.remove("userName");
-//             }
-//         }
-//     }
-// ]);
 
 cs142App.config(function ($mdThemingProvider) {
 $mdThemingProvider.theme('default')
