@@ -543,14 +543,21 @@
             </div>
         </div>
     </div>
-                        <span class='applogin-nav-button' id='applogin-profile' float='right'>
+            <span class='applogin-nav-button' id='applogin-profile' float='right'>
+
                 <button type='button'>My Profile</button>
             </span>
             <span class='applogin-nav-button' id='applogin-alum' float='right'>
-                <button type='button'>See Alum</button>
+                <a href='#/alum'>
+                    <button type='button'>See Alum</button>
+                </a>
             </span>
             <span class='applogin-nav-button' id='applogin-upload-vid' float='right'>
+
                 <button type='button'>Login</button>
+            </span>
+            <span ng-click='logoutClick()' class='applogin-nav-button' id='applogin-logout' float='right'>
+                <button type='button'>Logout</button>
             </span>
 
             <span id='tommy-barnes' class="user-account-btn dropdown">

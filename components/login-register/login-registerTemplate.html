@@ -10,6 +10,7 @@
 		<input type="password" ng-model="pass" required>
 	</md-input-container>
 		<div ng-show="main.error===true">Sorry this username or password is not found. Please try again.</div>
+		<button type='button' ng-show='main.error===true' ng-click='retrievePassword()'>Retrieve password</button>
 	
 	<div> <md-button class="md-fab" ng-click="main.login(userId, pass)">Login</md-button></div>
 </form>

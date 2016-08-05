@@ -3,7 +3,7 @@
 cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource', '$firebaseArray', '$firebaseObject', '$sce', '$firebaseAuth', '$cookies', '$location', '$route', '$window',
   function($scope, $routeParams, $resource, $firebaseArray, $firebaseObject, $sce, $firebaseAuth, $cookies, $location, $route, $window) {
 
-    $scope.main.loggedIn = true;
+    //$scope.main.loggedIn = true;
 
     var user_id = $cookies.get("userName");
 

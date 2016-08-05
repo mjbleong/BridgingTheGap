@@ -17,10 +17,15 @@ cs142App.config(
           templateUrl: 'components/login-register/login-registerTemplate.html',
           controller: 'LoginRegisterController'
         })
-        .state('users', {
-          url: "/users",
-          templateUrl: 'components/user-list/user-listTemplate.html',
-          controller: 'UserListController'
+        // .state('users', {
+        //   url: "/users",
+        //   templateUrl: 'components/user-list/user-listTemplate.html',
+        //   controller: 'UserListController'
+        // })
+        .state('appLogin', {
+          url: "/appLogin",
+          tempateUrl: 'app-login.html',
+          controller: 'MainController'
         })
         .state('myProfile', {
           url: "/myProfile",
@@ -77,8 +82,9 @@ cs142App.directive('elastic', [
     }
 ]);
 
-cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$location', '$http', '$route', "$firebaseAuth", '$cookies', '$firebaseObject',
-    function ($scope, $resource, $rootScope, $location, $http, $route, $firebaseAuth, $cookies, $firebaseObject) {
+cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$location', '$http', '$route', "$firebaseAuth", '$cookies', '$firebaseObject', '$state',
+    function ($scope, $resource, $rootScope, $location, $http, $route, $firebaseAuth, $cookies, $firebaseObject, $state) {
+
 
         $scope.main = {};
         $scope.authObj = $firebaseAuth();
@@ -87,17 +93,35 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
         $scope.main.loggedIn = true;
 
         $scope.currentUser = "sdjkhf";
+
         $scope.authObj.$onAuthStateChanged(function(firebaseUser) {
+
           if (firebaseUser) {
+
             $scope.currentUser = firebaseUser.uid;
             $scope.main.user = $firebaseObject(firebase.database().ref("users/" + $scope.currentUser));
-            console.log("Signed in as:", firebaseUser.uid);
+            // console.log("f in as:", firebaseUser.uid);
             $cookies.put("userName", firebaseUser.uid);
+            $location.path('/alum');
+
           } else {
             $cookies.remove("userName");
             console.log("Signed out");
           }
+
         });
+
+        $scope.logoutClick = function(event) {
+          firebase.auth().signOut().then(function() {
+            console.log("sign out successful)");
+            $scope.main.loggedIn = false //is this necessary?
+            $scope.main.hello = null;
+            $location.path("/login-register");
+          }, function(error) {
+            //no errors?
+          });
+        };
+
 
         $scope.main.studentHome = function() {
             //$scope.main.loggedIn = true;
@@ -153,36 +177,30 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
         });
         };
 
-         $scope.logoutClick = function(event) {
-            var logout = $resource('/admin/logout');
-            logout.save(function() {
-                $scope.main.loggedIn = false;
-                $rootScope.$broadcast('Close');
-                $scope.main.hello = null;
-            });
-        };
-
-
         $scope.main.title = 'Users';
-        var session = $resource('/getSession').get({});
-        $scope.main.loggedIn = session.login_name;
+        /*var session = $resource('/getSession').get({});
+        $scope.main.loggedIn = session.login_name; */
 
         $scope.$on('Close', function() {
             console.log("exit");
             $location.path("/login-register");
         });
 
-        $rootScope.$on( "$routeChangeStart", function (event, next, current) {
+        console.log($rootScope);
+
+        $rootScope.$on( "$stateChangeStart", function (event, next, current) {
+          console.log('bloop');
           if (!$scope.main.loggedIn) {
             console.log("no one in");
              // no logged user, redirect to /login-register unless already there
             if (next.templateUrl !== "components/login-register/login-registerTemplate.html") {
-                $location.path("/login-register");
+                event.preventDefault();
+                $state.go("login-register");
             }
           } else {
             console.log("loggedin");
           }
-       }); 
+        }); 
 
         var selectedPhotoFile;   // Holds the last file selected by the user
 
@@ -235,28 +253,6 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
             };
     }
 ]);
-
-// cs142App.factory("userPersistenceService", [
-//     "$cookies", function($cookies) {
-//         var userName = "";
-
-//         return {
-//             setCookieData: function(username) {
-//                 console.log($scope.currentUser);
-//                 userName = username;
-//                 $cookies.put("userName", $scope.currentUser);
-//             },
-//             getCookieData: function() {
-//                 userName = $cookies.get("userName");
-//                 return userName;
-//             },
-//             clearCookieData: function() {
-//                 userName = "";
-//                 $cookies.remove("userName");
-//             }
-//         }
-//     }
-// ]);
 
 cs142App.config(function ($mdThemingProvider) {
 $mdThemingProvider.theme('default')

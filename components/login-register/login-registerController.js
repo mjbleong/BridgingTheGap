@@ -4,6 +4,10 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
   function ($scope, $routeParams, $resource, $http, $rootScope, $location) {
 
     $scope.main.title = 'Please Login';
+
+    $scope.login = {};
+    $scope.main.error = false;
+
     $scope.userId = "";
     $scope.pass = "";
 
@@ -16,30 +20,49 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
     $scope.password = "";
     $scope.confirmPassword = "";
 
+    $scope.retrievePassword = function() {
+      firebase.auth().sendPasswordResetEmail($scope.userId).then(function () {
+        console.log('reset password email sent');
+      }, function(error) {
+        if (error.code === 'auth/invalid-email') {
+          console.log('invalid email error');
+        }
+        if (error.code === 'auth/user-not-found') {
+          console.log('that is not a user');
+        }
+      });
+    };
+
     $scope.main.login = function(email, password) {
       firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+        // $scope.main.error = true; // basically a hack for now
         var user = firebase.auth().currentUser;
         console.log(user);
         if(user) {
           $scope.main.loggedIn = true;
-          $location.path("/users");
-          $scope.$apply()
+          $scope.$apply();
+
         } else {
+          $scope.main.loggedIn = false;
+          $scope.main.error = true;
           console.log("Couldn't log in");
         }
       }).catch(function(error) {
+        $scope.main.loggedIn = false;
+        $scope.main.error = true;
         console.log("error");
       });
     };
 
-    $scope.main.logout = function() {
-      firebase.auth().signOut().then(function() {
-        console.log("sign out successful)")
-        $location.path("/login-register");
-      }, function(error) {
+// moved to main?
+    // $scope.main.logout = function() {
+    //   firebase.auth().signOut().then(function() {
+    //     console.log("sign out successful)")
+    //     $location.path("/login-register");
+    //   }, function(error) {
 
-      });
-    };
+    //   });
+    // };
 
 
     $scope.clickFunc = function(event) {
