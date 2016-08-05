@@ -2,11 +2,18 @@
 	margin: 0px;
 }
 
-#tommy-barnes {
+#applogin-tommy-barnes {
 	float: right !important;
-	background-color: blue;
 }
 
 .applogin-nav-button {
 	float: right;
+}
+
+#applogin-home-button {
+	color: white;
+}
+
+#applogin-home-button:hover {
+	cursor: pointer;
 }

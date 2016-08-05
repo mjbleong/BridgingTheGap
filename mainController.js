@@ -17,11 +17,6 @@ cs142App.config(
           templateUrl: 'components/login-register/login-registerTemplate.html',
           controller: 'LoginRegisterController'
         })
-        .state('users', {
-          url: "/users",
-          templateUrl: 'components/user-list/user-listTemplate.html',
-          controller: 'UserListController'
-        })
         .state('myProfile', {
           url: "/myProfile",
           templateUrl: 'components/profile/profileTemplate.html',
@@ -42,19 +37,19 @@ cs142App.config(
           templateUrl: 'components/allAlum/allAlumTemplate.html',
           controller: 'AlumController'
         })
-        .state('alum.list', {
-          url: "/list",
-          templateUrl: "components/allAlum/profile-view.html"
-        })
-        .state('alum.topic', {
-          url: "/topic",
-          templateUrl: "components/allAlum/topic-view.html"
-        })
-        .state('alum.allvids', {
-          url: "/allvids/:page",
-          templateUrl: "components/allAlum/all-vids-view.html",
-          controller: 'AlumController'
-        })
+        // .state('alum.list', {
+        //   url: "/list",
+        //   templateUrl: "components/allAlum/profile-view.html"
+        // })
+        // .state('alum.topic', {
+        //   url: "/topic",
+        //   templateUrl: "components/allAlum/topic-view.html"
+        // })
+        // .state('alum.allvids', {
+        //   url: "/allvids/:page",
+        //   templateUrl: "components/allAlum/all-vids-view.html",
+        //   controller: 'AlumController'
+        // })
         
     ;
       });
@@ -77,19 +72,25 @@ cs142App.directive('elastic', [
     }
 ]);
 
-cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$location', '$http', '$route', "$firebaseAuth", '$cookies', '$firebaseObject',
-    function ($scope, $resource, $rootScope, $location, $http, $route, $firebaseAuth, $cookies, $firebaseObject) {
+cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$location', '$http', '$route', "$firebaseAuth", '$cookies', '$firebaseObject','$state',
+    function ($scope, $resource, $rootScope, $location, $http, $route, $firebaseAuth, $cookies, $firebaseObject, $state) {
 
         $scope.main = {};
         $scope.authObj = $firebaseAuth();
         $scope.main.addPhotoButton = false;
         $scope.main.hello = null;
-        $scope.main.loggedIn = true;
+        $scope.main.loggedIn = false;
+        $scope.main.firstTime = true;
+
+        $scope.main.exitFirstModal = function () {
+          $scope.main.firstTime = false;
+        }
 
         $scope.currentUser = "sdjkhf";
         $scope.authObj.$onAuthStateChanged(function(firebaseUser) {
           if (firebaseUser) {
             $scope.currentUser = firebaseUser.uid;
+            console.log($scope.currentUser);
             $scope.main.user = $firebaseObject(firebase.database().ref("users/" + $scope.currentUser));
             console.log("Signed in as:", firebaseUser.uid);
             $cookies.put("userName", firebaseUser.uid);
@@ -99,85 +100,51 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
           }
         });
 
-        $scope.main.studentHome = function() {
-            //$scope.main.loggedIn = true;
-                console.log("go to student home");
-                $location.path("/alum");
-        };
+        // $scope.main.studentHome = function() {
+        //         console.log("go to student home");
+        //         $location.path("/alum");
+        // };
 
-        $scope.main.profileHome = function() {
-            //$scope.main.loggedIn = true;
-                console.log("go to profile");
-                $location.path("/myProfile");
-        };
+        // $scope.main.profileHome = function() {
+        //         console.log("go to profile");
+        //         $location.path("/myProfile");
+        // };
 
-        $scope.main.uploadVideo = function() {
-            //$scope.main.loggedIn = true;
-                console.log("go to upload");
-                $location.path("/upload-video");
-        };
+        // $scope.main.uploadVideo = function() {
+        //         console.log("go to upload");
+        //         $location.path("/upload-video");
+        // };
 
-        $scope.main.viewProfile = function() {
-          console.log("about to view profile");
-          $location.path("/viewProfile/Hxg6yr8TafQWhU4njnTVhINDdvX2");
-        }
+        // $scope.main.viewProfile = function() {
+        //   console.log("about to view profile");
+        //   $location.path("/viewProfile/Hxg6yr8TafQWhU4njnTVhINDdvX2");
+        // }
 
 
-        $scope.main.myProfile = function() {
-         console.log("see my prof");
-         $location.path("/myProfile");
-       }
+       //  $scope.main.myProfile = function() {
+       //   console.log("see my prof");
+       //   $location.path("/myProfile");
+       // }
 
-        $scope.addPhotoClick = function(event) {   
-            $scope.main.addPhotoButton = !$scope.main.addPhotoButton;
-        var UserList = $resource('/user/list', {
-          query: {method: 'get', isArray: true}
-        });
-
-        UserList.query(function(userList) {
-          $scope.main.userArrayNew = userList;
-            $scope.checkedUsers = [];
-            $scope.addUser = function(user) {
-            if ($scope.checkedUsers.indexOf(user) !== -1) {
-                var newThing =[];
-                $scope.checkedUsers.forEach( function (elem) {
-                    if (elem !==user) {
-                        newThing.push(elem);
-                    }
-                });
-                $scope.checkedUsers = newThing;
-                return;
-            }
-            $scope.checkedUsers.push(user);
-            };
-        });
-        };
-
-         $scope.logoutClick = function(event) {
-            var logout = $resource('/admin/logout');
-            logout.save(function() {
-                $scope.main.loggedIn = false;
-                $rootScope.$broadcast('Close');
-                $scope.main.hello = null;
-            });
-        };
 
 
         $scope.main.title = 'Users';
-        var session = $resource('/getSession').get({});
-        $scope.main.loggedIn = session.login_name;
+        // var session = $resource('/getSession').get({});
+        // $scope.main.loggedIn = session.login_name;
+        // console.log(session.login_name);
 
         $scope.$on('Close', function() {
             console.log("exit");
             $location.path("/login-register");
         });
 
-        $rootScope.$on( "$routeChangeStart", function (event, next, current) {
+        $rootScope.$on('$stateChangeStart', function (event, next, current) {
           if (!$scope.main.loggedIn) {
             console.log("no one in");
              // no logged user, redirect to /login-register unless already there
             if (next.templateUrl !== "components/login-register/login-registerTemplate.html") {
-                $location.path("/login-register");
+              event.preventDefault();
+              $state.go('login-register');
             }
           } else {
             console.log("loggedin");

@@ -8,6 +8,13 @@
 
         <script src="node_modules/jquery/dist/jquery.min.js"></script>
 
+<link rel="stylesheet" type="text/css" href="../../assets/icons/iconic/iconic.css">
+<link rel="stylesheet" type="text/css" href="../../assets/icons/elusive/elusive.css">
+<link rel="stylesheet" type="text/css" href="../../assets/icons/meteocons/meteocons.css">
+<link rel="stylesheet" type="text/css" href="../../assets/icons/spinnericon/spinnericon.css">
+<link rel="stylesheet" type="text/css" href="../../assets/icons/typicons/typicons.css">
+
+
 
 
 <!-- tabs below -->
@@ -162,7 +169,7 @@
 
 
 
-    <!-- hereeee -->
+
 
 
     <title>{{main.title || "CS142 Class Project"}}</title>
@@ -424,17 +431,20 @@
 </head>
 
 <body>
+
+
+
     <div id="page-wrapper">
-        <div id="page-header" class="bg-gradient-9">
+        <div id="page-header" class="bg-gradient-8">
             <span margin-left='90px' float='left' class='applogin-btgLogo'>
-                <img src='images/BTGv3.png' width='250px' height='70px'>
+                <img src='images/sbnew.png' width='250px' height='70px'>
             </span>
             <div id='header-nav-right'>
-            <div class="applogin-nav-button dropdown" id="notifications-btn">
-            <a data-toggle="dropdown" href="#" title="">
-                <span class="small-badge bg-yellow"></span>
-                <i class="glyph-icon icon-linecons-megaphone"></i>
-            </a>
+<!--             <div class="applogin-nav-button dropdown" id="notifications-btn">
+                <a data-toggle="dropdown" href="#" title="">
+                    <span class="small-badge bg-yellow"></span>
+                    <i class="glyph-icon icon-bell"></i>
+                </a>
             <div class="dropdown-menu box-md float-right">
 
                 <div class="popover-title display-block clearfix pad10A">
@@ -541,369 +551,80 @@
                     </a>
                 </div>
             </div>
-        </div>
-    </div>
-                        <span class='applogin-nav-button' id='applogin-profile' float='right'>
-                <button type='button'>My Profile</button>
-            </span>
-            <span class='applogin-nav-button' id='applogin-alum' float='right'>
-                <button type='button'>See Alum</button>
-            </span>
-            <span class='applogin-nav-button' id='applogin-upload-vid' float='right'>
-                <button type='button'>Login</button>
-            </span>
+        </div> -->
+            <div class="applogin-nav-button dropdown">
+                <a data-toggle="dropdown" ui-sref="alum" title="">
+                    <i class="glyph-icon icon-home"></i>
+                </a>
+            </div>
+            <div class="applogin-nav-button dropdown">
+                <a data-toggle="dropdown" ui-sref="upload" title="">
+                    <i class="glyph-icon icon-video-camera"></i>
+                </a>
+            </div>
+            <div class="applogin-nav-button dropdown">
+                <a data-toggle="dropdown" ui-sref="alum" title="">
+                    <i class="glyph-icon icon-unlock"></i>
+                </a>
+            </div>
 
-            <span id='tommy-barnes' class="user-account-btn dropdown">
+<!--                     <span class="applogin-nav-button">
+            <i class="glyph-icon demo-icon icon-home" title=".icon-home" id="applogin-home-button"></i>
+            </span> -->
+    </div>
+
+    <span id='applogin-tommy-barnes' class="user-account-btn dropdown">
+            <a href="#" title="My Account" class="user-profile clearfix" data-toggle="dropdown">
+                <img width="40" class="user-img" src="{{main.user.profile_picture_url}}" alt="Profile image">
+                <span>{{main.user.firstname}} {{main.user.lastname}}</span>
+                <i class="glyph-icon icon-angle-down"></i>
+            </a>
+            <div class="dropdown-menu float-left">
+                <div class="box-sm">
+                    <div class="login-box clearfix">
+                        <div class="user-img">
+<!--                             <a href="#" title="" class="change-img">Change photo</a> -->
+                            <img src="{{main.user.profile_picture_url}}" alt="">
+                        </div>
+                        <div class="user-info">
+                            <span>
+                                {{main.user.firstname}} {{main.user.lastname}}
+                                <i>{{main.user.college}}</i>
+                            </span>
+                            <a ui-sref="myProfile" title="Edit profile">Edit profile</a>
+<!--                             <a href="#" title="View notifications">View notifications</a>
+ -->                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <ul class="reset-ul mrg5B">
+                        <li>
+                            
+                        </li>
+                        <li>
+                        </li>
+                        <li>
+                        </li>
+                    </ul>
+                    <div class="pad5A button-pane button-pane-alt text-center">
+                        <span ng-click="main.logout()" class="btn display-block font-normal btn-danger">
+                            <i class="glyph-icon icon-power-off"></i>
+                            Logout
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </span>
+
+
+<!--             <span id='tommy-barnes' class="user-account-btn dropdown">
                <a href="#" title="My Account" class="user-profile clearfix" data-toggle="dropdown">
                    <img width="28" src="../../assets/image-resources/gravatar.jpg" alt="Profile image">
                    <span>Thomas Barnes</span>
                    <i class="glyph-icon icon-angle-down"></i>
                </a>
-            </span>
+            </span> -->
         </div>
     </div>
-
-
-
-
-    <!-- <div id="header-nav-right">
-
-
-
-        <a href="#" class="hdr-btn popover-button" title="Search" data-placement="bottom" data-id="#popover-search">
-            <i class="glyph-icon icon-search"></i>
-        </a>
-        <div class="hide" id="popover-search">
-            <div class="pad5A box-md">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search terms here ...">
-                    <span class="input-group-btn">
-                        <a class="btn btn-primary" href="#">Search</a>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <a href="#" class="hdr-btn" id="fullscreen-btn" title="Fullscreen">
-            <i class="glyph-icon icon-arrows-alt"></i>
-        </a>
-        <a href="#" class="hdr-btn sb-toggle-left" id="chatbox-btn" title="Chat sidebar">
-            <i class="glyph-icon icon-linecons-paper-plane"></i>
-        </a>
-        <div class="dropdown" id="notifications-btn">
-            <a data-toggle="dropdown" href="#" title="">
-                <span class="small-badge bg-yellow"></span>
-                <i class="glyph-icon icon-linecons-megaphone"></i>
-            </a>
-            <div class="dropdown-menu box-md float-right">
-
-                <div class="popover-title display-block clearfix pad10A">
-                    Notifications
-                    <a class="text-transform-cap font-primary font-normal btn-link float-right" href="#" title="View more options">
-                        More options...
-                    </a>
-                </div>
-                <div class="scrollable-content scrollable-slim-box">
-                    <ul class="no-border notifications-box">
-                        <li>
-                            <span class="bg-danger icon-notification glyph-icon icon-bullhorn"></span>
-                            <span class="notification-text">This is an error notification</span>
-                            <div class="notification-time">
-                                a few seconds ago
-                                <span class="glyph-icon icon-clock-o"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="bg-warning icon-notification glyph-icon icon-users"></span>
-                            <span class="notification-text font-blue">This is a warning notification</span>
-                            <div class="notification-time">
-                                <b>15</b> minutes ago
-                                <span class="glyph-icon icon-clock-o"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="bg-green icon-notification glyph-icon icon-sitemap"></span>
-                            <span class="notification-text font-green">A success message example.</span>
-                            <div class="notification-time">
-                                <b>2 hours</b> ago
-                                <span class="glyph-icon icon-clock-o"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="bg-azure icon-notification glyph-icon icon-random"></span>
-                            <span class="notification-text">This is an error notification</span>
-                            <div class="notification-time">
-                                a few seconds ago
-                                <span class="glyph-icon icon-clock-o"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="bg-warning icon-notification glyph-icon icon-ticket"></span>
-                            <span class="notification-text">This is a warning notification</span>
-                            <div class="notification-time">
-                                <b>15</b> minutes ago
-                                <span class="glyph-icon icon-clock-o"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="bg-blue icon-notification glyph-icon icon-user"></span>
-                            <span class="notification-text font-blue">Alternate notification styling.</span>
-                            <div class="notification-time">
-                                <b>2 hours</b> ago
-                                <span class="glyph-icon icon-clock-o"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="bg-purple icon-notification glyph-icon icon-user"></span>
-                            <span class="notification-text">This is an error notification</span>
-                            <div class="notification-time">
-                                a few seconds ago
-                                <span class="glyph-icon icon-clock-o"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="bg-warning icon-notification glyph-icon icon-user"></span>
-                            <span class="notification-text">This is a warning notification</span>
-                            <div class="notification-time">
-                                <b>15</b> minutes ago
-                                <span class="glyph-icon icon-clock-o"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="bg-green icon-notification glyph-icon icon-user"></span>
-                            <span class="notification-text font-green">A success message example.</span>
-                            <div class="notification-time">
-                                <b>2 hours</b> ago
-                                <span class="glyph-icon icon-clock-o"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="bg-purple icon-notification glyph-icon icon-user"></span>
-                            <span class="notification-text">This is an error notification</span>
-                            <div class="notification-time">
-                                a few seconds ago
-                                <span class="glyph-icon icon-clock-o"></span>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="bg-warning icon-notification glyph-icon icon-user"></span>
-                            <span class="notification-text">This is a warning notification</span>
-                            <div class="notification-time">
-                                <b>15</b> minutes ago
-                                <span class="glyph-icon icon-clock-o"></span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="pad10A button-pane button-pane-alt text-center">
-                    <a href="#" class="btn btn-primary" title="View all notifications">
-                        View all notifications
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="dropdown" id="progress-btn">
-            <a data-toggle="dropdown" href="#" title="">
-                <span class="small-badge bg-azure"></span>
-                <i class="glyph-icon icon-linecons-params"></i>
-            </a>
-            <div class="dropdown-menu pad0A box-sm float-right" id="progress-dropdown">
-                <div class="scrollable-content scrollable-slim-box">
-                    <ul class="no-border progress-box progress-box-links">
-                        <li>
-                            <a href="#" title="">
-                                <b class="pull-right">23%</b>
-                                <div class="progress-title">
-                                    Finishing uploading files
-                                    
-                                </div>
-                                <div class="progressbar-smaller progressbar" data-value="23">
-                                    <div class="progressbar-value bg-blue-alt">
-                                        <div class="progressbar-overlay"></div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="">
-                                <b class="pull-right">91%</b>
-                                <div class="progress-title">
-                                    Roadmap progress
-                                </div>
-                                <div class="progressbar-smaller progressbar" data-value="91">
-                                    <div class="progressbar-value bg-red">
-                                        <div class="progressbar-overlay"></div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="">
-                                <b class="pull-right">58%</b>
-                                <div class="progress-title">
-                                    Images upload
-                                </div>
-                                <div class="progressbar-smaller progressbar" data-value="58">
-                                    <div class="progressbar-value bg-green"></div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="">
-                                <b class="pull-right">74%</b>
-                                <div class="progress-title">
-                                    WordPress migration
-                                </div>
-                                <div class="progressbar-smaller progressbar" data-value="74">
-                                    <div class="progressbar-value bg-purple"></div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="">
-                                 <b class="pull-right">91%</b>
-                                <div class="progress-title">
-                                    Agile development procedures
-                                </div>
-                                <div class="progressbar-smaller progressbar" data-value="91">
-                                    <div class="progressbar-value bg-black">
-                                        <div class="progressbar-overlay"></div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="">
-                                <b class="pull-right">58%</b>
-                                <div class="progress-title">
-                                    Systems integration
-                                </div>
-                                <div class="progressbar-smaller progressbar" data-value="58">
-                                    <div class="progressbar-value bg-azure"></div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="">
-                                 <b class="pull-right">97%</b>
-                                <div class="progress-title">
-                                    Code optimizations
-                                </div>
-                                <div class="progressbar-smaller progressbar" data-value="97">
-                                    <div class="progressbar-value bg-yellow"></div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="pad5A button-pane button-pane-alt text-center">
-                    <a href="#" class="btn display-block font-normal hover-green" title="View all notifications">
-                        View all notifications
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="dropdown" id="cloud-btn">
-            <a href="#" data-placement="bottom" class="tooltip-button sb-toggle-right" title="Statistics Sidebar">
-                <i class="glyph-icon icon-linecons-cloud"></i>
-            </a>
-        </div>
-        <div class="dropdown" id="dashnav-btn">
-            <a href="#" data-toggle="dropdown" data-placement="bottom" class="popover-button-header tooltip-button" title="Dashboard Quick Menu">
-                <i class="glyph-icon icon-linecons-cog"></i>
-            </a>
-            <div class="dropdown-menu float-right">
-                <div class="box-sm">
-                    <div class="pad5T pad5B pad10L pad10R dashboard-buttons clearfix">
-                        <a href="#" class="btn vertical-button hover-blue-alt" title="">
-                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                <i class="glyph-icon icon-dashboard opacity-80 font-size-20"></i>
-                            </span>
-                            Dashboard
-                        </a>
-                        <a href="#" class="btn vertical-button hover-green" title="">
-                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                <i class="glyph-icon icon-tags opacity-80 font-size-20"></i>
-                            </span>
-                            Widgets
-                        </a>
-                        <a href="#" class="btn vertical-button hover-orange" title="">
-                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                <i class="glyph-icon icon-fire opacity-80 font-size-20"></i>
-                            </span>
-                            Tables
-                        </a>
-                        <a href="#" class="btn vertical-button hover-orange" title="">
-                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                <i class="glyph-icon icon-bar-chart-o opacity-80 font-size-20"></i>
-                            </span>
-                            Charts
-                        </a>
-                        <a href="#" class="btn vertical-button hover-purple" title="">
-                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                <i class="glyph-icon icon-laptop opacity-80 font-size-20"></i>
-                            </span>
-                            Buttons
-                        </a>
-                        <a href="#" class="btn vertical-button hover-azure" title="">
-                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                <i class="glyph-icon icon-code opacity-80 font-size-20"></i>
-                            </span>
-                            Panels
-                        </a>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="pad5T pad5B pad10L pad10R dashboard-buttons clearfix">
-                        <a href="#" class="btn vertical-button remove-border btn-info" title="">
-                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                <i class="glyph-icon icon-dashboard opacity-80 font-size-20"></i>
-                            </span>
-                            Dashboard
-                        </a>
-                        <a href="#" class="btn vertical-button remove-border btn-danger" title="">
-                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                <i class="glyph-icon icon-tags opacity-80 font-size-20"></i>
-                            </span>
-                            Widgets
-                        </a>
-                        <a href="#" class="btn vertical-button remove-border btn-purple" title="">
-                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                <i class="glyph-icon icon-fire opacity-80 font-size-20"></i>
-                            </span>
-                            Tables
-                        </a>
-                        <a href="#" class="btn vertical-button remove-border btn-azure" title="">
-                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                <i class="glyph-icon icon-bar-chart-o opacity-80 font-size-20"></i>
-                            </span>
-                            Charts
-                        </a>
-                        <a href="#" class="btn vertical-button remove-border btn-yellow" title="">
-                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                <i class="glyph-icon icon-laptop opacity-80 font-size-20"></i>
-                            </span>
-                            Buttons
-                        </a>
-                        <a href="#" class="btn vertical-button remove-border btn-warning" title="">
-                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                <i class="glyph-icon icon-code opacity-80 font-size-20"></i>
-                            </span>
-                            Panels
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="header-btn" id="logout-btn" href="lockscreen-3.html" title="Lockscreen page example">
-            <i class="glyph-icon icon-linecons-lock"></i>
-        </a>
-
-
-
-    </div><! #header-nav-right -->
-
-        
-        
-
 
 
 
@@ -913,6 +634,77 @@
                 
                     
                 <md-content flex id="content">
+
+
+<div id="main-modal-intro" ng-show="main.firstTime">
+<div class="modal fade display-block" tabindex="1">
+    <div class="modal-dialog">
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" aria-hidden="true" ng-click="main.exitFirstModal()">&times;</button>
+                <h4 class="modal-title">Welcome to Bridging the Gap</h4>
+            </div>
+            <div class="modal-body">
+                <p>Opening video goes here</p>
+
+
+<div class="row">
+    <div>
+        <div class="panel">
+            <div class="panel-body">
+                <h3 class="title-hero">
+                    Let's take you through the site!
+                </h3>
+                <div class="example-box-wrapper">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="http://placehold.it/900x500/42bdc2/FFFFFF" alt="First slide">
+                            </div>
+                            <div class="item">
+                                <img src="http://placehold.it/900x500/42bdc2/FFFFFF" alt="Second slide">
+                            </div>
+                            <div class="item">
+                                <img src="http://placehold.it/900x500/42bdc2/FFFFFF" alt="Third slide">
+                            </div>
+                            <div class="item">
+                                <img src="http://placehold.it/900x500/42bdc2/FFFFFF" alt="Fourth slide">
+                            </div>
+                        </div>
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <span class="glyph-icon icon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                            <span class="glyph-icon icon-chevron-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="main.seeProfileClick(main.currVid.author_id)">Watch Later</button>
+                <button type="button" class="btn btn-primary" ng-click="main.exitFirstModal()">Begin Experience</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
                 <div ui-view></div>
                 </md-content>
                 
@@ -1107,6 +899,11 @@
 
         </div>
          -->
+
+
+
+
+
 
     </body>
     <footer>

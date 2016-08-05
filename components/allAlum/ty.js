@@ -1,2 +1,0 @@
-thing();
-console.log("in");

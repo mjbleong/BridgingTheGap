@@ -1,4 +1,20 @@
 
+
+.alum-color-this {
+  border-style: solid;
+  border-color: #fed136;
+  border-width: 5px;
+}
+
+.alum-carousel-text {
+  color: white; 
+  font-weight: bold;
+}
+
+.alum-small-video-text {
+  color: white;
+}
+
 #alum-modal-view-video {
     position: fixed; /* Stay in place */
     z-index: 50; /* Sit on top */
@@ -15,29 +31,23 @@
     margin: 200px auto;
 }
 
+.alum-icon-play-circle-box {
+  display: flex;
+  justify-content: center;
+}
 
-/*#alum-tabs-example-2 {
-  height: 100%;
-}*/
+
+.alum-icon-play-circle {
+  font-size: 60px;
+  height: 80px;
+  color: white;
+}
 
 .alum-row-container {
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
-
-/*#alum-tabs-example-1 {
-  padding: 0 10px;
-  margin: 0;
-  background: white;
-  color: #ecf0f1;
-  font-family: 'Open Sans', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-}*/
 
 
 .alum-header {
@@ -138,202 +148,11 @@
   padding: 10px;
 }
 
-/*.alum-row__inner:hover {
-  transform: translate3d(-125px, 0, 0);
-}*/
 
 .alum-row__inner:hover .tile {
   opacity: 0.3;
 }
 
-/*.alum-row__inner:hover .alum-tile:hover {
-  transform: scale(2);
-  opacity: 1;
-}*/
-
-/*.alum-tile:hover ~ .alum-tile {
-  transform: translate3d(250px, 0, 0);
-}*/
-
-
-/*carousel above*/
-
-
-
-/*
-.vidPageFlex {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.button-div {
-  display: flex;
-  justify-content: center;
-}
-
-.allButton {
-  text-align: center;
-  background-color: green;
-  color: white;
-}
-
-.container3 {
- width: 1000px;
- overflow: hidden;
- margin: 50px auto;
- background: white;
- margin-top: -350px;
-}
-
-.header {
- width: 800px;
- margin: 0px auto;
-}
- 
-.header h1 {
- text-align: center;
- font: 100 60px/1.5 Helvetica, Verdana, sans-serif;
- margin:0px;
-}
-
-.photobanner img {
- -webkit-transition: all 0.5s ease;
-}
- 
-.photobanner img:hover {
- -webkit-transform: scale(1.05);
- cursor: pointer;
- -webkit-box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
-}
-
-.photobanner iframe {
- -webkit-transform: scale(1.1);
- cursor: pointer;
- -webkit-box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
-}
-
-.arr-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.arrow {
-  width: 50px;
-  height: 241px;
-  position: relative;
-  top: 202px;
-  background-color: rgba(104,104,104,0.5);
-  text-align: center;
-  padding-top: 160px;
-  color: white;
-  font-size: 20px;
-  margin: 0px;
-  z-index: 200;
-}
-
-.back {
-  left: 100px;
-}
-
-.forward {
-  right: 100px;
-}
-
-.photobanner {
- height: 340px;
- width: 3200px;
- margin-bottom: 80px;
- display: inline-flex;
-}
-
-.first {
- -webkit-animation: bannermove 30s linear;
- -webkit-animation-play-state: paused;
-  -webkit-animation-animation-direction: normal;
-  -webkit-animation-fill-mode: forwards;
-}
-
-.thumbnail {
-    width: 100%;
-    height: 220px;
-    cursor: pointer; 
-    cursor: hand;
-    padding: auto;
-}
-
-
-.play-circle {
-   position: absolute;
-   font-size:100px;
-   left: 50%;
-   top: 50%;
-   margin-top: -50px;
-   margin-left: -50px;
-   opacity: 0.7;
-   color: gray;
-    cursor: pointer; 
-    cursor: hand;
-}
-
-.thumbnail-container {
-  position: relative;
-}
-
-.mdcard {
-  background-color: orange;
-  text-align: center;
-  width: 350px;
-  padding: 0px;
-  margin: 3px;
-}
-
-@-webkit-keyframes "bannermove" {
- 0% {
-   margin-left: 0px;
- }
- 100% {
-   margin-left: -2130px;
- }
- 
-}
-
-@-webkit-keyframes "bannermove2" {
- 0% {
-      margin-left: -2130px;
- }
- 100% {
-      margin-left: 0px;
- }
- 
-}
-
-
-.large {
-	height: 100%;
-  height: 200px;
-	width:100%;
-  height: 350px;
-}
-
-.popup {
-	position: fixed;
-	top: 40%;
-	left: 27%;
-	width: 25%;
-	height: 12%;
-	background-color: yellow;
-	padding: 10%;
-	z-index: 7;
-}
-
-.video-pop {
-  height: 100%;
-  height: 175px;
-  width:100%;
-  width: 400px;
-}
-*/
 
 .alum-img-circle {
 	border-radius: 50%;
@@ -341,9 +160,6 @@
 	width: 225px;
 }
 
-/*.label-tab {
-	text-decoration : none;
-}*/
 
 .alum-outer-div {
 	padding-top: 40px;
@@ -368,23 +184,3 @@
   margin: 0;
   width: 225px;
 }
-
-/*
-.outer-link:nth-of-type(2n) {
-  margin-right: 0;
-}
-
-@media screen and (min-width: 50em) {
-  .outer-link {
-    width: calc(25% - 6px);
-  }
-
-  .outer-link:nth-of-type(2n) {
-    margin-right: 8px;
-  }
-
-  .outer-link:nth-of-type(4n) {
-    margin-right: 0;
-  }
-}
-*/

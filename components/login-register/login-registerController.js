@@ -22,10 +22,11 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
         console.log(user);
         if(user) {
           $scope.main.loggedIn = true;
-          $location.path("/users");
+          $location.path("/alum");
           $scope.$apply()
         } else {
           console.log("Couldn't log in");
+          $scope.main.loggedIn = false;
         }
       }).catch(function(error) {
         console.log("error");
@@ -34,6 +35,7 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
 
     $scope.main.logout = function() {
       firebase.auth().signOut().then(function() {
+        $scope.main.loggedIn = false;
         console.log("sign out successful)")
         $location.path("/login-register");
       }, function(error) {
