@@ -1,21 +1,170 @@
-<h1>Welcome to My Awesome App</h1>
-<div>
-<form class="myform" name="login">
-	<md-input-container>
-		<label>Username</label>
-		<input name="userId" ng-model="userId" required>
-	</md-input-container>
-	<md-input-container>
-		<label>Password</label>
-		<input type="password" ng-model="pass" required>
-	</md-input-container>
-		<div ng-show="main.error===true">Sorry this username or password is not found. Please try again.</div>
-		<button type='button' ng-show='main.error===true' ng-click='retrievePassword()'>Retrieve password</button>
-	
-	<div> <md-button class="md-fab" ng-click="main.login(userId, pass)">Login</md-button></div>
-</form>
+<md-button ng-click="loginRegister.showRegistrationForm = true">Click this </md-button>
+
+<md-button ng-click="main.logout()">Logout</md-button>
+<div class="center-vertical">
+    <div class="login-register-flexbox row">
+
+        <form action="" id="login-form" class="col-md-4 col-sm-5 col-xs-11 col-lg-3 center-margin" method="" ng-if="!loginRegister.showRegistrationForm">
+            <h3 class="text-center pad25B font-gray text-transform-upr font-size-23">Login<span class="opacity-80"></span></h3>
+            <div id="login-form" class="content-box bg-default">
+                <div class="content-box-wrapper pad20A">
+                    <img class="mrg25B center-margin radius-all-100 display-block" id="login-logo" src="images/hat.png" alt="">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="email" class="form-control" id="exampleInputEmail1" ng-model="userId" placeholder="Enter email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="exampleInputPassword1" ng-model="pass" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" ng-click="main.login(userId, pass)" class="btn btn-block btn-primary">Login</button>
+                    </div>
+                    <div class="row">
+<!--                     	<div class="text-left col-md-6">
+                            <a class="switch-button" switch-target="#login-forgot" switch-parent="#login-form" ng-click="loginRegister.showRegistrationForm = true" >Create an account</a>
+                        </div> -->
+                        <div class="text-left col-md-6">
+                            <a href="#" ng-clickclass="switch-button" ng-click="loginRegister.showRegistrationForm = true" switch-target="#" switch-parent="#" title="Create Account">Create Account</a>
+                        </div>
+                        <div class="text-right col-md-6">
+                            <a href="#" class="switch-button" switch-target="#login-forgot" switch-parent="#login-form" title="Recover password">Forgot your password?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="login-forgot" class="content-box bg-default hide">
+                <div class="content-box-wrapper pad20A">
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Email address:</label>
+                        <div class="input-group">
+                            <span class="input-group-addon addon-inside bg-gray">
+                                <i class="glyph-icon icon-envelope-o"></i>
+                            </span>
+                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+                        </div>
+                    </div>
+                </div>
+                <div class="button-pane text-center">
+                    <button type="submit" class="btn btn-md btn-primary">Recover Password</button>
+                    <a href="#" class="btn btn-md btn-link switch-button" switch-target="#login-form" switch-parent="#login-forgot" title="Cancel">Cancel</a>
+                </div>
+            </div>
+        </form>
+
+<p ng-if="loginRegister.message">Message: <strong>{{ message }}</strong></p>
+<p ng-if="loginRegister.error">Error: <strong>{{ error }}</strong></p>
+<!--Registration form begins here-->
+        <form action="" id="register-form" class="col-md-4 col-sm-5 col-xs-11 col-lg-3 center-margin register-form-animation" method="" ng-if="loginRegister.showRegistrationForm">
+            <h3 class="text-center pad25B font-gray text-transform-upr font-size-23">Alumni Registration<span class="opacity-80"></span></h3>
+            <div id="login-form" class="content-box bg-default">
+                <div class="content-box-wrapper pad20A">
+                    <img class="mrg25B center-margin radius-all-100 display-block" id="login-logo" src="images/hat.png" alt="">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="register-firstname" ng-model="loginRegister.first_name" placeholder="First Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="register-lastname" ng-model="loginRegister.last_name" placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="register-email" ng-model="loginRegister.user_email" placeholder="Email Address">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group" >
+                            High School
+                            <select class="form-control" ng-model="loginRegister.highSchool">
+                                <option ng-repeat="school in loginRegister.schools" value="{{school.name}}">{{school.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            High School Grad Year
+                            <select class="form-control" ng-model="loginRegister.gradYear">
+                                <option  ng-repeat="year in loginRegister.gradYears" value="{{year.value}}">{{year.value}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            College
+                            <select class="form-control" ng-model="loginRegister.college">
+                                <option  ng-repeat="college in loginRegister.collegeNames" value="{{college.value}}">{{college.value}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            College Grade Level
+                            <select class="form-control" ng-model="loginRegister.collegeGrade">
+                                <option  ng-repeat="grade in loginRegister.collegeGrades" value="{{grade.value}}">{{grade.value}}</option>
+                            </select>
+	                    </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            College Grad Year
+                            <select class="form-control" ng-model="loginRegister.collegeGradYear">
+                                <option  ng-repeat="year in loginRegister.collegeGradYears" value="{{year.value}}">{{year.value}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="register-password" ng-model="loginRegister.password" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="register-confirm-password" ng-model="loginRegister.confirmPassword" placeholder="Confirm Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" ng-click="loginRegister.registerClickFunc()" class="btn btn-block btn-primary">Register Account</button>
+                    </div>
+                    <div class="row" ng-if="loginRegister.regError">
+                        <div class="register-error-message">Invalid Input</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                        </div>
+                    	<div class="text-left col-md-6">
+                            <a href="#" ng-click="loginRegister.showRegistrationForm = false" class="switch-button" switch-target="#login-forgot" switch-parent="#login-form" title="Recover password">I already have an account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="login-forgot" class="content-box bg-default hide">
+                <div class="content-box-wrapper pad20A">
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Email address:</label>
+                        <div class="input-group">
+                            <span class="input-group-addon addon-inside bg-gray">
+                                <i class="glyph-icon icon-envelope-o"></i>
+                            </span>
+                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+                        </div>
+                    </div>
+                </div>
+                <div class="button-pane text-center">
+                    <button type="submit" class="btn btn-md btn-primary">Recover Password</button>
+                    <a href="#" class="btn btn-md btn-link switch-button" switch-target="#login-form" switch-parent="#login-forgot" title="Cancel">Cancel</a>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
 </div>
-
-
-
-￼

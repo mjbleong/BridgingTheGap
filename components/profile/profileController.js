@@ -9,7 +9,7 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
     var videoIDsArray = $firebaseArray(userVideosRef);
 
     $scope.main.user = $firebaseObject(firebase.database().ref("/users/" + user_id));
-    
+
     $scope.userProfiles = {};
 
     $scope.editing = false;
@@ -68,37 +68,37 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
     // }
 
 
-$scope.userProfiles.generateFrame = function (urlOrUser, fbID, views, subset) {
-           $scope.userProfiles.modalOpen = true;
-           console.log(fbID);
-       if (fbID) {
-           var currVid = $firebaseObject(firebase.database().ref().child("videos").child(fbID));
-           var currLikes = $firebaseObject(firebase.database().ref().child("videos").child(fbID).child("likes"));
-           console.log(currLikes);
-           // var currVid2 = $firebaseObject(firebase.database().ref("videos/" + fbID + "/title"));
-           $scope.userProfiles.currVid = currVid;
-           var element = document.getElementById("alum-innerHTML");
-           var elementInnerString = "";
-           elementInnerString += '<iframe src="//www.youtube.com/embed/' + urlOrUser + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="400px" height="200px" allowfullscreen></iframe>';
-           elementInnerString += '<div>' + views +' views</div>';
-           element.innerHTML = elementInnerString;
-       } else {
-           var title = document.getElementById("alum-modal-title-forChange");
-           title.innerHTML = " " + urlOrUser.firstname + " " + urlOrUser.lastname;
-           $scope.userProfiles.currVid = {};
-           $scope.userProfiles.currVid.author_id = urlOrUser.$id;
-           var element = document.getElementById("alum-innerHTML");
-           element.innerHTML = '<iframe src="//www.youtube.com/embed/' + urlOrUser.intro_url + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="400px" height="200px" allowfullscreen></iframe>';
-       }
+    $scope.userProfiles.generateFrame = function(urlOrUser, fbID, views, subset) {
+      $scope.userProfiles.modalOpen = true;
+      console.log(fbID);
+      if (fbID) {
+        var currVid = $firebaseObject(firebase.database().ref().child("videos").child(fbID));
+        var currLikes = $firebaseObject(firebase.database().ref().child("videos").child(fbID).child("likes"));
+        console.log(currLikes);
+        // var currVid2 = $firebaseObject(firebase.database().ref("videos/" + fbID + "/title"));
+        $scope.userProfiles.currVid = currVid;
+        var element = document.getElementById("alum-innerHTML");
+        var elementInnerString = "";
+        elementInnerString += '<iframe src="//www.youtube.com/embed/' + urlOrUser + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="400px" height="200px" allowfullscreen></iframe>';
+        elementInnerString += '<div>' + views + ' views</div>';
+        element.innerHTML = elementInnerString;
+      } else {
+        var title = document.getElementById("alum-modal-title-forChange");
+        title.innerHTML = " " + urlOrUser.firstname + " " + urlOrUser.lastname;
+        $scope.userProfiles.currVid = {};
+        $scope.userProfiles.currVid.author_id = urlOrUser.$id;
+        var element = document.getElementById("alum-innerHTML");
+        element.innerHTML = '<iframe src="//www.youtube.com/embed/' + urlOrUser.intro_url + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="400px" height="200px" allowfullscreen></iframe>';
+      }
 
-           
 
-  }
-  $scope.main.closeClick = function() {
-           $scope.userProfiles.modalOpen = false;
-           var element = document.getElementById("alum-innerHTML");
-           element.innerHTML = "";
-  }
+
+    }
+    $scope.main.closeClick = function() {
+      $scope.userProfiles.modalOpen = false;
+      var element = document.getElementById("alum-innerHTML");
+      element.innerHTML = "";
+    }
 
     var selectedPhotoFile; // Holds the last file selected by the user
 
@@ -197,17 +197,17 @@ $scope.userProfiles.generateFrame = function (urlOrUser, fbID, views, subset) {
         $scope.showLiveWebcam = false;
         videoStream.getVideoTracks()[0].stop();
         secondClick = true;
-    }
+      }
       // When the user clicks anywhere outside of the modal, close it
-    // window.onclick = function(event) {
-    //   if (event.target == modal) {
-    //     modal.style.display = "none";
-    //     $scope.showLiveWebcam = false;
-    //     videoStream.getVideoTracks()[0].stop();
-    //     secondClick = true;
-    //     $route.reload();
-    //   }
-    // }
+      // window.onclick = function(event) {
+      //   if (event.target == modal) {
+      //     modal.style.display = "none";
+      //     $scope.showLiveWebcam = false;
+      //     videoStream.getVideoTracks()[0].stop();
+      //     secondClick = true;
+      //     $route.reload();
+      //   }
+      // }
 
     //Webcam Controller Stuff
     var _video = null,

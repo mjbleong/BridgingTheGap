@@ -8,22 +8,14 @@ cs142App.controller('ViewProfileController', ['$scope', '$routeParams', '$resour
     var userVideosRef = firebase.database().ref().child("users").child(user_id).child("videos");
     var videoIDsArray = $firebaseArray(userVideosRef);
 
-    $scope.main.user = $firebaseObject(firebase.database().ref("/users/" + user_id));
+    $scope.viewProfile = {};
+    $scope.viewProfile.user = $firebaseObject(firebase.database().ref("/users/" + user_id));
 
-    $scope.main.introVideo = null;
+    // $scope.main.user = $firebaseObject(firebase.database().ref("/users/" + user_id));
 
-    var mainVideosRef = firebase.database().ref().child("videos");
-    $scope.main.videosArray = [];
-    mainVideosRef.orderByChild("author_id").equalTo(user_id).on("child_added", function(videoObj) {
-      var video = videoObj.val();
-      if (video.url == $scope.main.user.intro_url) {
-        console.log($scope.main.user.intro_url);
-        $scope.main.introVideo = video;
-      } else {
-        $scope.main.videosArray.push(video);
-      }
-
-    });
+    var mainVideosRef = firebase.database().ref().child("videos").orderByChild("author_id").equalTo(user_id);
+    // $scope.main.videosArray = [];
+    $scope.main.videosArray = $firebaseArray(mainVideosRef);
 
     $scope.make = function(link) {
       var youtube = "https://youtube.com/embed/" + link;
@@ -31,22 +23,35 @@ cs142App.controller('ViewProfileController', ['$scope', '$routeParams', '$resour
       return newLink;
     }
 
-    $scope.generateFrame = function(videoID) {
-      console.log(videoID);
-      var iframe = document.createElement("iframe");
-      iframe.setAttribute("src", "//www.youtube.com/embed/" + videoID + "?autoplay=1&autohide=2d&showinfo=0&border=0&wmode=opaque&enablejsapi=1");
-      iframe.setAttribute("frameborder", "0");
-      iframe.setAttribute("id", "youtube-iframe");
-      var oldPic = document.getElementById(videoID);
-      var oldChild = document.getElementById(videoID + "-child");
-      oldPic.replaceChild(iframe, oldChild);
-      var playButtonId = 'play-circle-' + String(videoID);
-      var playButtonParent = document.getElementById(videoID);
-      console.log(playButtonParent);
-      var playButton = document.getElementById(playButtonId);
-      console.log(playButton);
-      playButtonParent.removeChild(playButton);
+    $scope.viewProfile.generateFrame = function(urlOrUser, fbID, views, subset) {
+      $scope.viewProfile.modalOpen = true;
+      console.log(fbID);
+      if (fbID) {
+        var currVid = $firebaseObject(firebase.database().ref().child("videos").child(fbID));
+        var currLikes = $firebaseObject(firebase.database().ref().child("videos").child(fbID).child("likes"));
+        console.log(currLikes);
+        // var currVid2 = $firebaseObject(firebase.database().ref("videos/" + fbID + "/title"));
+        $scope.viewProfile.currVid = currVid;
+        var element = document.getElementById("alum-innerHTML");
+        var elementInnerString = "";
+        elementInnerString += '<iframe src="//www.youtube.com/embed/' + urlOrUser + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="400px" height="200px" allowfullscreen></iframe>';
+        elementInnerString += '<div>' + views + ' views</div>';
+        element.innerHTML = elementInnerString;
+      } else {
+        var title = document.getElementById("alum-modal-title-forChange");
+        title.innerHTML = " " + urlOrUser.firstname + " " + urlOrUser.lastname;
+        $scope.viewProfile.currVid = {};
+        $scope.viewProfile.currVid.author_id = urlOrUser.$id;
+        var element = document.getElementById("alum-innerHTML");
+        element.innerHTML = '<iframe src="//www.youtube.com/embed/' + urlOrUser.intro_url + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="400px" height="200px" allowfullscreen></iframe>';
+      }
+    }
+
+    $scope.main.closeClick = function() {
+      $scope.viewProfile.modalOpen = false;
+      var element = document.getElementById("alum-innerHTML");
+      element.innerHTML = "";
     }
   }
-    
+
 ]);

@@ -81,11 +81,14 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
         $scope.main.addPhotoButton = false;
         $scope.main.hello = null;
         $scope.main.loggedIn = false;
+<<<<<<< f4aa93034352da040c4b7b24e0c93dbbf62f6fc2
         $scope.main.firstTime = true;
 
         $scope.main.exitFirstModal = function () {
           $scope.main.firstTime = false;
         }
+=======
+>>>>>>> Login/Register + changes to profile
 
         $scope.currentUser = "sdjkhf";
 
@@ -98,7 +101,11 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
             $scope.main.user = $firebaseObject(firebase.database().ref("users/" + $scope.currentUser));
             // console.log("f in as:", firebaseUser.uid);
             $cookies.put("userName", firebaseUser.uid);
+<<<<<<< f4aa93034352da040c4b7b24e0c93dbbf62f6fc2
             $location.path('/alum');
+=======
+            $scope.main.loggedIn = true;
+>>>>>>> Login/Register + changes to profile
 
           } else {
             $cookies.remove("userName");

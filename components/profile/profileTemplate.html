@@ -78,7 +78,7 @@
                   </div>
                </li>
             </a>
-            <li ng-repeat="video in main.videosArray" class="col-lg-3 col-sm-6 col-md-4 mix hover_2" data-cat="3">
+            <li ng-repeat="video in main.videosArray | orderBy:'timestamp'" class="col-lg-3 col-sm-6 col-md-4 mix hover_2" data-cat="3">
                <div class="thumbnail-box thumbnail-box-inverse">
                   <div class="thumb-content">
                      <div class="center-vertical">

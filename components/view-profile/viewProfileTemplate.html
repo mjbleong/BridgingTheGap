@@ -1,54 +1,117 @@
-<div class="profile">
-<div layout="row" ng-app="myApp" class="icondemoFontIconsWithLigatures" ng-cloak>
-   <div flex="30" layout="column" class="boxWithHeight" layout-padding>
-      <section flex="40" class="profile-picture">
-         <img src="{{main.user.profile_picture_url}}" class="responsive-img" alt="">
-      </section>
-      <div class="user-info">
-         <section flex>{{main.user.firstname}} {{main.user.lastname}}</section>
-         <section flex>Interests: {{main.user.interests}}</section>
-      </div>
-      <md-button ng-if="!editing" id="edit-button" ng-click="toggleEditMode()">Send {{main.user.firstname}} a Message</md-button>
-   </div>
-   <div flex="70" layout="column" class="boxWithHeight" layout-padding>
-      <h1 id="my-videos-title">{{main.user.firstname}}'s Videos</h1>
-      <section class="flex-container" flex="70">
-         <div class="list-container">
-            <md-list layout="row">
-               <md-list-item ng-repeat="video in main.videosArray">
-                  <md-card>
-                     <div id="{{video.url}}" class="thumbnail-container">
-                        <img ng-click="generateFrame(video.url)" id="{{video.url}}-child" class="thumbnail" src="http://img.youtube.com/vi/{{video.url}}/0.jpg"></img>
-                        <i ng-click="generateFrame(video.url)" class="material-icons play-circle" id="play-circle-{{video.url}}">play_circle_outline</i>
-                     </div>
-                     <md-card-content>
-                        <b>Title:</b> {{video.title}}
-                        <br>
-                        <b>Views:</b> {{video.views}}
-                     </md-card-content>
-                  </md-card>
-               </md-list-item>
-            </md-list>
-         </div>
-      </section>
-      <h1 id="my-profile-video-title">{{main.user.firstname}}'s Intro Video</h1>
-      <section class="flex-container" flex="70">
-         <div class="profile-video-container" ng-if="main.user.intro_url != ''">
-            <md-card>
-               <div id="{{main.user.intro_url}}" class="thumbnail-container">
-                  <img ng-click="generateFrame(main.user.intro_url)" id="{{main.user.intro_url}}-child" class="thumbnail" src="http://img.youtube.com/vi/{{main.user.intro_url}}/0.jpg"></img>
-                  <i ng-click="generateFrame(main.user.intro_url)" class="material-icons play-circle" id="play-circle-{{main.user.intro_url}}">play_circle_outline</i>
+<script type="text/javascript" src="../../assets/widgets/tabs-ui/tabs.js"></script>
+<script type="text/javascript">
+   /* jQuery UI Tabs */
+   
+   $(function() { "use strict";
+       $(".tabs").tabs();
+   });
+   
+   $(function() { "use strict";
+       $(".tabs-hover").tabs({
+           event: "mouseover"
+       });
+   });
+</script>
+<div class="viewProfile-page">
+   <div id="alum-modal-view-video" ng-show="viewProfile.modalOpen" >
+      <div class="modal fade display-block" tabindex="1">
+         <div class="modal-dialog">
+            <div class="modal-content alum-modal-content-2">
+               <div class="modal-header">
+                  <button type="button" class="close" aria-hidden="true" ng-click="main.closeClick()">&times;</button>
+                  <h4 class="modal-title" id="alum-modal-title-forChange">{{viewProfile.currVid.title}}</h4>
                </div>
-               <md-card-content>
-                  <b>Title:</b> {{main.introVideo.title}}
-                  <br>
-                  <b>Views:</b> {{main.introVideo.views}}
-               </md-card-content>
-            </md-card>
+               <div class="modal-body" id="alum-innerHTML">
+                  <p>Modal content here ...</p>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" ng-click="main.closeClick()">Continue Exploring</button>
+                  <button id="alum-go-to-but" type="button" class="btn btn-primary" ng-click="main.seeProfileClick(viewProfile.currVid.author_id)">See Profile</button>
+               </div>
+            </div>
          </div>
-         <div class="profile-video-nonexistant" ng-if="main.user.intro_url == ''">
-            You have not made your profile video yet! Make it here!
+      </div>
+   </div>
+   <div class="col-md-3">
+      <div class="viewProfile-profile-box-parent">
+         <img src="{{viewProfile.user.profile_picture_url}}" alt="" class="viewProfile-Picture ">
+         <div class="viewProfile-headings">
+            <h3 class="meta-heading">{{viewProfile.user.firstname}} {{viewProfile.user.lastname}}</h3>
+            <h4 class="meta-subheading">{{viewProfile.user.college}}</h4>
          </div>
-      </section>
+      </div>
+      <div class="panel-content pad15A bg-white radius-bottom-all-4 radius-top-all-0" id="viewProfile-profile-description-box">
+         <div class="mrg15T mrg15B"></div>
+         <blockquote class="font-gray">
+            <div class="user-info" ng-if="!editing">
+               <p>{{viewProfile.user.interests}}</p>
+            </div>
+            <div class="user-info-editing" ng-if="editing">
+               <textarea elastic id="edit-text-area" class="form-control" type="text" name="comment1" ng-model="viewProfile.user.interests" required></textarea>
+            </div>
+         </blockquote>
+         <md-button class="btn-primary">Send {{viewProfile.user.firstname}} a message</md-button>
+      </div>
+   </div>
+   <div class="col-md-9">
+      <link rel="stylesheet" type="text/css" href="../../assets/frontend-elements/portfolio-navigation.css">
+      <script type="text/javascript" src="../../assets/widgets/mixitup/mixitup.js"></script>
+      <script type="text/javascript" src="../../assets/widgets/mixitup/images-loaded.js"></script>
+      <script type="text/javascript" src="../../assets/widgets/mixitup/isotope.js"></script>
+      <script type="text/javascript" src="../../assets/widgets/mixitup/portfolio-demo.js"></script>
+      <div class="portfolio-controls mrg10L mrg10R radius-all-4 portfolio-nav-alt bg-blue clearfix controls">
+         <div class="container text-center">
+            <ul class="float-none">
+               <li class="filter" data-filter="hover_2">{{viewProfile.user.firstname}}'s Videos</li>
+               <li class="filter" data-filter="profile">{{viewProfile.user.firstname}}'s Profile Video</li>
+            </ul>
+         </div>
+      </div>
+      <div class="clearfix">
+         <ul id="portfolio-grid" class="reset-ul row">
+            <li ng-repeat="video in main.videosArray | orderBy:'timestamp'" class="col-lg-3 col-sm-6 col-md-4 mix hover_2" data-cat="3">
+               <div class="thumbnail-box thumbnail-box-inverse">
+                  <div class="thumb-content">
+                     <div class="center-vertical">
+                        <div class="center-content">
+                           <h3 class="thumb-heading animated bounceIn" style="color:white; font-weight: bold;">
+                              {{video.title}}
+                              <small style="color:white">{{video.date}}</small>
+                              <i class="glyph-icon tooltip-button demo-icon icon-play-circle" title=".icon-play-circle"></i>
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="thumb-overlay bg-black"></div>
+                  <div ng-click="viewProfile.generateFrame(video.url, video.$id, video.views)">
+                     <img ng-src="http://img.youtube.com/vi/{{video.url}}/0.jpg" alt="" />
+                  </div>
+               </div>
+               <!-- </div>
+                  -->
+            </li>
+            <li class="col-lg-3 col-sm-6 col-md-4 mix profile" data-cat="3">
+               <div class="thumbnail-box thumbnail-box-inverse">
+                  <div class="thumb-content">
+                     <div class="center-vertical">
+                        <div class="center-content">
+                           <h3 class="thumb-heading animated bounceIn" style="color:white; font-weight: bold;">
+                              hey
+                              <small style="color:white">asdf</small>
+                              <i class="glyph-icon tooltip-button demo-icon icon-play-circle" title=".icon-play-circle"></i>
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="thumb-overlay bg-black"></div>
+                  <div ng-click="viewProfile.generateFrame(viewProfile.user)">
+                     <img ng-src="http://img.youtube.com/vi/{{viewProfile.user.intro_url}}/0.jpg" alt="" />
+                  </div>
+               </div>
+               <!-- </div>
+                  -->
+            </li>
+         </ul>
+      </div>
    </div>
 </div>
