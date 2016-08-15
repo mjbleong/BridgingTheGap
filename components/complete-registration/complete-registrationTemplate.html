@@ -1,0 +1,82 @@
+<div class="col-md-2"></div>
+<div class="col-md-8">
+   <div class="content-box">
+      <h3 class="content-box-header bg-primary">
+          Step 1: Upload Profile Picture
+      </h3>
+      <div class="content-box-wrapper modal-upload-or-webcam-parent" ng-if='!photoSet'>
+         <div id="modal-upload-or-webcam">
+            <div layout="row">
+               <div flex="50" layout="column" class="boxWithHeight modal-left" id="completeRegistration-upload" layout-padding>
+                  <b>Upload A File</b>
+                  <span> <input type="file" accept="image/*"  onchange="angular.element(this).scope().inputFileNameChanged(this)"> </span>
+                  <span>
+                     <md-button ng-click="uploadPhoto()" class="btn-primary">Upload</md-button>
+                  </span>
+                  <div id="completeRegistration-upload-spinner"></div>
+               </div>
+               <div flex="50" layout="column" class="boxWithHeight" id="modal-right"layout-padding>
+                  <b>Take a Profile Picture</b>
+                  <div id="webcam-container">
+                     <webcam id="live-webcam"
+                        on-stream="onStream(stream)"
+                        on-error="onError(err)"
+                        on-streaming="onSuccess()"
+                        channel="channel"
+                        ng-if="showLiveWebcam"
+                        placeholder="'images/gears-loader.gif'">
+                        <div class="alert alert-error" ng-show="webcamError">
+                           <span>Webcam could not be started. Did you give access to it?</span>
+                        </div>
+                     </webcam>
+                  </div>
+                  <md-button ng-show="showLiveWebcam" class="btn-primary" ng-click="makeSnapshot()">Take snapshot!</md-button>
+                  <canvas id="myProfile-snapshot" ng-hide="showLiveWebcam" class="well pull-right"></canvas>
+                  <md-button ng-click="uploadSnapshot()" class="btn-primary" ng-hide="showLiveWebcam">Upload Snapshot </md-button>
+                  <md-button ng-click="toggleShowLiveWebcam()" class="btn-primary" ng-hide="showLiveWebcam">Retake Photo</md-button>
+               </div>
+            </div>
+         </div>   
+      </div>
+
+      <div class='completeRegistration-success-message' ng-if='photoSet'>
+         <div class="alert alert-success">
+            <div class="bg-green alert-icon">
+               <i class="glyph-icon icon-check"></i>
+            </div>
+            <div class="alert-content">
+               <h4 class="alert-title">Profile Picture Set!</h4>
+               <p> Good Job. Let's set your description now.</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="content-box">
+      <h3 class="content-box-header bg-purple">
+          Step 2: Set Profile Description
+      </h3>
+      <div class="content-box-wrapper" ng-if="!descriptionSet">
+          Tell the high schoolers a little bit about yourself. What do you study? What are some of your hobbies? What are you involved in at school?
+         <textarea elastic id="edit-text-area" class="form-control" type="text" name="comment1" ng-model="main.user.interests" required></textarea>
+         <a class="btn btn-default" ng-class="{true: 'btn-primary', false: 'btn-danger'}[!editing]" ng-click="saveProfile()">Save Profile Description</a>
+
+      </div>
+
+      <div class='completeRegistration-success-message' ng-if='descriptionSet'>
+         <div class="alert alert-success">
+            <div class="bg-green alert-icon">
+               <i class="glyph-icon icon-check"></i>
+            </div>
+            <div class="alert-content">
+               <h4 class="alert-title">Profile description set!</h4>
+               <p> Good job! Your profile is now complete!</p>
+            </div>
+         </div>
+      </div>
+
+   </div>
+
+   <a href="#/myProfile" class="btn btn-default" ng-if="descriptionSet && photoSet">Continue to my profile!</a>
+
+</div>
+<div class="col-md-2"></div>

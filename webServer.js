@@ -9,9 +9,9 @@ var multer = require('multer');
 var processFormBody = multer({storage: multer.memoryStorage()}).single('uploadedphoto');
 
 // Load the Mongoose schema for User, Photo, and SchemaInfo
-var User = require('./schema/user.js');
-var Photo = require('./schema/photo.js');
-var SchemaInfo = require('./schema/schemaInfo.js');
+//var User = require('./schema/user.js');
+//var Photo = require('./schema/photo.js');
+//var SchemaInfo = require('./schema/schemaInfo.js');
 
 var express = require('express');
 var app = express();
