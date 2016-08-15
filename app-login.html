@@ -549,16 +549,19 @@
             <div class="applogin-nav-button dropdown">
                 <a data-toggle="dropdown" ui-sref="alum" title="">
                     <i class="glyph-icon icon-home"></i>
+                    <p> Home </p>
                 </a>
             </div>
             <div class="applogin-nav-button dropdown">
                 <a data-toggle="dropdown" ui-sref="upload" title="">
                     <i class="glyph-icon icon-video-camera"></i>
+                    <p>Video</p>
                 </a>
             </div>
             <div class="applogin-nav-button dropdown">
                 <a data-toggle="dropdown" ui-sref="alum" title="">
-                    <i class="glyph-icon icon-unlock"></i>
+                    <img src='images/white_alum_icon.png' width='45px' height='45px'/>
+                    <p class='applogin-alum-offset'>Alum</p>
                 </a>
             </div>            
         </div>
@@ -572,7 +575,7 @@
     <span id='applogin-tommy-barnes' class="user-account-btn dropdown" ng-cloak ng-if="main.loggedIn">
             <a title="My Account" class="user-profile clearfix" data-toggle="dropdown">
                 <img width="40" class="user-img" src="{{main.user.profile_picture_url}}" alt="Profile image">
-                <span>{{main.user.firstname}} {{main.user.lastname}}</span>
+                <span class='applogin-username'>{{main.user.firstname}} {{main.user.lastname}}</span>
                 <i class="glyph-icon icon-angle-down"></i>
             </a>
             <div class="dropdown-menu float-left">
@@ -587,7 +590,7 @@
                                 {{main.user.firstname}} {{main.user.lastname}}
                                 <i>{{main.user.college}}</i>
                             </span>
-                            <a ui-sref="myProfile" title="Edit profile">Edit profile</a>
+                            <a ui-sref="myProfile" title="View Profile">View Profile</a>
 <!--                             <a href="#" title="View notifications">View notifications</a>
  -->                        </div>
                     </div>
