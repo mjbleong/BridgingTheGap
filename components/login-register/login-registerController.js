@@ -89,6 +89,7 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
     var validatePassword = function() {
       if ($scope.loginRegister.password != $scope.loginRegister.confirmPassword) {
         $scope.loginRegister.regError = true;
+        return false;
       }
       return true;
     }
@@ -158,11 +159,14 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
       console.log("Trying to register");
       $scope.loginRegister.regError = false;
       if($scope.loginRegister.college === "" || $scope.loginRegister.gradYear === "" || $scope.loginRegister.collegeGrade === "" || $scope.loginRegister.collegeGradYear === "" || $scope.loginRegister.highSchool === "") {
+        console.log("one field is blank");
         $scope.loginRegister.emptyFields = true;
         return;
       }
-      if(!validatePassword()) return;
-      console.log("About to make account");
+      if(!validatePassword()){
+        console.log("password validation incorrect");
+        return;
+      } 
 
       //was trying to use AngularFire $createUserWithEmailAndPassword but for some reason it does not trigger the callback
       firebase.auth().createUserWithEmailAndPassword($scope.loginRegister.user_email, $scope.loginRegister.password).then(function(firebaseUser) {
