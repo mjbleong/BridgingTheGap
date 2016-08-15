@@ -159,12 +159,10 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
       console.log("Trying to register");
       $scope.loginRegister.regError = false;
       if($scope.loginRegister.college === "" || $scope.loginRegister.gradYear === "" || $scope.loginRegister.collegeGrade === "" || $scope.loginRegister.collegeGradYear === "" || $scope.loginRegister.highSchool === "") {
-        console.log("one field is blank");
         $scope.loginRegister.emptyFields = true;
         return;
       }
       if(!validatePassword()){
-        console.log("password validation incorrect");
         return;
       } 
 
