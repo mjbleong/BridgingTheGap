@@ -1,6 +1,6 @@
 "use strict";
 
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var async = require('async');
 //p7
 var session = require('express-session');
@@ -17,7 +17,7 @@ var express = require('express');
 var app = express();
 var fs = require("fs");
 
-mongoose.connect('mongodb://localhost/cs142project6');
+//mongoose.connect('mongodb://localhost/cs142project6');
 
 app.use(express.static(__dirname));
 
