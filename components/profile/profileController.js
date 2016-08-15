@@ -9,7 +9,7 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
     var videoIDsArray = $firebaseArray(userVideosRef);
 
     $scope.main.user = $firebaseObject(firebase.database().ref("/users/" + user_id));
-
+    $scope.tester = "hello";
     $scope.userProfiles = {};
 
     $scope.editing = false;

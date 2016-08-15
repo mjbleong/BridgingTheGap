@@ -574,9 +574,8 @@
 
     <span id='applogin-tommy-barnes' class="user-account-btn dropdown" ng-cloak ng-if="main.loggedIn">
             <a title="My Account" class="user-profile clearfix" data-toggle="dropdown">
-                <img width="40" class="user-img" src="{{main.user.profile_picture_url}}" alt="Profile image">
-                <span class='applogin-username'>{{main.user.firstname}} {{main.user.lastname}}</span>
-                <i class="glyph-icon icon-angle-down"></i>
+                <img width="40" class="user-img" src="{{main.user.profile_picture_url}}" alt="Profile image" ng-cloak ng-if="main.user.profile_picture_url">
+                <span>{{main.user.firstname}} {{main.user.lastname}}</span>
             </a>
             <div class="dropdown-menu float-left">
                 <div class="box-sm">
