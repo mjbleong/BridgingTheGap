@@ -17,3 +17,8 @@
 #applogin-home-button:hover {
 	cursor: pointer;
 }
+
+.applogin-btgLogo img {
+	margin-top: 8px;
+	margin-left: 8px;
+}
