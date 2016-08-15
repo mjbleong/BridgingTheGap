@@ -19,29 +19,58 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
     // $scope.main.videosArray = [];
     $scope.main.videosArray = $firebaseArray(mainVideosRef);
 
-    // mainVideosRef.orderByChild("author_id").equalTo(user_id).on("child_added", function(videoObj) {
-    //   var video = videoObj.val();
-    //   if (video.url == $scope.main.user.intro_url) {
-    //     console.log($scope.main.user.intro_url);
-    //     $scope.main.introVideo = video;
-    //   } else {
-    //     $scope.main.videosArray.push(video);
-    //   }
-    // });
-
     $scope.showLiveWebcam = false;
     // $scope.main.videosArray = $firebaseArray(mainVideosRef);
+
+
+
+    $scope.clipchamp = function(data) {
+
+      var currDate = new Date();
+
+      var yt_title = $scope.main.user.firstname + ' ' + $scope.main.user.lastname + ' ' + currDate;
+
+      var process = clipchamp({
+
+        resolution: "720p",
+        preset: "web",
+        title: "Click submit and you're done. Thanks!",
+        output: "youtube",
+        youtube: {
+          title: yt_title,
+          description: '[no description]'
+        },
+
+        onUploadComplete: function(data) {
+
+          //function to extract id from youtube url
+          function getId(url) {
+            var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            var match = url.match(regExp);
+
+            if (match && match[2].length == 11) {
+                return match[2];
+            } else {
+                return 'error';
+            }
+          };
+
+          var myId = getId(data.url);
+
+          var dbDate = new Date();
+
+          $scope.main.user.intro_url = myId;
+          $scope.main.user.$save();
+      }
+      });
+
+  process.open();
+  }
 
     $scope.toggleEditMode = function() {
       console.log('toggle');
       console.log($scope.editing);
       $scope.main.user.$save();
-      // if ($scope.editing === true) {
-      //   // $scope.editing = false;
-      //   $scope.main.user.$save();
-      // } else {
-      //   // $scope.editing = true;
-      // }
     }
 
     $scope.make = function(link) {
@@ -49,24 +78,6 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
       var newLink = $sce.trustAsResourceUrl(youtube);
       return newLink;
     }
-
-    // $scope.generateFrame = function(videoID) {
-    //   console.log(videoID);
-    //   var iframe = document.createElement("iframe");
-    //   iframe.setAttribute("src", "//www.youtube.com/embed/" + videoID + "?autoplay=1&autohide=2d&showinfo=0&border=0&wmode=opaque&enablejsapi=1");
-    //   iframe.setAttribute("frameborder", "0");
-    //   iframe.setAttribute("id", "youtube-iframe");
-    //   var oldPic = document.getElementById(videoID);
-    //   var oldChild = document.getElementById(videoID + "-child");
-    //   oldPic.replaceChild(iframe, oldChild);
-    //   var playButtonId = 'play-circle-' + String(videoID);
-    //   var playButtonParent = document.getElementById(videoID);
-    //   console.log(playButtonParent);
-    //   var playButton = document.getElementById(playButtonId);
-    //   console.log(playButton);
-    //   playButtonParent.removeChild(playButton);
-    // }
-
 
     $scope.userProfiles.generateFrame = function(urlOrUser, fbID, views, subset) {
       $scope.userProfiles.modalOpen = true;
