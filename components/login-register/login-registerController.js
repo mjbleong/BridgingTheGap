@@ -168,17 +168,6 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
         label: '2013'
       }];
 
-      $scope.loginRegister.data = {
-    model: null,
-    availableOptions: [
-      {id: '1', name: 'Option A'},
-      {id: '2', name: 'Option B'},
-      {id: '3', name: 'Option C'}
-    ],
-   };
-
-
-
       //was trying to use AngularFire $createUserWithEmailAndPassword but for some reason it does not trigger the callback
       firebase.auth().createUserWithEmailAndPassword($scope.loginRegister.user_email, $scope.loginRegister.password).then(function(firebaseUser) {
         //create entry in Firebase
@@ -195,7 +184,7 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
         newUserObj.hsgrad = $scope.loginRegister.gradYear;
         newUserObj.hs = $scope.loginRegister.highSchool;
         newUserObj.$save().then(function(ref) {
-          $location.path('/myProfile');
+          $location.path('/completeRegistration');
         }, function(error) {
           console.log(error);
         });

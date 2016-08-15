@@ -37,6 +37,11 @@ cs142App.config(
           templateUrl: 'components/allAlum/allAlumTemplate.html',
           controller: 'AlumController'
         })
+        .state('completeRegistration', {
+          url: "/completeRegistration",
+          templateUrl: 'components/complete-registration/complete-registrationTemplate.html',
+          controller: 'CompleteRegistrationController'
+        })
         // .state('alum.list', {
         //   url: "/list",
         //   templateUrl: "components/allAlum/profile-view.html"
@@ -81,7 +86,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
         $scope.main.addPhotoButton = false;
         $scope.main.hello = null;
         $scope.main.loggedIn = false;
-        $scope.main.firstTime = true;
+        $scope.main.firstTime = false;
 
         $scope.main.exitFirstModal = function () {
           $scope.main.firstTime = false;
