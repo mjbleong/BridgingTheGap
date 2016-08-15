@@ -5,20 +5,12 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
 
     $scope.main.title = 'Please Login';
 
-    $scope.login = {};
+    $scope.loginRegister = {};
+
     $scope.main.error = false;
 
-    $scope.userId = "";
-    $scope.pass = "";
-
-    $scope.login_name = "";
-    $scope.first_name = "";
-    $scope.last_name = "";
-    $scope.location = "";
-    $scope.description = "";
-    $scope.occupation = "";
-    $scope.password = "";
-    $scope.confirmPassword = "";
+    $scope.loginRegister.userId = "";
+    $scope.loginRegister.pass = "";
 
     $scope.retrievePassword = function() {
       firebase.auth().sendPasswordResetEmail($scope.userId).then(function () {
@@ -33,9 +25,10 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
       });
     };
 
-    $scope.loginRegister = {};
+
     $scope.loginRegister.regError = false;
-    $scope.loginRegister.first_name = "steve";
+    $scope.loginRegister.emptyFields = false;
+    $scope.loginRegister.first_name = "";
     $scope.loginRegister.user_email = "";
     $scope.loginRegister.last_name = "";
     $scope.loginRegister.location = "";
@@ -66,7 +59,7 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
       {value: "2017"},
       {value: "2018"}
     ];
-    $scope.loginRegister.collegeGradYear = "boop";
+    $scope.loginRegister.collegeGradYear = "";
 
     $scope.loginRegister.collegeGrades = [
       {value: "Freshman"},
@@ -86,12 +79,30 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
 
     // $scope.loginRegister.selected = $scope.loginRegister.filter.fields[0].value;
     $scope.loginRegister.selected ="High Schoolyoo";
-
     $scope.loginRegister.letter = "hello";
+    $scope.loginRegister.showRegistrationForm = false; //set back to false
+    $scope.loginRegister.wrongPassword = false;
 
 
-    $scope.loginRegister.showRegistrationForm = true; //set back to false
+
+    // ------ Password Validation ------
+    var validatePassword = function() {
+      if ($scope.loginRegister.password != $scope.loginRegister.confirmPassword) {
+        $scope.loginRegister.regError = true;
+      }
+      return true;
+    }
+
+    var wrongPassword = function() {
+      var password = document.getElementById("login-password");
+      // password.setCustomValidity("Incorrect Password")
+      $scope.loginRegister.wrongPassword = true;
+      $scope.$apply();
+    }
+
+
     $scope.main.login = function(email, password) {
+      if(!validatePassword()) return;
       firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
         console.log("I HAVE LOGGED IN CALLBACK");
         var user = firebase.auth().currentUser;
@@ -106,10 +117,12 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
           console.log("Couldn't log in");
           $scope.main.loggedIn = false;
         }
-      }).catch(function(error) {
+      }).catch(function(error) { //incorrect password
         $scope.main.loggedIn = false;
         $scope.main.error = true;
+        console.log(error);
         console.log("error");
+        wrongPassword();
       });
     };
 
@@ -144,29 +157,12 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
     $scope.loginRegister.registerClickFunc = function() {
       console.log("Trying to register");
       $scope.loginRegister.regError = false;
-
-      if ($scope.loginRegister.user_email === "" || $scope.loginRegister.first_name === "" || $scope.loginRegister.last_name === "" || $scope.loginRegister.password === "" || $scope.loginRegister.confirmPassword === "") {
-        console.log("Bro you fail");
-        $scope.loginRegister.regError = true;
-        console.log($scope.loginRegister.selected);
+      if($scope.loginRegister.college === "" || $scope.loginRegister.gradYear === "" || $scope.loginRegister.collegeGrade === "" || $scope.loginRegister.collegeGradYear === "" || $scope.loginRegister.highSchool === "") {
+        $scope.loginRegister.emptyFields = true;
         return;
       }
-      console.log("About to check password");
-      if ($scope.password !== $scope.confirmPassword) {
-        $scope.loginRegister.regError = true;
-        console.log("invalid password");
-        return;
-      }
-
-      $scope.message = null;
-      $scope.error = null;
+      if(!validatePassword()) return;
       console.log("About to make account");
-
-
-      $scope.loginRegister.gradYears = [{
-        value: '2013',
-        label: '2013'
-      }];
 
       //was trying to use AngularFire $createUserWithEmailAndPassword but for some reason it does not trigger the callback
       firebase.auth().createUserWithEmailAndPassword($scope.loginRegister.user_email, $scope.loginRegister.password).then(function(firebaseUser) {

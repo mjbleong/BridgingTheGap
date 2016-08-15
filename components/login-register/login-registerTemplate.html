@@ -3,24 +3,24 @@
 <md-button ng-click="main.logout()">Logout</md-button>
 <div class="center-vertical">
     <div class="login-register-flexbox row">
-
-        <form action="" id="login-form" class="col-md-4 col-sm-5 col-xs-11 col-lg-3 center-margin" method="" ng-if="!loginRegister.showRegistrationForm">
+        <form id="login-form" class="col-md-4 col-sm-5 col-xs-11 col-lg-3 center-margin" method="" ng-if="!loginRegister.showRegistrationForm" data-parsley-validate>
             <h3 class="text-center pad25B font-gray text-transform-upr font-size-23">Login<span class="opacity-80"></span></h3>
             <div id="login-form" class="content-box bg-default">
                 <div class="content-box-wrapper pad20A">
                     <img class="mrg25B center-margin radius-all-100 display-block" id="login-logo" src="images/hat.png" alt="">
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="email" class="form-control" id="exampleInputEmail1" ng-model="userId" placeholder="Enter email">
+                            <input type="email" class="form-control" id="exampleInputEmail1" ng-model="loginRegister.userId" placeholder="Enter email" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="password" class="form-control" id="exampleInputPassword1" ng-model="pass" placeholder="Password">
+                            <input type="password" class="form-control" id="login-password" ng-model="loginRegister.pass" placeholder="Password" required>
                         </div>
+                        <div ng-show="loginRegister.wrongPassword" class="login-register-error-message"> Incorrect password. Please re-enter.</div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" ng-click="main.login(userId, pass)" class="btn btn-block btn-primary">Login</button>
+                        <button type="submit" ng-click="main.login(loginRegister.userId, loginRegister.pass)" class="btn btn-block btn-primary">Login</button>
                     </div>
                     <div class="row">
 <!--                     	<div class="text-left col-md-6">
@@ -66,23 +66,23 @@
                     <img class="mrg25B center-margin radius-all-100 display-block" id="login-logo" src="images/hat.png" alt="">
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="register-firstname" ng-model="loginRegister.first_name" placeholder="First Name">
+                            <input type="text" class="form-control" id="register-firstname" ng-model="loginRegister.first_name" placeholder="First Name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="register-lastname" ng-model="loginRegister.last_name" placeholder="Last Name">
+                            <input type="text" class="form-control" id="register-lastname" ng-model="loginRegister.last_name" placeholder="Last Name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="register-email" ng-model="loginRegister.user_email" placeholder="Email Address">
+                            <input type="email" class="form-control" id="register-email" ng-model="loginRegister.user_email" placeholder="Email Address" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group" >
                             High School
-                            <select class="form-control" ng-model="loginRegister.highSchool">
+                            <select class="form-control" ng-model="loginRegister.highSchool" required>
                                 <option ng-repeat="school in loginRegister.schools" value="{{school.name}}">{{school.name}}</option>
                             </select>
                         </div>
@@ -90,7 +90,7 @@
                     <div class="form-group">
                         <div class="input-group">
                             High School Grad Year
-                            <select class="form-control" ng-model="loginRegister.gradYear">
+                            <select class="form-control" ng-model="loginRegister.gradYear" required>
                                 <option  ng-repeat="year in loginRegister.gradYears" value="{{year.value}}">{{year.value}}</option>
                             </select>
                         </div>
@@ -98,7 +98,7 @@
                     <div class="form-group">
                         <div class="input-group">
                             College
-                            <select class="form-control" ng-model="loginRegister.college">
+                            <select class="form-control" ng-model="loginRegister.college" required>
                                 <option  ng-repeat="college in loginRegister.collegeNames" value="{{college.value}}">{{college.value}}</option>
                             </select>
                         </div>
@@ -106,7 +106,7 @@
                     <div class="form-group">
                         <div class="input-group">
                             College Grade Level
-                            <select class="form-control" ng-model="loginRegister.collegeGrade">
+                            <select class="form-control" ng-model="loginRegister.collegeGrade" required>
                                 <option  ng-repeat="grade in loginRegister.collegeGrades" value="{{grade.value}}">{{grade.value}}</option>
                             </select>
 	                    </div>
@@ -114,26 +114,29 @@
                     <div class="form-group">
                         <div class="input-group">
                             College Grad Year
-                            <select class="form-control" ng-model="loginRegister.collegeGradYear">
+                            <select class="form-control" ng-model="loginRegister.collegeGradYear" required>
                                 <option  ng-repeat="year in loginRegister.collegeGradYears" value="{{year.value}}">{{year.value}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="password" class="form-control" id="register-password" ng-model="loginRegister.password" placeholder="Password">
+                            <input type="password" class="form-control" id="register-password" ng-model="loginRegister.password" placeholder="Password" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="password" class="form-control" id="register-confirm-password" ng-model="loginRegister.confirmPassword" placeholder="Confirm Password">
+                            <input type="password" class="form-control" id="register-confirm-password" ng-model="loginRegister.confirmPassword" placeholder="Confirm Password" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <button type="submit" ng-click="loginRegister.registerClickFunc()" class="btn btn-block btn-primary">Register Account</button>
                     </div>
                     <div class="row" ng-if="loginRegister.regError">
-                        <div class="register-error-message">Invalid Input</div>
+                        <div class="login-register-error-message">Passwords do not match.</div>
+                    </div>
+                    <div class="row" ng-if="loginRegister.emptyFields">
+                        <div class="login-register-error-message">One or more fields is blank.</div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">

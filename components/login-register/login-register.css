@@ -19,6 +19,10 @@
     align-items: center;
 }
 
+.login-register-error-message {
+    color: red;
+}
+
 #login-form {
     margin: 10px;
 }
