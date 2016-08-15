@@ -545,6 +545,7 @@
                 </div>
             </div>
         </div> -->
+        <div class="top-bar-nav-buttons" ng-cloak ng-if="main.loggedIn">
             <div class="applogin-nav-button dropdown">
                 <a data-toggle="dropdown" ui-sref="alum" title="">
                     <i class="glyph-icon icon-home"></i>
@@ -559,14 +560,16 @@
                 <a data-toggle="dropdown" ui-sref="alum" title="">
                     <i class="glyph-icon icon-unlock"></i>
                 </a>
-            </div>
+            </div>            
+        </div>
+
 
 <!--                     <span class="applogin-nav-button">
             <i class="glyph-icon demo-icon icon-home" title=".icon-home" id="applogin-home-button"></i>
             </span> -->
     </div>
 
-    <span id='applogin-tommy-barnes' class="user-account-btn dropdown">
+    <span id='applogin-tommy-barnes' class="user-account-btn dropdown" ng-cloak ng-if="main.loggedIn">
             <a href="#" title="My Account" class="user-profile clearfix" data-toggle="dropdown">
                 <img width="40" class="user-img" src="{{main.user.profile_picture_url}}" alt="Profile image">
                 <span>{{main.user.firstname}} {{main.user.lastname}}</span>
@@ -628,7 +631,7 @@
                     
                 <md-content flex id="content">
 
-
+<!-- 
 <div id="main-modal-intro" ng-show="main.firstTime">
 <div class="modal fade display-block" tabindex="1">
     <div class="modal-dialog">
@@ -694,7 +697,7 @@
         </div>
     </div>
 </div>
-</div>
+</div> -->
 
 
 
