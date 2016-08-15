@@ -1,12 +1,17 @@
 'use strict';
 
-cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resource', '$http', '$rootScope','$location','$firebaseAuth', '$cookies','$route',
-  function ($scope, $routeParams, $resource, $http, $rootScope, $location, $firebaseAuth, $cookies, $route) {
+cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resource', '$http', '$rootScope','$location','$firebaseAuth', '$cookies','$route', '$state',
+  function ($scope, $routeParams, $resource, $http, $rootScope, $location, $firebaseAuth, $cookies, $route, $state) {
     
 
     $scope.upload = {};
 
-    $scope.upload.show = false;
+    console.log('hi');
+
+    $scope.upload.videoRecorded = false;
+    $scope.upload.title_desc_set = false;
+    $scope.upload.tagsSet = false;
+    $scope.upload.modalOpen = false;
     $scope.upload.videoId = 'bloopid2';
     $scope.checkboxModel = {};
     $scope.upload.title = '';
@@ -17,10 +22,14 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
 
     $scope.upload.tagStyle = 
     {
-      'applying-to-college': {'background-color': 'red'},
-      'paying-for-college': {'background-color': 'green'},
-      'finding-community': {'background-color': 'blue'},
-      'significant-others': {'background-color': '#ff9900'}
+      'applying-to-college': {'background-color': '#FFAAAA',
+                              'margin': '5px'},
+      'paying-for-college': {'background-color': '#9376AC',
+                              'margin': '5px'},
+      'finding-community': {'background-color': '#718EA4',
+                              'margin': '5px'},
+      'significant-others': {'background-color': '#73AC96',
+                              'margin': '5px'}
     };
 
     firebase.database().ref('tag-categories').once('value').then(function(snapshot) {
@@ -32,6 +41,18 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
       }
       console.log($scope.checkboxModel);
     });
+
+    $scope.setTitleDesc = function() {
+      $scope.upload.title_desc_set = true;
+    }
+
+    $scope.uploadTags = function() {
+      $scope.upload.tagsSet = true;
+    }
+
+    $scope.goHome = function() {
+      $state.go('/myProfile/' + $scope.currentUser);
+    }
 
     $scope.upload.removeTag = function(cat,tag) {
       $scope.checkboxModel[cat].tags[tag].checked = false;
@@ -73,7 +94,7 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
     }
 
     $scope.upload.postVideo = function() {
-      console.log($scope.checkboxModel);
+      $scope.upload.modalOpen = true;
       for (var category in $scope.checkboxModel) {
         for (var tag in $scope.checkboxModel[category].tags) {
           if ($scope.checkboxModel[category].tags[tag].checked == true) {
@@ -116,9 +137,9 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
         },
 
         onUploadComplete: function(data) {
-          $scope.upload.show = true;
+          $scope.upload.videoRecorded = true;
 
-          $route.reload();
+          // $route.reload();
 
           //function to extract id from youtube url
           function getId(url) {

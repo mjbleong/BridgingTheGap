@@ -1,49 +1,25 @@
-#upload-vid-description-box {
-  resize: none;
+.upload-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#upload-videos {
-  margin: 25px;
+.upload-page h1 {
+  margin-top: 30px;
 }
 
-#upload-video-title {
-  width: 40%;
-  height: 20%;
-  margin: 25px;
- /* background-color: #e6e6e6;*/
+.upload-main-div {
+/*  display: flex;
+*/  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
 }
 
-#upload-video-description { 
-  margin: 25px;
-  /*background-color: #e6e6e6;*/
-}
-
-#upload-tagging-sect {
-  width: 100%;
+.upload-first-section {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  background-color: #bfbfbf;
-}
-
-.upload-tag-sect {
-  font-size: large;
-  float: left;
-  margin: 24px;
-  /*margin-left: 24px;*/
-  width: 200px;
-  background: #e6e6e6;
-  height: 300px;
-  overflow: scroll; 
-}
-
-.upload-content-box-wrapper-upload-video {
-    display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 }
 
 #upload-clipchamp {
@@ -51,63 +27,37 @@
   flex-direction: column; /* what it do? */
   justify-content: center;
   align-items: center;
-  background-color: #9feaa4;
-  height: 300px;
-  width: 300px;
   border: solid;
   border-width: 2px;
   border-color: #e6e6e6;
 }
 
-.upload-content-box {
-    display: flex;
-  flex-direction: column; /* what it do? */
-  justify-content: center;
-  align-items: center;
-}
-
-.upload-content-box-wrapper-title-desc {
+.upload-vid-and-button {
   display: flex;
-  flex-direction: row; /* what it do? */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  margin-left: 60px;
+}
+
+.upload-vid-and-button button {
+  margin-top: 20px;
+}
+
+.upload-show-tags-sect {
+  display: flex;
+  flex-direction: column;*/ /* what it do? */
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-}
+  margin-left: 60px;
+  margin-top: 40px;
 
-#upload-showVideo {
-  width: 420px;
-  height: 315px;
-  background-color: grey;
-  float: left;
-  margin: 25px;
-  margin-left: 5px;
-  margin-right: 5px;
-}
+} 
 
-#upload-tag-sect-applying-to-college {
-  background-color: #F0F8FF;
-}
-
-#upload-tag-sect-finding-community {
-  background-color: #F0F8FF;
-}
-
-#upload-tag-sect-paying-for-college {
-
-  background-color: #F0F8FF;
-}
-
-#upload-tag-sect-significant-others {
-  background-color: #F0F8FF;
-}
-
-.upload-checkbox {
-  margin-left: 8px;
-}
-
-.upload-tag-sect strong {
-  margin-left: 8px;
-  margin-bottom: 10px; 
+.upload-left-div {
+  width: 7%;
+  min-width: 60px;
 }
 
 #upload-show-tags {
@@ -120,65 +70,127 @@
   margin: 24px;
   /*margin-left: 24px;*/
   width: 380px;
-  background-color: #F0F8FF;
   height: 150px;
   overflow: scroll; 
+  border-style: solid;
+  border-width: 1px;
 }
 
-.upload-show-tags-sect {
-  display: flex;
-  flex-direction: column;*/ /* what it do? */
-  justify-content: center;
-  align-items: center;
-  background-color: #bfbfbf;
+.upload-vid-meta-info-sect {
+  margin: 60px;
   width: 100%;
 }
 
-.upload-tag-div {
-  margin: 3px;
+.upload-vid-meta-info {
+
+  border-style: solid;
+  border-width: 1px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  background-color: red;
+  padding: 30px;
 }
 
-#upload-indi-tags {
-    float: left;
+#upload-tagging-sect {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;*/
-}
-
-#upload-indi-cat {
-  float: left;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.upload-content-box-header {
-  display: flex;
-  flex-direction: column; /* what it do? */
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-.bbutton {
+.upload-tag-sect {
+  font-size: large;
   float: left;
+  margin: 24px;
+  padding: 8px;
+  /*margin-left: 24px;*/
+  background: #e6e6e6;
+  height: 300px;
+  overflow: scroll; 
 }
 
-.fbutton {
+.upload-tag-sect strong {
+}
+
+.upload-tag-sect form {
+  margin-bottom: 10px;
+}
+
+.nav-pills li a {
+  color: black;
+}
+
+/*.upload-content-box {
+  max-width: 500px !important;
+}*/
+
+.upload-add-vid-button {
+  width: 300px;
+}
+
+.upload-content-box-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#video-title-desc a {
+  margin-top: 20px;
+}
+
+#upload-tagging {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#upload-tagging a {
+  margin-top: 20px;
+}
+
+#upload-upload-vid-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-category-name {
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 200px;
+  border-style: solid;
+  padding: 5px;
+}
+
+.upload-tags-list {
+  width: 200px;
   float: left;
+  overflow: scroll; 
 }
 
-.upload-head-nav {
+.upload-indi-cat {
+  float: left;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  font-size: large;
+}
+
+.upload-indi-tags {
 
 }
 
-#upload-show-tags button {
-  margin: 5px;
-}
-
-.wizard-tab:hover {
-  text-decoration: none;
+.upload-checkbox {
+  color: black;
 }

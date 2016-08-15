@@ -80,8 +80,8 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
         $scope.authObj = $firebaseAuth();
         $scope.main.addPhotoButton = false;
         $scope.main.hello = null;
-        $scope.main.loggedIn = false;
-        $scope.main.firstTime = true;
+        $scope.main.loggedIn = true; //change to false
+        $scope.main.firstTime = false;
 
         $scope.main.exitFirstModal = function () {
           $scope.main.firstTime = false;
@@ -98,7 +98,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
             $scope.main.user = $firebaseObject(firebase.database().ref("users/" + $scope.currentUser));
             // console.log("f in as:", firebaseUser.uid);
             $cookies.put("userName", firebaseUser.uid);
-            $location.path('/alum');
+            $location.path('/upload-video'); //change to /alum
 
           } else {
             $cookies.remove("userName");
