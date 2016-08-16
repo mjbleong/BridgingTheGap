@@ -6,8 +6,8 @@ cs142App.controller('AlumController', ['$scope', '$resource', '$firebaseObject',
         var currUserId = $cookies.get("userName");
         $scope.main.user_id = currUserId;
 
-        $scope.main.page = $stateParams.page;
-        console.log($stateParams.page);
+        // $scope.main.page = $stateParams.page;
+        // console.log($stateParams.page);
 
         var ref = firebase.database().ref().child("users");
         // download the data into a local object
@@ -23,8 +23,8 @@ cs142App.controller('AlumController', ['$scope', '$resource', '$firebaseObject',
 
         $scope.main.modalOpen = false;
 
-        console.log($scope.main.user_id);
-        console.log($scope.main.loggedIn);
+        // console.log($scope.main.user_id);
+        // console.log($scope.main.loggedIn);
 
         $scope.generateFrame = function (urlOrUser, fbID, views, subset) {
             $scope.main.modalOpen = true;
@@ -132,23 +132,13 @@ cs142App.controller('AlumController', ['$scope', '$resource', '$firebaseObject',
         // });
         var recentQuery = firebase.database().ref().child("videos").orderByChild("timestamp").limitToLast(9);
         $scope.main.mostRecArray = $firebaseArray(recentQuery);
-        //$scope.main.mostRecArray["name"] = "Most Recent";
-        //$scope.main.mostRecArray["id"] = "mr";
-        //console.log($scope.main.mostRecArray);
+        console.log($scope.main.mostRecArray);
 
         var viewsQuery = firebase.database().ref().child("videos").orderByChild("views").limitToLast(9);
         $scope.main.mostViewsArray = $firebaseArray(viewsQuery);
-        //$scope.main.mostViewsArray["name"] = "Most Viewed";
-        //$scope.main.mostViewsArray["id"] = "mv";
-        //console.log($scope.main.mostViewsArray);
 
         var likesQuery = firebase.database().ref().child("videos").orderByChild("num_likes").limitToLast(9);
         $scope.main.mostLikesArray = $firebaseArray(likesQuery);
-        // $scope.main.mostViewsArray = $firebaseArray(viewsQuery);
-        // $scope.main.mostViewsArray["name"] = "Most Viewed";
-        // $scope.main.mostViewsArray["id"] = "mv";
-        //console.log($firebaseArray(likesQuery));
-
 
 
 
