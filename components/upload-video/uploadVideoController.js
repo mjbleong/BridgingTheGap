@@ -12,13 +12,13 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
     $scope.upload.title_desc_set = false;
     $scope.upload.tagsSet = false;
     $scope.upload.modalOpen = false;
-    $scope.upload.videoId = 'bloopid2';
+
+    //$scope.upload.videoId = 'bloopid2'; this is the default videoId for when you don't use clipchamp to upload a video
+
     $scope.checkboxModel = {};
+
     $scope.upload.title = '';
     $scope.upload.description = '';
-    $scope.upload.description_char_count = 0;
-    $scope.upload.tab = 1;
-    $scope.upload.video_src = 'hello';
 
     $scope.upload.tagStyle = 
     {
@@ -34,9 +34,9 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
 
     firebase.database().ref('tag-categories').once('value').then(function(snapshot) {
       $scope.checkboxModel = snapshot.val();
-      for (var cat in $scope.checkboxModel) {
-        for (var tag_o in $scope.checkboxModel[cat].tags) {
-            $scope.checkboxModel[cat].tags[tag_o]['checked'] = false;
+      for (var cat_a in $scope.checkboxModel) {
+        for (var tag_a in $scope.checkboxModel[cat_a].tags) {
+            $scope.checkboxModel[cat_a].tags[tag_a]['checked'] = false;
         }
       }
       console.log($scope.checkboxModel);
@@ -56,36 +56,6 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
 
     $scope.upload.removeTag = function(cat,tag) {
       $scope.checkboxModel[cat].tags[tag].checked = false;
-    }
-
-    $scope.upload.switchTabForward = function() {
-      document.getElementById('tab-' + $scope.upload.tab).style.backgroundColor = '#99ccff';
-      $scope.upload.tab = $scope.upload.tab + 1;
-      document.getElementById('tab-' + $scope.upload.tab).style.backgroundColor = '#00bca4';
-    }
-
-    $scope.upload.switchTabBackward = function() {
-      document.getElementById('tab-' + $scope.upload.tab).style.backgroundColor = '#99ccff';
-      $scope.upload.tab = $scope.upload.tab - 1;
-      document.getElementById('tab-' + $scope.upload.tab).style.backgroundColor = '#00bca4';
-    }
-
-
-    // $scope.seeCheckbox = function(category,tag) {
-    //   var tag_table = document.getElementById('upload-show-tags');
-    //   var tag_name = $scope.checkboxModel[category].tags[tag].name;
-    //   var tag_div = document.createElement("div");
-    //   tag_div.innerHTML = ' ' + tag_name + ' ';
-    //   tag_div.style.backgroundColor = 'red';
-    //   tag_div.style.margin = '5px';
-    //   tag_div.style.height = '24px';
-    //   tag_div.class = 'upload-tag-div';
-
-    //   tag_table.appendChild(tag_div);
-    // }
-
-    $scope.upload.switchTab = function(tabNum) {
-      $scope.upload.tab = tabNum;
     }
 
     $scope.showStuff = function() {
@@ -165,7 +135,8 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
               title: 'no-title',
               url: myId,
               views: 0,
-              likes: ''
+              likes: '',
+              num_likes: 0
           });
 
           $scope.upload.videoId = newPostKey;
