@@ -85,8 +85,8 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
         $scope.authObj = $firebaseAuth();
         $scope.main.addPhotoButton = false;
         $scope.main.hello = null;
-        $scope.main.loggedIn = false;
-        $scope.main.firstTime = false;
+        $scope.main.firstTime = false; //popup window
+
 
         $scope.main.exitFirstModal = function () {
           $scope.main.firstTime = false;
@@ -95,20 +95,16 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
         $scope.currentUser = "sdjkhf";
 
         $scope.authObj.$onAuthStateChanged(function(firebaseUser) {
-
           if (firebaseUser) {
-
+            $scope.main.loggedIn = true; //do we even need main.loggedin anymore?
             $scope.currentUser = firebaseUser.uid;
             console.log($scope.currentUser);
             $scope.main.user = $firebaseObject(firebase.database().ref("users/" + $scope.currentUser));
             // console.log("f in as:", firebaseUser.uid);
             $cookies.put("userName", firebaseUser.uid);
-            $location.path('/alum');
-            $scope.main.loggedIn = true;
-
           } else {
             $cookies.remove("userName");
-            console.log("Signed out");
+            console.log("Signed out in hereee"); //does it sign out here?
           }
 
         });
@@ -124,11 +120,12 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
         //   });
         // };
 
-    $scope.main.logout = function() {
+    $scope.main.logout = function() { //do we wven use this function??
       firebase.auth().signOut().then(function() {
         $scope.main.loggedIn = false;
+        $scope.currentUser = null;
         console.log("sign out successful)");
-        $location.path("/login-register");
+        $location.path("/login-register"); //change to state.go
       }, function(error) {
         //error in
       });
@@ -148,7 +145,7 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
 
 
         $rootScope.$on( "$stateChangeStart", function (event, next, current) {
-          if (!$scope.main.loggedIn) {
+          if (!$scope.currentUser) {
             console.log("no one in");
              // no logged user, redirect to /login-register unless already there
             if (next.templateUrl !== "components/login-register/login-registerTemplate.html") {
