@@ -37,6 +37,11 @@ cs142App.config(
           templateUrl: 'components/allAlum/allAlumTemplate.html',
           controller: 'AlumController'
         })
+        .state('completeRegistration', {
+          url: "/completeRegistration",
+          templateUrl: 'components/complete-registration/complete-registrationTemplate.html',
+          controller: 'CompleteRegistrationController'
+        })
         // .state('alum.list', {
         //   url: "/list",
         //   templateUrl: "components/allAlum/profile-view.html"
@@ -80,7 +85,8 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
         $scope.authObj = $firebaseAuth();
         $scope.main.addPhotoButton = false;
         $scope.main.hello = null;
-        $scope.main.firstTime = true;
+        $scope.main.firstTime = false; //popup window
+
 
         $scope.main.exitFirstModal = function () {
           $scope.main.firstTime = false;
@@ -96,8 +102,6 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
             $scope.main.user = $firebaseObject(firebase.database().ref("users/" + $scope.currentUser));
             // console.log("f in as:", firebaseUser.uid);
             $cookies.put("userName", firebaseUser.uid);
-            //$location.path('/alum'); //because it's logging out on refresh i think
-
           } else {
             $cookies.remove("userName");
             console.log("Signed out in hereee"); //does it sign out here?

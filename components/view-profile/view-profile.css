@@ -1,38 +1,44 @@
-.profile body[ng-cloak] {
-  display:none;
+.viewProfile-page{
+  overflow-x: hidden;
 }
-.proifile div[flex="30"] {
-  background-color: #DFDFDF;  
-}
-
-.profile section[flex="40"] {
-  background-color: #D4E5FA;
-}
-.profile section[flex="70"] {
-  background-color: #E8FCD6;
-}
-.profile section[flex="20"] {
- background-color: #FFD5E3;
-}
-.profile section[flex=""] {
- background-color: rgba(0, 128, 0, 0.35);
+#viewProfile-profile-description-box{
+  color: black;
 }
 
-.play-circle {
-  position: absolute;
-  font-size:100px;
-  left: 50%;
-  top: 50%;
-  margin-top: -50px;
-  margin-left: -50px;
-  opacity: 0.7;
-  color: gray;
+.viewProfile-headings {
+  text-align: center;
+  background-color: #14496C;
+  padding: 5px;
+  color: white;
 }
 
-.thumbnail {
-  width:250px;
-  height:150px;
+#viewProfile-profile-box {
+  max-height:400px;
 }
+
+.viewProfile-profile-box-parent {
+  width:100%;
+  background-color: #14496C;
+  padding: 0px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.viewProfile-Picture {
+  margin-top: 0px;
+  width: inherit;
+  position: relative;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  position: relative;
+}
+
+.viewProfile-list-container{
+  width: 100%;
+  overflow-x:scroll;
+  overflow-y:hidden;
+}
+
 
 .thumbnail-container {
   position: relative;
@@ -40,71 +46,3 @@
   cursor: hand;
 }
 
-.list-container{
-  width: 100%;
-  overflow-x:scroll;
-  overflow-y:hidden;
-  
-}
-
-#add-video-icon {
-  font-size:100px;
-}
-
-#add-video-button:hover {
-  background-color: orange;
-}
-
-.video {
-  width: 250px;
-}
-
-.profile iframe {
-  border-style: none;
-}
-
-.profile .flex-container {
-  display: -webkit-inline-flex; /* Safari */
-  display: inline-flex;
-}
-
-#my-videos-title {
-  margin: 0px;
-}
-
-.profile-picture{
-  padding: 0px;
-  position: relative;
-}
-
-.profile .md-button {
-  background-color: #00fdff;
-}
-
-.md-button:not([disabled]):hover {
-    background-color: rgb(255,138,101);
-}
-
-.profile-picture img {
-  width:100% ;
-}
-/* Important to set height for column layout */
-.boxWithHeight {
-  box-sizing: border-box;
-  height: 100%;
-}
-
-.a, section {
-/*  border: 5px solid rgba(85, 97, 85, 0.27);
-*/  margin: 5px;  
-}
-
-.profile section {
-  background-color: #dedede;
-}
-
-
-/*
-Copyright 2016 Google Inc. All Rights Reserved. 
-Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
-*/

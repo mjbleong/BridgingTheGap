@@ -1,24 +1,16 @@
 'use strict';
 
-cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$resource', '$http', '$rootScope','$location',
-  function ($scope, $routeParams, $resource, $http, $rootScope, $location) {
+cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$resource', '$http', '$rootScope', '$location', '$firebaseObject',
+  function($scope, $routeParams, $resource, $http, $rootScope, $location, $firebaseObject) {
 
     $scope.main.title = 'Please Login';
 
-    $scope.login = {};
+    $scope.loginRegister = {};
+
     $scope.main.error = false;
 
-    $scope.userId = "";
-    $scope.pass = "";
-
-    $scope.login_name = "";
-    $scope.first_name = "";
-    $scope.last_name = "";
-    $scope.location = "";
-    $scope.description = "";
-    $scope.occupation = "";
-    $scope.password = "";
-    $scope.confirmPassword = "";
+    $scope.loginRegister.userId = "";
+    $scope.loginRegister.pass = "";
 
     $scope.retrievePassword = function() {
       firebase.auth().sendPasswordResetEmail($scope.userId).then(function () {
@@ -33,12 +25,90 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
       });
     };
 
+
+    $scope.loginRegister.regError = false;
+    $scope.loginRegister.emptyFields = false;
+    $scope.loginRegister.first_name = "";
+    $scope.loginRegister.user_email = "";
+    $scope.loginRegister.last_name = "";
+    $scope.loginRegister.location = "";
+    $scope.loginRegister.description = "";
+    $scope.loginRegister.occupation = "";
+    $scope.loginRegister.password = "";
+    $scope.loginRegister.confirmPassword = "";
+
+
+    $scope.loginRegister.schools = [
+      {name: "Overfelt"},
+      {name: "Piedmont Hills"},
+      {name: "Yerba Buena"}
+    ];
+    $scope.loginRegister.highSchool = "";
+
+    $scope.loginRegister.gradYears = [
+      {value: "2013"},
+      {value: "2014"},
+      {value: "2015"},
+      {value: "2016"}
+    ];
+    $scope.loginRegister.gradYear = "";
+
+    $scope.loginRegister.collegeGradYears = [
+      {value: "2015"},
+      {value: "2016"},
+      {value: "2017"},
+      {value: "2018"}
+    ];
+    $scope.loginRegister.collegeGradYear = "";
+
+    $scope.loginRegister.collegeGrades = [
+      {value: "Freshman"},
+      {value: "Sophomore"},
+      {value: "Junior"},
+      {value: "Senior"}
+    ];
+    $scope.loginRegister.collegeGrade = "";
+
+    $scope.loginRegister.collegeNames = [
+      {value: "SJSU"},
+      {value: "Santa Clara"},
+      {value: "UC Berkeley"},
+      {value: "DVC"}
+    ];
+    $scope.loginRegister.college = "";
+
+    // $scope.loginRegister.selected = $scope.loginRegister.filter.fields[0].value;
+    $scope.loginRegister.selected ="High Schoolyoo";
+    $scope.loginRegister.letter = "hello";
+    $scope.loginRegister.showRegistrationForm = false; //set back to false
+    $scope.loginRegister.wrongPassword = false;
+
+
+
+    // ------ Password Validation ------
+    var validatePassword = function() {
+      if ($scope.loginRegister.password != $scope.loginRegister.confirmPassword) {
+        $scope.loginRegister.regError = true;
+        return false;
+      }
+      return true;
+    }
+
+    var wrongPassword = function() {
+      var password = document.getElementById("login-password");
+      // password.setCustomValidity("Incorrect Password")
+      $scope.loginRegister.wrongPassword = true;
+      $scope.$apply();
+    }
+
+
     $scope.main.login = function(email, password) {
+      if(!validatePassword()) return;
       firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-        // $scope.main.error = true; // basically a hack for now
+        console.log("I HAVE LOGGED IN CALLBACK");
         var user = firebase.auth().currentUser;
         console.log(user);
-        if(user) {
+        if (user) {
           $scope.main.loggedIn = true;
           $location.path("/alum");
           $scope.$apply()
@@ -48,68 +118,27 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
           console.log("Couldn't log in");
           $scope.main.loggedIn = false;
         }
-      }).catch(function(error) {
+      }).catch(function(error) { //incorrect password
         $scope.main.loggedIn = false;
         $scope.main.error = true;
+        console.log(error);
         console.log("error");
+        wrongPassword();
       });
     };
 
 
     $scope.clickFunc = function(event) {
-      var modelObj = {login_name : $scope.userId, password: $scope.pass};
+      var modelObj = {
+        login_name: $scope.userId,
+        password: $scope.pass
+      };
       $scope.main.error = null;
       var login = $resource('/admin/login');
-        login.save(modelObj, function(user) {
-          var currLoginFullName = user.first_name + " " + user.last_name;
-          $scope.main.title = 'Hello ' + currLoginFullName;
-          $scope.main.error = false;
-          var sessionSet = $resource('/getSession');
-          sessionSet.get({}, function(session) {
-            $scope.main.loggedIn = session.login_name;
-            console.log(session.login_name);
-            $location.path("/users/" + session.my_id);
-            $scope.main.hello = "Hello " + user.first_name + ", ";
-           
-          });
-        
-        }, function errorHandling(err) { 
-          $scope.main.title = "Username not found, please try again";
-          $scope.main.error = true;
-      });
-
-};
-
-    $scope.registerClickFunc = function(event) {
-      $scope.main.regError = null;
-
-      if ($scope.login_name === null ||$scope.first_name === null || $scope.last_name === null || $scope.location ===  null || $scope.description === null || $scope.occupation === null || $scope.password === null || $scope.confirmPassword === null) {
-        $scope.main.regError = true;
-        return;
-    }
-    if ($scope.password !== $scope.confirmPassword) {
-              $scope.main.regError = true;
-              return;
-    }
-    var timestamp = new Date().valueOf();
-
-    var id = 'U' +  String(timestamp) + $scope.login_name;
-
-    var modelObj = {login_name: $scope.login_name,
-    first_name: $scope.first_name,
-    last_name: $scope.last_name,
-    location: $scope.location,
-    description: $scope.description,
-    occupation: $scope.occupation,
-    password: $scope.password,
-    confirmPassword: $scope.confirmPassword,
-    id: id};
-
-    var register = $resource('/user');
-      register.save(modelObj, function(user) {
+      login.save(modelObj, function(user) {
         var currLoginFullName = user.first_name + " " + user.last_name;
         $scope.main.title = 'Hello ' + currLoginFullName;
-        $scope.main.regError = false;
+        $scope.main.error = false;
         var sessionSet = $resource('/getSession');
         sessionSet.get({}, function(session) {
           $scope.main.loggedIn = session.login_name;
@@ -117,14 +146,49 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
           $location.path("/users/" + session.my_id);
           $scope.main.hello = "Hello " + user.first_name + ", ";
 
-         
+        });
+
+      }, function errorHandling(err) {
+        $scope.main.title = "Username not found, please try again";
+        $scope.main.error = true;
       });
 
-      }, function errorHandling(err) { 
-        $scope.main.title = "Error registering, please try again.";
-        $scope.main.regError = true;
-    });
+    };
 
-};
+    $scope.loginRegister.registerClickFunc = function() {
+      console.log("Trying to register");
+      $scope.loginRegister.regError = false;
+      if($scope.loginRegister.college === "" || $scope.loginRegister.gradYear === "" || $scope.loginRegister.collegeGrade === "" || $scope.loginRegister.collegeGradYear === "" || $scope.loginRegister.highSchool === "") {
+        $scope.loginRegister.emptyFields = true;
+        return;
+      }
+      if(!validatePassword()){
+        return;
+      } 
 
-  }]);
+      //was trying to use AngularFire $createUserWithEmailAndPassword but for some reason it does not trigger the callback
+      firebase.auth().createUserWithEmailAndPassword($scope.loginRegister.user_email, $scope.loginRegister.password).then(function(firebaseUser) {
+        //create entry in Firebase
+        console.log(firebaseUser.uid);
+
+        var ref = firebase.database().ref('/users/' + firebaseUser.uid);
+        var newUserObj = $firebaseObject(ref);
+        newUserObj.firstname = $scope.loginRegister.first_name;
+        newUserObj.lastname = $scope.loginRegister.last_name;
+        newUserObj.email = $scope.loginRegister.user_email;
+        newUserObj.college = $scope.loginRegister.college;
+        newUserObj.collegegrad = $scope.loginRegister.collegeGradYear;
+        newUserObj.collegeyear = $scope.loginRegister.collegeGrade;
+        newUserObj.hsgrad = $scope.loginRegister.gradYear;
+        newUserObj.hs = $scope.loginRegister.highSchool;
+        newUserObj.$save().then(function(ref) {
+          $location.path('/completeRegistration');
+        }, function(error) {
+          console.log(error);
+        });
+
+      });
+    };
+
+  }
+]);

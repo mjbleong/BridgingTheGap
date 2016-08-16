@@ -3,11 +3,7 @@
   "version": "1.0.0",
   "description": "CS142 Project #6 - Photo Sharing App with DB",
   "main": "webServer.js",
-  "scripts": {
-    "test": "echo Test your code by opening http://localhost:3000 in your browser.",
-    "jshint": "./node_modules/.bin/jshint --config .jshintrc --exclude=node_modules,test . || exit 0"
-  },
-  "author": "Mendel Rosenblum <mendel@cs.stanford.edu> (http://www.stanford.edu/~mendel)",
+ "author": "Mendel Rosenblum <mendel@cs.stanford.edu> (http://www.stanford.edu/~mendel)",
   "license": "ISC",
   "dependencies": {
     "angular": "^1.4.9",
@@ -24,7 +20,6 @@
     "faker": "^3.0.1",
     "firebase": "^3.0.5",
     "jshint": "^2.9.1-rc2",
-    "mongoose": "^4.3.4",
     "multer": "^1.1.0",
     "owl.carousel": "^2.1.4"
   }

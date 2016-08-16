@@ -74,11 +74,11 @@
                <li class="col-lg-3 col-sm-6 col-md-4 mix hover_2" data-cat="3">
                   <div class="thumbnail-box thumbnail-box-inverse">
                      <div class="thumb-overlay bg-black" id="myProfile-add-video-thumbnail"></div>
-                        <img ng-src="https://firebasestorage.googleapis.com/v0/b/project-2333752665176102876.appspot.com/o/add_video_button.png?alt=media&token=c03768ea-b26b-44cf-96d4-49d50a6d556f" alt="" />
+                        <img ng-src="/images/add_video_button.png" alt="" />
                   </div>
                </li>
             </a>
-            <li ng-repeat="video in main.videosArray" class="col-lg-3 col-sm-6 col-md-4 mix hover_2" data-cat="3">
+            <li ng-repeat="video in main.videosArray | orderBy:'timestamp'" class="col-lg-3 col-sm-6 col-md-4 mix hover_2" data-cat="3">
                <div class="thumbnail-box thumbnail-box-inverse">
                   <div class="thumb-content">
                      <div class="center-vertical">
@@ -99,14 +99,23 @@
                <!-- </div>
                   -->
             </li>
+            <a ng-click='clipchamp()'>
+               <li class="col-lg-3 col-sm-6 col-md-4 mix profile" data-cat="3">
+                  <div class="thumbnail-box thumbnail-box-inverse">
+                     <div class="thumb-overlay bg-black" id="myProfile-add-video-thumbnail"></div>
+                        <img ng-src="/images/record_new_profile_video_button.png" alt="new prof pic" />
+                  </div>
+               </li>
+            </a>
+
             <li class="col-lg-3 col-sm-6 col-md-4 mix profile" data-cat="3">
                <div class="thumbnail-box thumbnail-box-inverse">
                   <div class="thumb-content">
                      <div class="center-vertical">
                         <div class="center-content">
                            <h3 class="thumb-heading animated bounceIn" style="color:white; font-weight: bold;">
-                              hey
-                              <small style="color:white">asdf</small>
+                              {{main.user.firstname}}'s Profile Video
+                              <small style="color:white">Meet me!</small>
                               <i class="glyph-icon tooltip-button demo-icon icon-play-circle" title=".icon-play-circle"></i>
                            </h3>
                         </div>

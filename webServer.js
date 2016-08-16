@@ -1,6 +1,6 @@
 "use strict";
 
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var async = require('async');
 //p7
 var session = require('express-session');
@@ -9,15 +9,15 @@ var multer = require('multer');
 var processFormBody = multer({storage: multer.memoryStorage()}).single('uploadedphoto');
 
 // Load the Mongoose schema for User, Photo, and SchemaInfo
-var User = require('./schema/user.js');
-var Photo = require('./schema/photo.js');
-var SchemaInfo = require('./schema/schemaInfo.js');
+//var User = require('./schema/user.js');
+//var Photo = require('./schema/photo.js');
+//var SchemaInfo = require('./schema/schemaInfo.js');
 
 var express = require('express');
 var app = express();
 var fs = require("fs");
 
-mongoose.connect('mongodb://localhost/cs142project6');
+//mongoose.connect('mongodb://localhost/cs142project6');
 
 app.use(express.static(__dirname));
 
@@ -687,7 +687,7 @@ app.get('/photosOfUser/:id', function (request, response) {
 });
 
 
-var server = app.listen(3000, function () {
+var server = app.listen(process.env.PORT, function () {
     var port = server.address().port;
     console.log('Listening at http://localhost:' + port + ' exporting the directory ' + __dirname);
 });

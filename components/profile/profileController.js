@@ -9,7 +9,7 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
     var videoIDsArray = $firebaseArray(userVideosRef);
 
     $scope.main.user = $firebaseObject(firebase.database().ref("/users/" + user_id));
-    
+    $scope.tester = "hello";
     $scope.userProfiles = {};
 
     $scope.editing = false;
@@ -19,29 +19,58 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
     // $scope.main.videosArray = [];
     $scope.main.videosArray = $firebaseArray(mainVideosRef);
 
-    // mainVideosRef.orderByChild("author_id").equalTo(user_id).on("child_added", function(videoObj) {
-    //   var video = videoObj.val();
-    //   if (video.url == $scope.main.user.intro_url) {
-    //     console.log($scope.main.user.intro_url);
-    //     $scope.main.introVideo = video;
-    //   } else {
-    //     $scope.main.videosArray.push(video);
-    //   }
-    // });
-
     $scope.showLiveWebcam = false;
     // $scope.main.videosArray = $firebaseArray(mainVideosRef);
+
+
+
+    $scope.clipchamp = function(data) {
+
+      var currDate = new Date();
+
+      var yt_title = $scope.main.user.firstname + ' ' + $scope.main.user.lastname + ' ' + currDate;
+
+      var process = clipchamp({
+
+        resolution: "720p",
+        preset: "web",
+        title: "Click submit and you're done. Thanks!",
+        output: "youtube",
+        youtube: {
+          title: yt_title,
+          description: '[no description]'
+        },
+
+        onUploadComplete: function(data) {
+
+          //function to extract id from youtube url
+          function getId(url) {
+            var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            var match = url.match(regExp);
+
+            if (match && match[2].length == 11) {
+                return match[2];
+            } else {
+                return 'error';
+            }
+          };
+
+          var myId = getId(data.url);
+
+          var dbDate = new Date();
+
+          $scope.main.user.intro_url = myId;
+          $scope.main.user.$save();
+      }
+      });
+
+  process.open();
+  }
 
     $scope.toggleEditMode = function() {
       console.log('toggle');
       console.log($scope.editing);
       $scope.main.user.$save();
-      // if ($scope.editing === true) {
-      //   // $scope.editing = false;
-      //   $scope.main.user.$save();
-      // } else {
-      //   // $scope.editing = true;
-      // }
     }
 
     $scope.make = function(link) {
@@ -50,55 +79,37 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
       return newLink;
     }
 
-    // $scope.generateFrame = function(videoID) {
-    //   console.log(videoID);
-    //   var iframe = document.createElement("iframe");
-    //   iframe.setAttribute("src", "//www.youtube.com/embed/" + videoID + "?autoplay=1&autohide=2d&showinfo=0&border=0&wmode=opaque&enablejsapi=1");
-    //   iframe.setAttribute("frameborder", "0");
-    //   iframe.setAttribute("id", "youtube-iframe");
-    //   var oldPic = document.getElementById(videoID);
-    //   var oldChild = document.getElementById(videoID + "-child");
-    //   oldPic.replaceChild(iframe, oldChild);
-    //   var playButtonId = 'play-circle-' + String(videoID);
-    //   var playButtonParent = document.getElementById(videoID);
-    //   console.log(playButtonParent);
-    //   var playButton = document.getElementById(playButtonId);
-    //   console.log(playButton);
-    //   playButtonParent.removeChild(playButton);
-    // }
+    $scope.userProfiles.generateFrame = function(urlOrUser, fbID, views, subset) {
+      $scope.userProfiles.modalOpen = true;
+      console.log(fbID);
+      if (fbID) {
+        var currVid = $firebaseObject(firebase.database().ref().child("videos").child(fbID));
+        var currLikes = $firebaseObject(firebase.database().ref().child("videos").child(fbID).child("likes"));
+        console.log(currLikes);
+        // var currVid2 = $firebaseObject(firebase.database().ref("videos/" + fbID + "/title"));
+        $scope.userProfiles.currVid = currVid;
+        var element = document.getElementById("alum-innerHTML");
+        var elementInnerString = "";
+        elementInnerString += '<iframe src="//www.youtube.com/embed/' + urlOrUser + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="400px" height="200px" allowfullscreen></iframe>';
+        elementInnerString += '<div>' + views + ' views</div>';
+        element.innerHTML = elementInnerString;
+      } else {
+        var title = document.getElementById("alum-modal-title-forChange");
+        title.innerHTML = " " + urlOrUser.firstname + " " + urlOrUser.lastname;
+        $scope.userProfiles.currVid = {};
+        $scope.userProfiles.currVid.author_id = urlOrUser.$id;
+        var element = document.getElementById("alum-innerHTML");
+        element.innerHTML = '<iframe src="//www.youtube.com/embed/' + urlOrUser.intro_url + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="400px" height="200px" allowfullscreen></iframe>';
+      }
 
 
-$scope.userProfiles.generateFrame = function (urlOrUser, fbID, views, subset) {
-           $scope.userProfiles.modalOpen = true;
-           console.log(fbID);
-       if (fbID) {
-           var currVid = $firebaseObject(firebase.database().ref().child("videos").child(fbID));
-           var currLikes = $firebaseObject(firebase.database().ref().child("videos").child(fbID).child("likes"));
-           console.log(currLikes);
-           // var currVid2 = $firebaseObject(firebase.database().ref("videos/" + fbID + "/title"));
-           $scope.userProfiles.currVid = currVid;
-           var element = document.getElementById("alum-innerHTML");
-           var elementInnerString = "";
-           elementInnerString += '<iframe src="//www.youtube.com/embed/' + urlOrUser + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="400px" height="200px" allowfullscreen></iframe>';
-           elementInnerString += '<div>' + views +' views</div>';
-           element.innerHTML = elementInnerString;
-       } else {
-           var title = document.getElementById("alum-modal-title-forChange");
-           title.innerHTML = " " + urlOrUser.firstname + " " + urlOrUser.lastname;
-           $scope.userProfiles.currVid = {};
-           $scope.userProfiles.currVid.author_id = urlOrUser.$id;
-           var element = document.getElementById("alum-innerHTML");
-           element.innerHTML = '<iframe src="//www.youtube.com/embed/' + urlOrUser.intro_url + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="400px" height="200px" allowfullscreen></iframe>';
-       }
 
-           
-
-  }
-  $scope.main.closeClick = function() {
-           $scope.userProfiles.modalOpen = false;
-           var element = document.getElementById("alum-innerHTML");
-           element.innerHTML = "";
-  }
+    }
+    $scope.main.closeClick = function() {
+      $scope.userProfiles.modalOpen = false;
+      var element = document.getElementById("alum-innerHTML");
+      element.innerHTML = "";
+    }
 
     var selectedPhotoFile; // Holds the last file selected by the user
 
@@ -197,17 +208,17 @@ $scope.userProfiles.generateFrame = function (urlOrUser, fbID, views, subset) {
         $scope.showLiveWebcam = false;
         videoStream.getVideoTracks()[0].stop();
         secondClick = true;
-    }
+      }
       // When the user clicks anywhere outside of the modal, close it
-    // window.onclick = function(event) {
-    //   if (event.target == modal) {
-    //     modal.style.display = "none";
-    //     $scope.showLiveWebcam = false;
-    //     videoStream.getVideoTracks()[0].stop();
-    //     secondClick = true;
-    //     $route.reload();
-    //   }
-    // }
+      // window.onclick = function(event) {
+      //   if (event.target == modal) {
+      //     modal.style.display = "none";
+      //     $scope.showLiveWebcam = false;
+      //     videoStream.getVideoTracks()[0].stop();
+      //     secondClick = true;
+      //     $route.reload();
+      //   }
+      // }
 
     //Webcam Controller Stuff
     var _video = null,

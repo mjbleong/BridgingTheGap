@@ -1,0 +1,10 @@
+.completeRegistration-success-message.ng-enter {
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+/* The finishing CSS styles for the enter animation */
+.completeRegistration-success-message.ng-enter-active {
+  opacity:1;
+}
+

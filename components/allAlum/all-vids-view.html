@@ -5,7 +5,7 @@
 <span ng-repeat="video in main.videosArray">
     <md-card class="mdcard">
          <span id="{{video.url}}" class="thumbnail-container">
-            <img class="thumbnail" ng-click="generateFrame(video.url, video.$id, video.views)" id="{{video.url}}-child" src="http://img.youtube.com/vi/{{video.url}}/0.jpg"></img>
+            <img class="thumbnail" ng-click="generateFrame(video.url, video.$id, video.views)" id="{{video.url}}-child" src="https://img.youtube.com/vi/{{video.url}}/0.jpg"></img>
             <i ng-click="generateFrame(video.url, video.$id, video.views)" class="material-icons play-circle" id="play-circle-{{video.url}}">play_circle_outline</i>
          </span>
          <md-card-content>

@@ -9,7 +9,181 @@
 <script type="text/javascript" src="../../assets/widgets/tabs/tabs.js"></script>
 
 
-<div class="panel">
+<div class='upload-page'>
+
+  <h1> Upload a Video </h1>
+
+<div class='col-md-2'></div>
+
+<div class="col-md-8">
+  <div class='upload-main-div'>
+    <div class="upload-content-box content-box">
+      <h3 class="content-box-header bg-primary">
+          1. Record Video
+      </h3>
+      <div class="upload-content-box-wrapper content-box-wrapper">
+
+
+        <div id='upload-clipchamp' ng-click='clipchamp()' ng-show='!upload.videoRecorded'>
+
+          <img class='upload-add-vid-button' src='images/record_video_button.png' alt='add video button'/>
+
+        </div>
+
+        <div class='upload-success-message' ng-show='upload.videoRecorded'>
+          <div class="alert alert-success">
+            <div class="bg-green alert-icon">
+                <i class="glyph-icon icon-check"></i>
+            </div>
+            <div class="alert-content">
+                <h4 class="alert-title">Video Upload Success!</h4>
+                <p> The video is now in our database</p>
+            </div>
+          </div>
+          
+      </div>
+    </div>
+  </div>
+
+  <div class="upload-content-box content-box">
+      <h3 class="content-box-header bg-purple">
+          2. Title and Description
+      </h3>
+      <div class="upload-content-box-wrapper content-box-wrapper">
+          
+        <div id='video-title-desc' ng-show='!upload.title_desc_set && upload.videoRecorded'>
+
+          <div id="upload-video-title">
+              <h3>Video Title</h3>
+              <span><small>{{70 - upload.title.length}} characters left...</small></span>
+              <br>
+              <input type="text" ng-model='upload.title' size='55' name="video_title" maxlength='70' placeholder='Write your title...'>
+          </div>
+        ​
+          <div id="upload-video-description"> 
+              <h3>Video Description</h3>
+              Give a short description of your video <br>
+              <span><small>{{140 - upload.description.length}} characters left...</small></span><br>
+              <textarea rows='4' cols='55' id='upload-vid-description-box' name='video_description' ng-model='upload.description' maxlength='140' placeholder='Write your description...' ng-trim='false'></textarea>
+          </div>
+
+          <a class="btn btn-lg btn-primary" ng-click='setTitleDesc()' title="">Next</a>
+
+        </div>
+
+        <div class='upload-success-message' ng-show='upload.title_desc_set'>
+
+          <div class="alert alert-success">
+            <div class="bg-green alert-icon">
+                <i class="glyph-icon icon-check"></i>
+            </div>
+            <div class="alert-content">
+                <h4 class="alert-title">Title and Description Set!</h4>
+                <p> They set yo.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+  </div>
+
+  <div class="upload-content-box content-box">
+      <h3 class="content-box-header bg-yellow">
+          3. Tag Video
+      </h3>
+      <div class="upload-content-box-wrapper content-box-wrapper">
+
+        <div id='upload-tagging' ng-show='upload.title_desc_set && !upload.tagsSet'>
+
+          <div id='upload-show-tags'>
+
+            <div class='upload-indi-cat'  ng-repeat='(category, value) in checkboxModel'>
+              <div class='upload-indi-tags' ng-repeat='(tag, value) in checkboxModel[category].tags'>
+                  <button ng-style='upload.tagStyle[category]' class="btn ra-100 btn-success" ng-show='checkboxModel[category].tags[tag].checked' ng-click='upload.removeTag(category,tag)'> {{checkboxModel[category].tags[tag].name}} </button>
+              </div>
+            </div>
+
+          </div>
+          
+          <div id='upload-tagging-sect'>
+
+            <div ng-repeat='(category, value) in checkboxModel'>
+
+              <div class='upload-tag-sect' ng-style='upload.tagStyle[category]' id='upload-tag-sect-{{category}}'>
+
+                <div class='upload-category-name'>
+                  <strong>{{checkboxModel[category].name}}</strong>
+                </div>
+
+                <div class='upload-tags-list'>
+                  <form name="myForm" ng-repeat='(tag, value) in checkboxModel[category].tags'>
+                  <label class='upload-checkbox'>
+                    <input  type="checkbox" ng-model="checkboxModel[category].tags[tag].checked">            
+                    {{checkboxModel[category].tags[tag].name}}
+                  </label><br/>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <a class="btn btn-lg btn-primary" ng-click='uploadTags()' title="">Next</a>
+
+        </div>
+
+
+
+        <div class='upload-success-message' ng-show='upload.tagsSet'>
+          <div class="alert alert-success">
+            <div class="bg-green alert-icon">
+                <i class="glyph-icon icon-check"></i>
+            </div>
+            <div class="alert-content">
+                <h4 class="alert-title">Tags Set!</h4>
+                <p> They set yo.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <div id='upload-upload-vid-button'>
+
+    <a class='btn btn-lg btn-primary' ng-click='upload.postVideo()' title='' ng-show='upload.tagsSet'>Upload Video</a>
+
+  </div>
+
+</div>
+  <div id="alum-modal-view-video" ng-show="upload.modalOpen" >
+      <div class="modal fade display-block">
+         <div class="modal-dialog">
+            <div class="modal-content alum-modal-content-2">
+               <div class="modal-header">
+                  <h4 class="modal-title" id="alum-modal-title-forChange">
+                    Your video has been uploaded, {{fname}} {{lname}}!
+                  </h4>
+               </div>
+               <div class="modal-body" id="alum-innerHTML">
+                  <a class='btn btn-lg btn-primary' title='' ui-sref='myProfile'>Back to homepage</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+  <div class='col-md-2'></div>
+
+</div>
+
+
+<!-- <div class="panel">
   <div class="panel-body">
     <h3 class="title-hero">
         Follow these steps to upload a video...
@@ -152,71 +326,102 @@
 </form>
 </div>
 </div>
-</div>
+</div> -->
 
 
-<!-- <div id='main-container'>
 
+<!-- <div class='upload-first-section'>
+      <span class='upload-vid-and-button'>
 
-​
-  <div id="videos">
-    <button type='button' id='upload-vid-button' ng-click='clipchamp()'>
-      uploadVideo
-    </button> 
-    <button type='button' id='test-button' ng-click='showStuff()'>
-      show stuff
-    </button>
-  </div>
-​
-  <div id="video-data" ng-show='upload.show'>
-​
-    <div id="video-title">
-        <strong>Video Title</strong><br>
-        <span>{{70 - upload.title.length}} characters left...</span>
-        <br>
-        <input type="text" ng-model='upload.title' name="video_title" maxlength='70' placeholder='Write your title...'>
+        <div class='upload-video-sect'>
+          <div id='upload-clipchamp' ng-show='!upload.show' ng-click='clipchamp()'>
+            <img src="http://www.bestcatvideos.co.uk/images/submitavideo.png" alt="Mountain View" style="width:265px;height:195px;">
+            Click here to upload video
+          </div>
+        </div>
+
+        <button type='button' ng-click='clipchamp()' class='upload-clipchamp-button'>
+          Upload Video
+        </button>
+
+      </span>
+
+      <span class='upload-left-div'>
+      </span>
+
+      <span class='upload-show-tags-sect'>
+
+        <h3> Tags </h3>
+        <div id='upload-show-tags'>
+
+          <div id='upload-indi-cat'  ng-repeat='(category, value) in checkboxModel'>
+            <div id='upload-indi-tags' ng-repeat='(tag, value) in checkboxModel[category].tags'>
+                <button ng-style='upload.tagStyle[category]' class="btn ra-100 btn-success" ng-show='checkboxModel[category].tags[tag].checked' ng-click='upload.removeTag(category,tag)'> {{checkboxModel[category].tags[tag].name}} </button>
+            </div>
+          </div>
+        </div>
+
+      </span>
     </div>
-​
-    <br><br>
-​
-    <div id="video-description"> 
-        <strong>Video Description</strong><br>
-        Give a short description of your video <br>
-        <span>{{140 - upload.description.length}} characters left...</span><br>
-        <textarea rows='4' cols='50' id='vid-description-box' name='video_description' ng-model='upload.description' maxlength='140' placeholder='Write your description...' ng-trim='false'></textarea>
-    </div>
-    
-  </div>
-​
-  <br>
-  <br>
-​
-<div ng-show='upload.show'>
-  <h4> Tag Video </h4>
-​
-  <div id='tagging-sect'>
-    <div ng-repeat='(tag, value) in checkboxModel'> -->
-      <!--{{tag}}-->
-<!--       <div class='first'>
-        <strong>{{tag}}</strong>
-        <form name="myForm" ng-repeat='(key, value) in checkboxModel[tag]'>
-​
-          <label>
-            <input type="checkbox" ng-model="checkboxModel[tag][key]">
-            {{key}}
-          </label><br/>
-​
-         </form>
+
+
+    <div class='upload-vid-meta-info-sect'>
+      <div class='upload-vid-nav-sect'>
+        <ul class="nav nav-pills">
+          <li class='active' id='tab1'><a ng-click='first_tab()'>Title and Description</a></li>
+          <li id='tab2'><a ng-click='second_tab()'>Tagging</a></li>
+        </ul>
+      </div>
+
+      <div class='upload-vid-meta-info'>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Dropdown <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+
+        <div ng-show='upload.tab == 1' id='video-title-desc'>
+
+          <div id="upload-video-title">
+              <h3>Video Title</h3>
+              <span><small>{{70 - upload.title.length}} characters left...</small></span>
+              <br>
+              <input type="text" ng-model='upload.title' name="video_title" maxlength='70' placeholder='Write your title...'>
+          </div>
+          ​
+          <div id="upload-video-description"> 
+              <h3>Video Description</h3>
+              Give a short description of your video <br>
+              <span><small>{{140 - upload.description.length}} characters left...</small></span><br>
+              <textarea rows='4' cols='55' id='upload-vid-description-box' name='video_description' ng-model='upload.description' maxlength='140' placeholder='Write your description...' ng-trim='false'></textarea>
+          </div>
+
+        </div>
+
+
+        <div ng-show='upload.tab == 2' id='upload-tagging-sect'>
+          <div ng-repeat='(category, value) in checkboxModel'>
+            <div class='upload-tag-sect' ng-style='upload.tagStyle[category]' id='upload-tag-sect-{{category}}'>
+              <strong>{{checkboxModel[category].name}}</strong>
+              <form name="myForm" ng-repeat='(tag, value) in checkboxModel[category].tags'>
+              <label class='upload-checkbox'>
+                <input  type="checkbox" ng-model="checkboxModel[category].tags[tag].checked">            
+                {{checkboxModel[category].tags[tag].name}}
+              </label><br/>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div>
-  </div>
-​
-  <button id='post-video-button' type='button' ng-click='upload.postVideo()'>
-    Post Video
-  </button>
-</div>
-</div>
-​
-</div>
-​
-</div> -->
+
+
+ -->
