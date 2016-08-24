@@ -3,7 +3,6 @@
 cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resource', '$http', '$rootScope','$location','$firebaseAuth', '$cookies','$route', '$state',
   function ($scope, $routeParams, $resource, $http, $rootScope, $location, $firebaseAuth, $cookies, $route, $state) {
     
-
     $scope.upload = {};
 
     console.log('hi');
@@ -12,6 +11,9 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
     $scope.upload.title_desc_set = false;
     $scope.upload.tagsSet = false;
     $scope.upload.modalOpen = false;
+
+    $scope.upload.videoId = "";
+    $scope.upload.videoUrl = "";
 
     //$scope.upload.videoId = 'bloopid2'; this is the default videoId for when you don't use clipchamp to upload a video
 
@@ -39,28 +41,10 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
             $scope.checkboxModel[cat_a].tags[tag_a]['checked'] = false;
         }
       }
-      console.log($scope.checkboxModel);
     });
-
-    $scope.setTitleDesc = function() {
-      $scope.upload.title_desc_set = true;
-    }
-
-    $scope.uploadTags = function() {
-      $scope.upload.tagsSet = true;
-    }
-
-    $scope.goHome = function() {
-      $state.go('/myProfile/' + $scope.currentUser);
-    }
 
     $scope.upload.removeTag = function(cat,tag) {
       $scope.checkboxModel[cat].tags[tag].checked = false;
-    }
-
-    $scope.showStuff = function() {
-      $scope.upload.show = true;
-      console.log($scope.upload.video_src);
     }
 
     $scope.upload.postVideo = function() {
@@ -75,7 +59,15 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
       }
       firebase.database().ref('videos/' + $scope.upload.videoId + '/title').set($scope.upload.title);
       firebase.database().ref('videos/' + $scope.upload.videoId + '/description').set($scope.upload.description);
-      firebase.database().ref('videos/' + $scope.upload.videoId + '/timestamp').set(Date.now());  
+      firebase.database().ref('videos/' + $scope.upload.videoId + '/timestamp').set(Date.now()); 
+
+      firebase.database().ref("users/" + $cookies.get("userName") + "/groups").once('value').then(function(snapshot) {
+        var groups = snapshot.val();
+        for (var group in groups) {
+          firebase.database().ref('groups/' + group + '/videos/videoId/' + $scope.upload.videoId).set('');
+          firebase.database().ref('groups/' + group + '/videos/videoUrl/' + $scope.upload.videoUrl).set('');
+        }
+      });
     }
 
     // need to get name out here... scoping problem when inside clipchamp
@@ -140,25 +132,10 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
           });
 
           $scope.upload.videoId = newPostKey;
-
-          var iframe1 = document.createElement("iframe");
-          iframe1.width='420';
-          iframe1.height='315';
-          iframe1.src= '//www.youtube.com/embed/' + myId;
-
-          var iframe2 = document.createElement('iframe');
-          iframe2.width='420';
-          iframe2.height='315';
-          iframe2.src='//www.youtube.com/embed/' + myId;
-
-          var element1 = document.getElementById('upload-videos');
-          var element2 = document.getElementById('upload-showVideo');
-          element1.appendChild(iframe1);
-          element2.appendChild(iframe2);
+          $scope.upload.videoUrl = myId;
         }      
       });
-
-  process.open();
+      process.open();
+    }
   }
-  }
-  ]);
+]);

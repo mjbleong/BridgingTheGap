@@ -42,6 +42,11 @@ cs142App.config(
           templateUrl: 'components/complete-registration/complete-registrationTemplate.html',
           controller: 'CompleteRegistrationController'
         })
+        .state('group', {
+          url: "/group/:groupName",
+          templateUrl: 'components/groups/groupsTemplate.html',
+          controller: 'GroupsController'
+        })
         // .state('alum.list', {
         //   url: "/list",
         //   templateUrl: "components/allAlum/profile-view.html"
@@ -86,6 +91,8 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
         $scope.main.addPhotoButton = false;
         $scope.main.hello = null;
         $scope.main.firstTime = false; //popup window
+        
+        $scope.main.currGroup = "";
 
 
         $scope.main.exitFirstModal = function () {

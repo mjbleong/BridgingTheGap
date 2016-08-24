@@ -1,7 +1,7 @@
 'use strict';
 
-cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource', '$firebaseArray', '$firebaseObject', '$sce', '$firebaseAuth', '$cookies', '$location', '$route', '$window',
-  function($scope, $routeParams, $resource, $firebaseArray, $firebaseObject, $sce, $firebaseAuth, $cookies, $location, $route, $window) {
+cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource', '$firebaseArray', '$firebaseObject', '$sce', '$firebaseAuth', '$cookies', '$location', '$route', '$window', '$state',
+  function($scope, $routeParams, $resource, $firebaseArray, $firebaseObject, $sce, $firebaseAuth, $cookies, $location, $route, $window, $state) {
 
     var user_id = $cookies.get("userName");
 
@@ -23,6 +23,33 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
     // $scope.main.videosArray = $firebaseArray(mainVideosRef);
 
 
+
+
+    firebase.database().ref('/users/' + user_id + '/groups').once('value').then(function(snapshot) {
+      $scope.main.groups = snapshot.val();
+      console.log(snapshot.val());
+    })
+
+    $scope.main.groups = $firebaseArray(firebase.database().ref('/users/' + user_id).child('groups'));
+
+    console.log($scope.main.groups);
+    
+    $scope.main.group_icons = 
+    {
+      'of': 'images/overfelt_group_icon.png',
+      'phhs': 'images/ph_group_icon.png',
+      'yb': 'images/yb_group_icon.png',
+      'sjsu': 'images/sjsu_group_icon.png',
+      'ucb': 'images/berkeley_group_icon.png',
+      'dvc': 'images/dvc_group_icon.png',
+      'eg': 'images/evergreen_group_icon.png'
+    };
+
+
+    $scope.goToGroup = function(groupId) {
+      console.log(groupId);
+      $state.go('group', {groupName: groupId});
+    }
 
     $scope.clipchamp = function(data) {
 

@@ -42,6 +42,9 @@
     <link rel="stylesheet" type="text/css" href="../../assets/themes/components/default.css">
     <link rel="stylesheet" type="text/css" href="../../assets/themes/components/border-radius.css">
 
+    <!-- Snippets -->
+    <link rel="stylesheet" type="text/css" href="../../assets/snippets/mobile-navigation.css">
+
     <!-- Frontend responsive -->
 
     <link rel="stylesheet" type="text/css" href="../../assets/helpers/responsive-elements.css">
@@ -50,13 +53,7 @@
     <!-- JS Core -->
 
     <script type="text/javascript" src="../../assets/js-core/jquery-core.js"></script>
-     <!-- <script type="text/javascript" src="../../assets/js-core/jquery-ui-core.js"></script>
-    // <script type="text/javascript" src="../../assets/js-core/jquery-ui-widget.js"></script>
-    // <script type="text/javascript" src="../../assets/js-core/jquery-ui-mouse.js"></script>
-    // <script type="text/javascript" src="../../assets/js-core/jquery-ui-position.js"></script>
-    // <script type="text/javascript" src="../../assets/js-core/transition.js"></script>
-    // <script type="text/javascript" src="../../assets/js-core/modernizr.js"></script>
-    // <script type="text/javascript" src="../../assets/js-core/jquery-cookie.js"></script> -->
+
 
     <script type="text/javascript">
         $(window).load(function(){
@@ -66,117 +63,118 @@
         });
     </script>
 
+
+    <!-- scrolling animation -->
     <script>
         $(function() {
-          $('a[href*="#"]:not([href="#"])').click(function() {
-            if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-                  var target = $(this.hash);
-                  target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-                  if (target.length) {
-                    $('html, body').animate({
-                      scrollTop: target.offset().top
-                    }, 1000);
-                    return false;
-                  }
+            $('a[href*="#"]:not([href="#"])').click(function() {
+                if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                    if (target.length) {
+                        $('html, body').animate({
+                        scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
                 }
             });
         });
     </script>
 
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
+    
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 
 </head>
 
-<body class="body-alt">
-
-    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
-
-    <div id='fullpage'>
-
-    <div id="page-wrapper">
-        <div id='fe-nav-bar' class="main-header header-fixed bg-header wow fadeInDown">
-            <div id='fe-nav-stuff' class="container">
-
-                <a href="index.html" class="btg-logo" title="BTG-Boi">
-                    <img width='280px' height='100px'src='images/storybridge_v1.png'>
-                </a><!-- .header-logo -->
 
 
-                <div class="right-header-btn">
-                    <div id="mobile-navigation">
-                        <button id="nav-toggle" class="collapsed" data-toggle="collapse" data-target=".header-nav"><span></span></button>
-                    </div>
-                </div><!-- .header-logo -->
+<body>
 
 
-                <ul id='fe-header-nav' class="header-nav collapse">
-                    <li>
-                        <a id='fe-home-button' href="#fe-home" title="Homepages">
-                            Home
-                           <!--  <i class="glyph-icon icon-angle-down"></i> -->
-                        </a>
-                    </li>
-                    <li>
-                        <a  href="#our-mission" title="Hero sections">
-                            Our Mission
-                            <!-- <i class="glyph-icon icon-angle-down"></i> -->
-                        </a>
-                    </li>
-                    <li class="sf-mega">
-                        <a id='fe-about-us-button' href="#about-us"  title="Features">
-                            About Us
-                            <!-- <i class="glyph-icon icon-angle-down"></i> -->
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#support-us" title="Components">
-                            Support Us
-                            <!-- <i class="glyph-icon icon-angle-down"></i> -->
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#footer" title="app-login">
-                            Contact Us
-                            <!-- <i class="glyph-icon icon-angle-down"></i> -->
-                        </a>
-                    </li>
-                    <li>
-                        <a href="app-login.html" title="app-login">
-                            Login/Register
-                            <!-- <i class="glyph-icon icon-angle-down"></i> -->
-                        </a>
-                    </li>
-                </ul><!-- .header-nav -->
-            </div><!-- .container -->
-        </div><!-- .main-header -->
-
-        <a name='fe-home'></a>
-        <div class="poly-bg-7 hero-box hero-right font-inverse " id='fe-main-box'>
-            <div class="container clearfix" id='fe-main-box-content'>
-
-                <a href="app-login.html" class="btn-outline-inverse hero-btn wow fadeInUp" data-wow-delay="0.4s" title="Register button">Sign up today!</a>
-                
-            </div>
+    <div class="main-header header-fixed font-inverse header-opacity header-resizable wow bounceInDown" data-0="padding: 23px 0; background: rgba(255,255,255,0.1);" data-250="padding: 0px 0; background: rgba(0,0,0,1)">
+    <div class="container">
+    <a href="index.html" class="" title="Story Bridge">
+        <img width='240px' height='80px' src='images/storybridge_v1.png'/>
+    </a><!-- .header-logo -->
+    <div class="right-header-btn">
+        <div id="mobile-navigation">
+            <button id="nav-toggle" class="collapsed" data-toggle="collapse" data-target=".header-nav"><span></span></button>
         </div>
+    </div><!-- .header-logo -->
+    <ul class="header-nav collapse">
 
+        <li>
+            <a href="#fe-home" title="Homepages">
+                Home
+            </a>
+        </li>
 
+        <li>
+            <a href="#our-mission" title="Hero sections">
+                Our Mission
+            </a>
+        </li>
 
-        <!-- anchor point!! -->
-        <a name='our-mission'></a>
+        <li class="sf-mega">
+            <a href="#about-us" title="Features">
+                About Us
+                <i class="glyph-icon icon-angle-down"></i>
+            </a>
+        </li>
 
-        <div id='fe-our-mission-banner' class="hero-box bg-black font-inverse">
-            <div class="container">
-                <img src='images/GradCap.png' width='240px' height='150px'>
-                <h1 class="hero-heading wow fadeInDown" data-wow-duration="0.6s">Our Mission</h1>
-                <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s">We are a group of three Stanford undergrads working on a platform to connect high school students with college-going alumni from their local communities. We hope that by bridging the communication gap between these groups, high school students can begin their college journeys with more preparation for the challenges they may face, and the support of belonging to a wider community of college-attending alumni.</p>
-            </div>
-            <div class="hero-overlay bg-black opacity-30"></div>
+        <li>
+            <a href="#support-us" title="Components">
+                Support Us
+                <i class="glyph-icon icon-angle-down"></i>
+            </a>
+        </li>
+
+        <li>
+            <a href="#footer" title="Pages">
+                Contact Us
+                <i class="glyph-icon icon-angle-down"></i>
+            </a>
+        </li>
+
+        <li>
+            <a href='app-login.html' title='app-login'>
+                Login/Register
+            </a>
+        </li>
+
+    </ul><!-- .header-nav -->
+</div><!-- .container -->
+</div><!-- .main-header -->
+
+<div class="hero-box blurred-img-2 fixed-bg font-inverse">
+    <div class="container fe-main-banner">
+        <h1 class="hero-heading wow fadeInDown" data-wow-duration="0.6s">Storybridge yo storybridge yo storybridge yo storybridge</h1>
+        <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s"></p>
+        <a href="app-login.html" class="btn title-button hero-btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Purchase Button">Sign up now</a>
+    </div>
+</div>
+
+    <!-- anchor point!! -->
+    <a name='our-mission'></a>
+
+    <div id='fe-our-mission-banner' class="hero-box bg-black font-inverse">
+        <div class="container">
+            <img src='images/GradCap.png' width='240px' height='150px'>
+            <h1 class="hero-heading wow fadeInDown" data-wow-duration="0.6s">Our Mission</h1>
+            <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s">We are a group of three Stanford undergrads working on a platform to connect high school students with college-going alumni from their local communities. We hope that by bridging the communication gap between these groups, high school students can begin their college journeys with more preparation for the challenges they may face, and the support of belonging to a wider community of college-attending alumni.</p>
         </div>
+        <div class="hero-overlay bg-black opacity-30"></div>
+    </div>
 
-<!-- anchor point!! -->
-<a name='about-us'></a>
+    <!-- anchor point!! -->
+    <a name='about-us'></a>
 
-<div id='fe-about-us-banner'>
-    <h3 class="p-title">
+    <div id='fe-about-us-banner'>
+        <h3 class="p-title">
             <span>Our Team</span>
         </h3>
         <div class="row">
@@ -196,8 +194,9 @@
                 <h3 class="icon-title">Bongi Boy</h3>
                 <p class="icon-content">Most likely to spend 3 hours at work on the toilet reading new stories on his phone. Watch out San Mateo, there's a new kid in town! ;)</p>
             </div>
+
         </div>
-</div>
+    </div>
 
     <a name='support-us'></a>
 
@@ -217,6 +216,71 @@
     </div>
 
     <a name='footer'></a>
+
+    <footer class="footer-distributed">
+
+            <div class="footer-left">
+
+                <img width='180px' height='60px' src='images/storybridge_v1.png'>
+
+                <p class="footer-links">
+                    <a href="#">Home</a>
+                    ·
+                    <a href="#">Our Mission</a>
+                    ·
+                    <a href="#">About Us</a>
+                    ·
+                    <a href="#">Support Us</a>
+                    ·
+                    <a href="#">Contact Us</a>
+                    ·
+                    <a href="#">Login/Register</a>
+                </p>
+
+                <p class="footer-company-name">Storybridge &copy; 2016</p>
+            </div>
+
+            <div class="footer-center">
+
+                <div>
+                    <i class="fa fa-map-marker"></i>
+                    <p><span>21 Revolution Street</span> Paris, France</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-phone"></i>
+                    <p>+1 555 123456</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-envelope"></i>
+                    <p><a href="mailto:support@company.com">storybridgeteam@gmail.com</a></p>
+                </div>
+
+            </div>
+
+            <div class="footer-right">
+
+                <p class="footer-company-about">
+                    <span>About Storybridge</span>
+                    Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+                </p>
+
+                <div class="footer-icons">
+
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-github"></i></a>
+
+                </div>
+
+            </div>
+
+        </footer>
+
+
+<!--     <a name='footer'></a>
     <div class='fe-footer'>
         <img src='images/storybridge_v1.png' width='240px' height='100px' >
         <div class='fe-contact-us-footer'>
@@ -236,11 +300,7 @@
                 </li>
             </ul>
         </div>
-    </div>
-</div>
-
-
-
+    </div> -->
 
     <!-- FRONTEND ELEMENTS -->
 
