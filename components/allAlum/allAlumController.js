@@ -23,31 +23,23 @@ cs142App.controller('AlumController', ['$scope', '$resource', '$firebaseObject',
 
         $scope.main.modalOpen = false;
 
-        // console.log($scope.main.user_id);
-        // console.log($scope.main.loggedIn);
-
-        $scope.generateFrame = function (urlOrUser, fbID, views, subset) {
+        $scope.generateFrame = function (urlOrUser, fbID, views, authorID) {
             $scope.main.modalOpen = true;
             console.log(fbID);
             if (fbID) {
                 var currVid = $firebaseObject(firebase.database().ref().child("videos").child(fbID));
                 var currLikes = $firebaseObject(firebase.database().ref().child("videos").child(fbID).child("likes"));
-                console.log(currLikes);
-                console.log(views);
                 var newViews = Number(views) + 1;
                 firebase.database().ref('/videos/' + fbID + '/views').set(newViews);
                 // var currVid2 = $firebaseObject(firebase.database().ref("videos/" + fbID + "/title"));
                 $scope.main.currVid = currVid;
                 $scope.main.currLikes = currLikes;
+                var currAuthor = $firebaseObject(firebase.database().ref().child("users").child(authorID));
+                console.log(currAuthor);
+                $scope.main.currAuthor = currAuthor;
                 var element = document.getElementById("alum-innerHTML");
                 var elementInnerString = "";
-                elementInnerString += '<iframe src="//www.youtube.com/embed/' + urlOrUser + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="400px" height="200px" allowfullscreen></iframe>';
-                elementInnerString += '<div>' + views +' views</div>';
-                // if (currLikes[currUserId]==null) {
-                //     elementInnerString += '<div><md-button ng-disabled="main.inUse" class="likes" ng-click="like($event, video.$id, video.likes)">Like<md-icon><i class="material-icons">favorite_border</i> </md-icon> </md-button> Click to like.</div>';
-                // } else {
-                //     elementInnerString += '<div><md-button ng-disabled="main.inUse" class="likes" ng-click="unlike($event, video.$id, video.likes)">Unlike<md-icon><i class="material-icons">favorite</i> </md-icon> </md-button>You liked this.</div>';
-                // }
+                elementInnerString += '<iframe src="//www.youtube.com/embed/' + urlOrUser + '?autoplay=1&amp;autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="450px" height="253px" allowfullscreen></iframe>';
                 element.innerHTML = elementInnerString;
                 $scope.main.introVideo = false;
             } else {
@@ -64,7 +56,6 @@ cs142App.controller('AlumController', ['$scope', '$resource', '$firebaseObject',
 
         $scope.main.findTags = function(tags) {
             if (tags == undefined) { return ""; }
-            //console.log(tags["applying-to-college"]);
             var string = "";
             if (tags["applying-to-college"] != undefined) {
                 string += " applying-to-college";
@@ -94,42 +85,15 @@ cs142App.controller('AlumController', ['$scope', '$resource', '$firebaseObject',
             $location.path("/viewProfile/" + user);
         }
 
-        $scope.clickedFace = function (url) {
-            $scope.main.showVidBox = true;
-            $scope.main.currURL = url;
-        }
-
-        $scope.closeVid = function () {
-            $scope.main.showVidBox = false;
-        }
-
-        // $scope.main.make = function (link) {
-        //     console.log("makingvid");
-        //     console.log(link);
-        //     var youtube = "https://youtube.com/embed/" + link;
-        //     var newLink = $sce.trustAsResourceUrl(youtube);
-        //     return newLink;
+        // $scope.clickedFace = function (url) {
+        //     $scope.main.showVidBox = true;
+        //     $scope.main.currURL = url;
         // }
 
-        // var messagesRef = new Firebase("https://project-2333752665176102876.firebaseio.com/");
-        // var query = messagesRef.orderByChild("date").limitToLast(2);
-        // console.log(query);
+        // $scope.closeVid = function () {
+        //     $scope.main.showVidBox = false;
+        // }
 
-        // var mostRecArray = [];
-        // var recentQuery = firebase.database().ref().child("videos").orderByChild("date").limitToLast(2).on("child_added", function(snapshot) {
-        //     console.log(snapshot.val());
-        //     mostRecArray.push(snapshot.val());
-        //     console.log(mostRecArray);
-        //     $scope.main.mostRecArray = mostRecArray;
-
-        // });
-
-
-        // var mostRecArray = [];
-        // var recentQuery = firebase.database().ref().child("videos").orderByChild("date").limitToLast(6).on("child_added", function(snapshot) {
-        //     mostRecArray.push(snapshot.val());
-        //     $scope.main.mostRecArray = mostRecArray;
-        // });
         var recentQuery = firebase.database().ref().child("videos").orderByChild("timestamp").limitToLast(9);
         $scope.main.mostRecArray = $firebaseArray(recentQuery);
         console.log($scope.main.mostRecArray);

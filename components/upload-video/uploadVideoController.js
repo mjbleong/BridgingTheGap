@@ -165,7 +165,8 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
               title: 'no-title',
               url: myId,
               views: 0,
-              likes: ''
+              likes: '',
+              num_likes: 0
           });
 
           $scope.upload.videoId = newPostKey;

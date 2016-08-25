@@ -27,15 +27,24 @@
                 <p>Should be replaced!</p>
             </div>
             <div ng-hide="main.introVideo===true">
-                <div ng-show="main.currLikes[main.user_id]==null"> 
-                    <md-button ng-disabled="main.inUse" class="likes" ng-click="like($event, main.currVid.$id, main.currVid.likes, main.currVid.num_likes)">Like<md-icon><i class="material-icons">favorite_border</i> </md-icon> </md-button> 
-                    Click to like.
+                <div class="alum-infoBox">
+                    <div class="alum-videoInBoxTitle">{{main.currVid.title}}</div>
+                    <div class="alum-spaceDiv">
+                        <span>                         
+                            <img width="40" class="user-img" src="{{main.currAuthor.profile_picture_url}}" alt="Profile image" ng-cloak ng-if="main.user.profile_picture_url"> {{main.currAuthor.firstname}} {{main.currAuthor.lastname}} 
+                        </span> 
+                        <span> {{main.currVid.views}} views </span>
+                    </div>
+                    <div class="alum-likesDiv">
+                        <span ng-show="main.currLikes[main.user_id]==null"> 
+                            <md-button ng-disabled="main.inUse" class="likes" ng-click="like($event, main.currVid.$id, main.currVid.likes, main.currVid.num_likes)"> <md-icon><i class="material-icons">favorite_border</i> </md-icon> {{main.currVid.num_likes}}</md-button>
+                        </span>
+                        <span ng-show="main.currLikes[main.user_id]!=null"> 
+                            <md-button ng-disabled="main.inUse" class="likes" ng-click="unlike($event, main.currVid.$id, main.currVid.likes, main.currVid.num_likes)"> <md-icon><i class="material-icons">favorite</i> </md-icon> {{main.currVid.num_likes}}</md-button>
+                        </span>
+                    </div>
+
                 </div>
-                <div ng-show="main.currLikes[main.user_id]!=null"> 
-                    <md-button ng-disabled="main.inUse" class="likes" ng-click="unlike($event, main.currVid.$id, main.currVid.likes, main.currVid.num_likes)">Unlike<md-icon><i class="material-icons">favorite</i> </md-icon> </md-button>
-                    You liked this.
-                </div>
-                <b>Likes:</b> <span> {{main.currVid.num_likes}} </span>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" ng-click="main.closeClick()">Continue Exploring</button>
@@ -56,7 +65,7 @@
                 <ul>
                     <li>
                         <a href="#alum-tabs-exampl-1" title="Tab 1">  <!-- uisrefthing would go here -->
-                            Featured???
+                            Featured
                         </a>
                     </li>
                     <li>
@@ -75,7 +84,7 @@
 
 
 
-<div class="panel" style='max-width: 1000px; margin:auto;'>
+<div class="panel alum-color-this-outer" style='max-width: 1000px; margin:auto;'>
 <div class="panel-body alum-color-this">
 <div>
 <h3 class="title-hero">
@@ -85,7 +94,7 @@
 
     <div class="owl-carousel-1 slider-wrapper carousel-wrapper">
 
-        <div ng-click="generateFrame(main.mostRecArray[8].url, main.mostRecArray[8].$id, main.mostRecArray[8].views)">
+        <div ng-click="generateFrame(main.mostRecArray[8].url, main.mostRecArray[8].$id, main.mostRecArray[8].views, main.mostRecArray[8].author_id)">
             <div class="thumbnail-box thumbnail-box-inverse">
                 <div class="thumb-content">
                     <div class="center-vertical">
@@ -104,7 +113,7 @@
                 <img ng-src="https://img.youtube.com/vi/{{main.mostRecArray[8].url}}/0.jpg" alt="" />
             </div>
         </div>
-        <div ng-click="generateFrame(main.mostRecArray[7].url, main.mostRecArray[7].$id, main.mostRecArray[7].views)">
+        <div ng-click="generateFrame(main.mostRecArray[7].url, main.mostRecArray[7].$id, main.mostRecArray[7].views, main.mostRecArray[7].author_id)">
             <div class="thumbnail-box thumbnail-box-inverse">
                 <div class="thumb-content">
                     <div class="center-vertical">
@@ -123,7 +132,7 @@
                 <img ng-src="https://img.youtube.com/vi/{{main.mostRecArray[7].url}}/0.jpg" alt="" />
             </div>
         </div>
-        <div ng-click="generateFrame(main.mostRecArray[6].url, main.mostRecArray[6].$id, main.mostRecArray[6].views)">
+        <div ng-click="generateFrame(main.mostRecArray[6].url, main.mostRecArray[6].$id, main.mostRecArray[6].views, main.mostRecArray[6].author_id)">
             <div class="thumbnail-box thumbnail-box-inverse">
                 <div class="thumb-content">
                     <div class="center-vertical">

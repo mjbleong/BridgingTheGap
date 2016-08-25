@@ -1,9 +1,40 @@
+.alum-videoInBoxTitle {
+  font-size: 30px;
+  font-weight: bold;
+/*  text-decoration: underline;*/
+}
 
+.alum-likesDiv {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.alum-spaceDiv {
+  display: flex;
+  justify-content: space-between;
+}
+
+.alum-infoBox {
+  margin-right: 20px;
+  margin-left: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 2px solid;
+
+}
+
+#alum-innerHTML {
+  display: flex;
+  justify-content: center;
+}
 
 .alum-color-this {
   border-style: solid;
-  border-color: #fed136;
   border-width: 5px;
+  background-color: black;
+  padding: 20px;
+  padding-color: black;
+  margin: 20px;
 }
 
 .alum-carousel-text {
