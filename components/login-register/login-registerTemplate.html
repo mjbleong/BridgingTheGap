@@ -80,7 +80,7 @@
                         <div class="input-group" >
                             High School
                             <select class="form-control" ng-model="loginRegister.highSchool" required>
-                                <option ng-repeat="school in loginRegister.schools" value="{{school.name}}">{{school.name}}</option>
+                                <option ng-repeat="schoolId in loginRegister.schools" value="{{schoolId.name}}">{{ main.schoolMap[schoolId.name] }}</option>
                             </select>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                         <div class="input-group">
                             College
                             <select class="form-control" ng-model="loginRegister.college" required>
-                                <option  ng-repeat="college in loginRegister.collegeNames" value="{{college.value}}">{{college.value}}</option>
+                                <option  ng-repeat="collegeId in loginRegister.collegeNames" value="{{collegeId.value}}">{{main.schoolMap[collegeId.value]}}</option>
                             </select>
                         </div>
                     </div>

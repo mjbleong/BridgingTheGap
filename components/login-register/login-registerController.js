@@ -9,8 +9,16 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
 
     $scope.main.error = false;
 
+    $scope.main.schoolMap = {};
+
     $scope.loginRegister.userId = "";
     $scope.loginRegister.pass = "";
+
+
+    firebase.database().ref("maps/groups").once("value").then(function(snapshot) {
+      $scope.main.schoolMap = snapshot.val();
+      console.log($scope.main.schoolMap);
+    })
 
     $scope.retrievePassword = function() {
       firebase.auth().sendPasswordResetEmail($scope.userId).then(function () {
@@ -39,9 +47,9 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
 
 
     $scope.loginRegister.schools = [
-      {name: "Overfelt"},
-      {name: "Piedmont Hills"},
-      {name: "Yerba Buena"}
+      {name: "of"},
+      {name: "phhs"},
+      {name: "yb"}
     ];
     $scope.loginRegister.highSchool = "";
 
@@ -70,11 +78,12 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
     $scope.loginRegister.collegeGrade = "";
 
     $scope.loginRegister.collegeNames = [
-      {value: "SJSU"},
-      {value: "Santa Clara"},
-      {value: "UC Berkeley"},
-      {value: "DVC"}
+      {value: "sjsu"},
+      {value: "scu"},
+      {value: "ucb"},
+      {value: "dvc"}
     ];
+
     $scope.loginRegister.college = "";
 
     // $scope.loginRegister.selected = $scope.loginRegister.filter.fields[0].value;
@@ -162,14 +171,14 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
         $scope.loginRegister.emptyFields = true;
         return;
       }
-      if(!validatePassword()){
+      if(!validatePassword()) {
         return;
       } 
 
       //was trying to use AngularFire $createUserWithEmailAndPassword but for some reason it does not trigger the callback
       firebase.auth().createUserWithEmailAndPassword($scope.loginRegister.user_email, $scope.loginRegister.password).then(function(firebaseUser) {
         //create entry in Firebase
-        console.log(firebaseUser.uid);
+        //console.log(firebaseUser.uid);
 
         var ref = firebase.database().ref('/users/' + firebaseUser.uid);
         var newUserObj = $firebaseObject(ref);
@@ -180,12 +189,20 @@ cs142App.controller('LoginRegisterController', ['$scope', '$routeParams', '$reso
         newUserObj.collegegrad = $scope.loginRegister.collegeGradYear;
         newUserObj.collegeyear = $scope.loginRegister.collegeGrade;
         newUserObj.hsgrad = $scope.loginRegister.gradYear;
-        newUserObj.hs = $scope.loginRegister.highSchool;
+        newUserObj.hs = $scope.loginRegister.highSchool;        
+        newUserObj.groups = {};
+        newUserObj.groups[$scope.loginRegister.college] = '';
+        newUserObj.groups[$scope.loginRegister.highSchool] = '';
+
+
         newUserObj.$save().then(function(ref) {
           $location.path('/completeRegistration');
         }, function(error) {
           console.log(error);
         });
+
+        firebase.database().ref("groups/" + newUserObj.college + "/members/" + firebaseUser.uid).set("");
+        firebase.database().ref("groups/" + newUserObj.hs + "/members/" + firebaseUser.uid).set("");
 
       });
     };
