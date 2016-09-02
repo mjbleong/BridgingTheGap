@@ -57,6 +57,21 @@ cs142App.config(
           templateUrl: 'alum_intro.html',
           controller: 'MainController'
         })
+        .state('profileWalkthrough1', {
+          url: '/myProfileWalkthrough1',
+          templateUrl: 'components/profile/profileTemplateWalkthrough1.html',
+          controller: 'ProfileController'
+        })
+        .state('profileWalkthrough2', {
+          url: '/myProfileWalkthrough2',
+          templateUrl: 'components/profile/profileTemplateWalkthrough2.html',
+          controller: 'ProfileController'
+        })
+        .state('profileWalkthrough3', {
+          url: '/myProfileWalkthrough3',
+          templateUrl: 'components/profile/profileTemplateWalkthrough3.html',
+          controller: 'ProfileController'
+        })
         // .state('alum.list', {
         //   url: "/list",
         //   templateUrl: "components/allAlum/profile-view.html"
@@ -101,6 +116,8 @@ cs142App.controller('MainController', ['$scope', '$resource', '$rootScope', '$lo
         $scope.main.addPhotoButton = false;
         $scope.main.hello = null;
         $scope.main.firstTime = false; //popup window
+
+        console.log("Went back to this main shit again");
         
         $scope.main.currGroup = "";
 

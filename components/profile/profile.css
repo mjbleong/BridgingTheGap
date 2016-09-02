@@ -1,3 +1,31 @@
+@-webkit-keyframes bounce {
+  0%       { bottom:5px; }
+  25%, 75% { bottom:15px; }
+  50%      { bottom:20px; }
+  100%     {bottom:0;}
+}
+
+.myProfile-tile-box-number {
+  font-size: 70px;
+  margin: 9px;
+}
+
+.myProfile-hover-hand {
+  cursor: pointer;
+}
+.myProfile-button { 
+  
+}
+.myProfile-tile {
+  flex: 1; /* additionally, equal width */
+  
+  padding: 1em;
+}
+
+.myProfile-tile-row {
+  display: flex;
+}
+
 #myProfile-add-video-thumbnail{
   opacity: 0;
 }
@@ -26,6 +54,7 @@
   padding: 0px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
+  position: relative;
 }
 
 .myProfile-Picture {
@@ -57,8 +86,8 @@
 #myProfile-set-profile-picture-button {
   display: none;
   position: absolute;
-  top: 10px;
-  left: 20px;
+  top: 5px;
+  left: 5px;
   z-index: 100;
 }
 
@@ -77,5 +106,9 @@
   position: relative;
   cursor: pointer; 
   cursor: hand;
+}
+
+.modal-open #page-content-wrapper {
+  z-index:1000;
 }
 

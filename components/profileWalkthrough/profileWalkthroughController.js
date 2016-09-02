@@ -2,7 +2,7 @@
 
 cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource', '$firebaseArray', '$firebaseObject', '$sce', '$firebaseAuth', '$cookies', '$location', '$route', '$window', '$state',
   function($scope, $routeParams, $resource, $firebaseArray, $firebaseObject, $sce, $firebaseAuth, $cookies, $location, $route, $window, $state) {
-    $scope.main.isWalkthrough = true;
+
     var user_id = $cookies.get("userName");
 
     var userVideosRef = firebase.database().ref().child("users").child(user_id).child("videos");
@@ -408,17 +408,7 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
           var downloadURL = uploadTask.snapshot.downloadURL;
           console.log("Success: " + downloadURL);
           firebase.database().ref('/users/' + user_id + '/profile_picture_url').set(downloadURL);
-          if ($scope.main.isWalkthrough) {
-            modal.style.display = "none";
-            $scope.showLiveWebcam = false;
-            videoStream.getVideoTracks()[0].stop();
-            console.log("Made it to line 415");
-            $(".modal-backdrop").remove();
-
-            $location.path('/myProfileWalkthrough2');
-          } else {
-            $location.path('/myProfile');
-          }
+          $location.path('/myProfile');
         });
 
 

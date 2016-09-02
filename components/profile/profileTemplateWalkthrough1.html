@@ -14,7 +14,32 @@
    });
 </script>
 
-<div class="myProfile-page">
+<script type="text/javascript">
+   $(document).ready(function() {
+      console.log("loaded!!!!!!");
+      console.log($(document).width());
+      console.log($(document).height());
+      var $outer = $('#myProfile-outer'),
+         $overlay = $('<div>', {
+            css: {
+               position: 'absolute',
+               width:  $(document).width(),
+               height: $(document).height(),
+               backgroundColor: 'rgba(255,255,255,0.8)',
+               zIndex: 19,      
+            }
+       }).appendTo( $outer );
+   // $("myProfile-profile-box-parent").zIndex(1000);
+      document.getElementById("box123").style.zIndex = "20";
+      $('#myProfile-set-profile-picture-button').on('click', function() {
+         console.log("trying to hide overlay");
+         $overlay.hide();
+         $overlay.css('z-index', 0);
+      });
+   });
+</script>
+
+<div class="myProfile-page myProfile-Walkthrough1" id="myProfile-outer">
    <div id="alum-modal-view-video" ng-show="userProfiles.modalOpen" >
       <div class="modal fade display-block" tabindex="1">
          <div class="modal-dialog">
@@ -35,11 +60,12 @@
       </div>
    </div>
    <div class="col-md-3">
-      <div class="myProfile-profile-box-parent">
+      <div class="myProfile-profile-box-parent" id="box123">
+         <div class="bounce"><img src="/images/SetProfileArrowUp.png" /></div>
          <img src="{{main.user.profile_picture_url}}" alt="" class="myProfile-Picture ">
          <div class="myProfile-headings">
             <h3 class="meta-heading">{{main.user.firstname}} {{main.user.lastname}}</h3>
-            <h4 class="meta-subheading">{{main.user.college}}</h4>
+            <h4 class="meta-subheading">{{main.user.college}} {{main.hasProfilePhoto}}</h4>
          </div>
          <md-button class="btn btn-default btn-primary" id="myProfile-set-profile-picture-button" data-toggle="modal" data-target="#myModal">Set Profile Picture</md-button>
       </div>
@@ -65,23 +91,10 @@
 
       <div class="row myProfile-tile-row">
          <div class="col-md-3">
-            <div class="thumbnail-box thumbnail-box-inverse">
-               <div class="thumb-content">
-                  <div class="center-vertical">
-                     <div class="center-content">
-                        <h3 class="thumb-heading animated bounceIn" style="color:white; font-weight: bold;">
-                           {{main.user.firstname}}'s Profile Video
-                           <small style="color:white">Meet me!</small>
-                           <i class="glyph-icon tooltip-button demo-icon icon-play-circle" title=".icon-play-circle"></i>
-                        </h3>
-                     </div>
-                  </div>
-               </div>
-               <div class="thumb-overlay bg-black"></div>
-               <div ng-click="userProfiles.generateFrame(main.user)">
-                  <img ng-src="http://img.youtube.com/vi/{{main.user.intro_url}}/0.jpg" alt="" />
-               </div>
-            </div>
+            <div class="thumbnail-box thumbnail-box-inverse myProfile-hover-hand">
+               <div class="thumb-overlay bg-black" id="myProfile-add-video-thumbnail"></div>
+                  <img ng-src="/images/record_new_profile_video_button.png" alt="new prof pic" />
+            </div>        
          </div>
          <div class="col-md-3">
             <div class="tile-box tile-box-alt btn-success myProfile-tile">
@@ -130,7 +143,7 @@
             <a href="#/upload-video">
                <li class="col-lg-3 col-sm-6 col-md-4 mix hover_2" data-cat="3">
                   <div class="thumbnail-box thumbnail-box-inverse">
-                     <div class="thumb-overlay bg-black" id="myProfile-add-video-thumbnail"></div>
+                     <div class="thumb-overlay bg-black"></div>
                         <img ng-src="/images/add_video_button.png" alt="" />
                   </div>
                </li>
@@ -159,7 +172,7 @@
             <a ng-click='clipchamp()'>
                <li class="col-lg-3 col-sm-6 col-md-4 mix profile" data-cat="3">
                   <div class="thumbnail-box thumbnail-box-inverse">
-                     <div class="thumb-overlay bg-black add-video-button" id="myProfile-add-video-thumbnail"></div>
+                     <div class="thumb-overlay bg-black" id="myProfile-add-video-thumbnail"></div>
                         <img ng-src="/images/record_new_profile_video_button.png" alt="new prof pic" />
                   </div>
                </li>
@@ -249,3 +262,4 @@
       </div>
    </div>
 </div>
+

@@ -1,0 +1,46 @@
+.myProfile-gray-overlay {
+    color: red;
+/*    opacity: 0.8;
+*/    z-index:100;
+}
+
+.myProfile-Walkthrough1{
+/*    overflow-y: hidden;
+    overflow-x: hidden;*/
+    overflow: hidden;
+/*    position:fixed;
+*/}
+
+.bounce {
+  position:absolute;
+/*  left:50%;
+/*  bottom:0;
+*/  margin-top: 90px;
+  margin-left: 0px;
+  z-index: 100;
+  -webkit-animation:bounce 1s infinite;
+}
+
+
+#walkthrough-upload-success {
+    z-index:100;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -300px;
+    height: 400px;
+    width: 600px;
+}
+
+#walkthrough-down-arrow {
+    position: absolute;
+    z-index: 100;
+    left: 40px;
+    -webkit-animation:bounce 1s infinite;
+}
+
+.myProfile-Walkthrough2{
+    overflow: auto;
+    height: 100%;
+}
