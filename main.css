@@ -5,6 +5,10 @@ Since CSS uses a global name space for classes we should use class names startin
 cs142-main- here.
 */
 
+#header-nav-right {
+	width:  65%;
+}
+
 .body {
 	background-color: blue;
 }

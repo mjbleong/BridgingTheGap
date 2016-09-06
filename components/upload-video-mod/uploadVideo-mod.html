@@ -1,0 +1,617 @@
+    <!-- FRONTEND ELEMENTS -->
+    <link rel="stylesheet" type="text/css" href="../../assets/frontend-elements/hero-box.css">
+
+    <!-- Frontend theme -->
+    <link rel="stylesheet" type="text/css" href="../../assets/themes/frontend/color-schemes/default.css">
+
+    <!-- Snippets -->
+    <link rel="stylesheet" type="text/css" href="../../assets/snippets/mobile-navigation.css">
+
+    <!-- Frontend responsive -->
+
+    <link rel="stylesheet" type="text/css" href="../../assets/helpers/responsive-elements.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/helpers/frontend-responsive.css">
+
+<!-- js core messes up the other stuff -->
+
+
+    <script type="text/javascript">
+        $(window).load(function(){
+            setTimeout(function() {
+                $('#loading').fadeOut( 400, "linear" );
+            }, 300);
+        });
+    </script>
+
+
+    <!-- scrolling animation -->
+    <script>
+        $(function() {
+            $('a[href*="#"]:not([href="#"])').click(function() {
+                if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                    if (target.length) {
+                        $('html, body').animate({
+                        scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+
+    
+
+<!-- WOW -->
+<script type="text/javascript" src="../../assets/widgets/wow/wow.js"></script>
+<!-- incoming animations -->
+
+<!-- Bootstrap Tooltip -->
+
+<script type="text/javascript" src="../../assets/widgets/tooltip/tooltip.js"></script> 
+<!-- needed for tags -->
+
+
+
+<script type="text/javascript" src="../../assets/themes/frontend/layout.js"></script>
+
+
+
+
+
+<link rel='stylesheet' type='text/css' href='components/upload-video-mod/uploadVideo-mod.css'>
+
+<link rel="stylesheet" type="text/css" href="checkbox-css/demo.css" />
+<link rel="stylesheet" type="text/css" href="checkbox-css/component.css" />
+<script src="js/modernizr.custom.js"></script>
+
+
+
+
+
+<div class="hero-box blurred-img-3 fixed-bg font-inverse">
+    <div class="upload-mainBanner container">
+        <h1 class="upload-fontForBeginning hero-heading wow fadeInDown" data-wow-duration="0.6s">Add your first video to your profile</h1>
+        <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s"> and share your story!</p>
+        <a href="#uv-step0" class="btn title-button hero-btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Begin">Begin</a>
+    </div>
+</div>
+
+
+    <a name='uv-step0'></a>
+
+
+    <div id='upload-fe-our-mission-banner' class="upload-our-mission-banner hero-box bg-white font-inverse">
+        <div class="container">
+
+
+          <div class="upload-steps2">
+              <span><h1 style="padding:0" class="hero-heading wow fadeInDown" data-wow-duration="0.6s">What were you curious about when you were in high school?</h1></span>
+          </div>
+          </br>
+
+          <span class="upload-outerQuestionBox">
+
+              <div class="timeline-box timeline-box-right">
+                  <div class="tl-row">
+                      <div class="tl-item">
+                          
+                          <div class="popover left">
+                              <div class="arrow"></div>
+                              <div class="upload-textQuestionBox popover-content">
+<!--                                   <div class="tl-label bs-label label-success">Ideas</div> -->
+                                  <p class="tl-content">How was meeting your roommate?</p>
+                                  <p class="tl-content">What was orientation like?</p>
+                                  <p class="tl-content">How did you choose your classes?</p>
+                                  <p class="tl-content">Where have you found a community?</p>
+                                  <p class="tl-content">What is your daily schedule like?</p>
+                                  <p class="tl-content">Did you know anyone who was going to your school before you went? Did you talk to them? </p>
+                                  <p class="tl-content">How do you pay for college?</p>
+                                  <p class="tl-content">Do you work?</p>
+                                  <p class="tl-content">Were you able to get any financial aid?</p>                                  
+                              </div>
+                          </div>
+                      </div>
+                  </div>                        
+              </div>                                   
+              <div style="display: flex; align-items: center;">
+                <a style="color: #fed136; font-weight:bold;" ng-click='upload.showSuggestions()' class="upload-suggest-button btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Next">What should i talk about?</a> 
+              </div> 
+
+
+<!--           </span> -->
+
+          <!-- <span class="upload-outerQuestionBox2"> -->
+            <div style="display: flex; align-items: center;">
+              <a style="color: #fed136; font-weight:bold;" ng-click='upload.showSomeVideos()' class="upload-suggest-button-right btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Next">Can I see some samples?</a> 
+            </div> 
+            <div class="timeline-box timeline-box-left">
+                <div class="tl-row">
+                    <div class="tl-item float-right">
+                        
+                        <div class="popover right">
+                            <div class="arrow"></div>
+                            <div class="popover-content">
+<!--                                 <div class="tl-label bs-label label-success">Examples</div> -->
+                                <div class="tl-content">
+                                  <iframe src="//www.youtube.com/embed/z3OeqGCCFwU?autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="230px" height="145px" allowfullscreen></iframe>
+                                  <iframe src="//www.youtube.com/embed/z3OeqGCCFwU?autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="230px" height="145px" allowfullscreen></iframe>
+                                </div>
+<!--                                 <p class="tl-content">Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.</p>
+ -->                            </div>
+                        </div>
+                    </div>
+                </div>                        
+            </div>                   
+
+        </span>
+
+
+
+                              
+
+
+
+
+
+<!--             <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s">Click the links if you need inspiration!</p>
+ -->            
+
+        </br>
+
+          <div>
+<!--             <iframe src="//www.youtube.com/embed/z3OeqGCCFwU?autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="550px" height="300px" allowfullscreen></iframe> -->
+          </div>
+
+          <a style="clear: both;" href="#uv-step1" class="btn title-button hero-btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Begin">I'm ready to start</a>
+
+      </div>
+    </div>
+
+
+    <!-- anchor point!! -->
+    <a name='uv-step1'></a>
+
+
+    <div id='upload-fe-our-mission-banner' class="hero-box bg-black font-inverse">
+        <div class="container">
+
+
+            <div class="upload-steps">
+              <span><h1 style="padding:0" class="hero-heading wow fadeInDown" data-wow-duration="0.6s">step 1: record your video</h1></span>
+           </div>
+            <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s"> Don't forget to enable your webcam on your device! </p>
+            </br>
+
+            <div class="upload-content-box-wrapper content-box-wrapper">
+
+
+              <div id='upload-clipchamp' ng-click='clipchamp()' ng-show='!upload.videoRecorded'>
+                  <a class="btn title-button hero-btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Upload Button">Click to upload <!-- <img class='upload-add-vid-button' src='images/record_video_button.png' alt='add video button'/> --></a>
+              </div>
+              </br>
+
+              <div class='upload-success-message' ng-show='upload.videoRecorded'>
+                <span><p style="color: #61B329; font-weight: bold;" class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s"> Your video is making it's way to your profile. Just a few more things. </p></span>
+                <a href="#uv-step2" class="btn title-button hero-btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Purchase Button">Click here to continue</a>
+              </div>
+            </br>
+          </br>
+
+            </div>
+
+            </br>
+
+
+        </div>
+        <div class="hero-overlay bg-black opacity-30"></div>
+    </div>
+
+<div id="upload-titleAndDesc-cover">
+
+    <!-- anchor point!! -->
+    <a name='uv-step2'></a>
+
+      <div class="row">
+      <div style="background-color:#3d4444" class="upload-our-mission-banner hero-box bg-white font-inverse">
+        <div class="container">
+            <div class="upload-steps2">
+              <span><h1 style="padding:0" class="hero-heading wow fadeInDown" data-wow-duration="0.6s">step 2: make a title</h1></span>
+            </div>
+            </br>
+
+            <div id='video-title-desc'>
+
+                <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s"> Think of a title that... </p>
+
+
+                <div class="upload-input-body">
+                <section class="upload-input-content">
+                  <span class="upload-input-input input--isao">
+                    <input class="upload-toGray input__field input__field--isao" type="text" id="input-38" ng-model='upload.title' size='55' name="video_title" maxlength='70'/>
+                    <label class="input__label input__label--isao" for="input-38" data-content="Video Title">
+                      <span class="input__label-content input__label-content--isao">What would you like to title your video?</span>
+                    </label>
+                  </span>
+                </section>
+                </div>
+
+              <a href="#uv-step3" class="upload-next-button btn title-button hero-btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Purchase Button">Next</a>   
+              </br>       
+
+            </div>
+        </div>
+      </div>
+      </div>
+
+
+    <a name='uv-step3'></a>
+
+        <div class="row">
+        <div class="hero-box bg-black font-inverse">
+            <div class="container">
+                <div class="upload-steps">
+                  <span><h1 style="padding:0" class="hero-heading wow fadeInDown" data-wow-duration="0.6s">step 3: create a short description</h1></span>
+                </div>
+                </br>
+
+                <div id='video-title-desc'>
+                    <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s"> What is your video about? </p>
+                    </br>
+
+                    <div class="upload-input-body">
+                    <section class="upload-input-content bg-black">
+                      <span class="bg-black upload-input-input input--isao">
+                        <input class="upload-toGray input__field input__field--isao" type="text" id="input-39" ng-model='upload.description' size='55' name="video_description" maxlength='140'/>
+                        <label class="input__label input__label--isao" for="input-38" data-content="Description">
+                          <span class="input__label-content input__label-content--isao">Enter decription here</span>
+                        </label>
+                      </span>
+                    </section>
+                    </div>
+
+
+                     <a href="#uv-step4" ng-click='upload.setUnclickable("upload-titleAndDesc-cover")' class="upload-next-button btn title-button hero-btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Next">Next</a>  
+          
+
+                </div>
+            </div>
+        </div>
+        </div>
+
+</div>
+
+<div id="upload-tagsCover">
+
+  <a name='uv-step4'></a>
+
+        <div class="row" id="upload-tags">
+        <div class="upload-our-mission-banner hero-box bg-white font-inverse">
+            <div class="container">
+                <div class="upload-steps2">
+                  <span><h1 style="padding:0" class="hero-heading wow fadeInDown" data-wow-duration="0.6s">step 4: Add tags</h1></span>
+                </div>
+
+
+              <div id='upload-tagging'>
+                  <div style="display: flex; justify-content: center;">
+                            <div id='upload-show-tags'>
+                              Your tags will appear here
+
+                              <div class='upload-indi-cat'  ng-repeat='(category, value) in checkboxModel'>
+                                <div class='upload-indi-tags' ng-repeat='(tag, value) in checkboxModel[category].tags'>
+                                    <button ng-style='upload.tagStyle[category]' class="btn ra-100 btn-success" ng-show='checkboxModel[category].tags[tag].checked' ng-click='upload.removeTag(category,tag)'> {{checkboxModel[category].tags[tag].name}} -x- </button>
+                                </div>
+                              </div>
+
+                            </div>
+
+                      </div>
+          
+                  <div id='upload-tagging-sect'>
+
+
+
+                    <div ng-repeat='(category, value) in checkboxModel'>
+
+                      <div class='upload-tag-sect' ng-style='upload.tagStyle[category]' id='upload-tag-sect-{{category}}'>
+
+                        <div class='upload-category-name'>
+                          <strong>{{checkboxModel[category].name}}</strong>
+                        </div>
+
+                        <div class="checkboxDiv upload-tags-list">
+                            <form class="ac-custom ac-checkbox ac-cross" autocomplete="off" name="myForm">
+                             <ul>
+                                  <div ng-repeat='(tag, value) in checkboxModel[category].tags'> 
+                                    <!-- take this div above away for checks to appear -->
+                                  <li>
+                                    <input class="upload-toGray" type="checkbox" ng-model="checkboxModel[category].tags[tag].checked">
+                                    <label class='upload-toGray upload-checkbox'>{{checkboxModel[category].tags[tag].name}}</label>
+                                  </li>
+                                  </div>
+                              </ul>
+                          </form>
+                        </div>
+
+                        <script src="js/svgcheckbx.js"></script>
+
+                      </div>
+                    </div>
+
+                  </div>
+                    <a href="#uv-motivation" ng-click='upload.postVideo("upload-tagsCover")' title='' class="upload-next-button btn title-button hero-btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Finish and upload">Submit Video</a>
+
+              </div>
+            </div>
+        </div>
+      </div>
+
+
+</div>
+
+
+<a name='uv-motivation'></a>
+
+        <div class="row">
+
+<!--             <div ng-show='upload.tagsSet'> -->
+
+              <div class="hero-box bg-black font-inverse">
+                  <div class="container">
+                      <div class="upload-steps">
+                        <span><h1 style="padding:0" class="hero-heading wow fadeInDown" data-wow-duration="0.6s">Now that you have uploaded one video...</h1></span>
+                      </div>
+                      <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s">we would like to show you a more personal video about making the transition from high school to college.</p>
+
+                      <div>
+                        <iframe src="//www.youtube.com/embed/pykIHTeLwxE?autohide=2d&amp;showinfo=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" width="550px" height="300px" allowfullscreen></iframe>
+                      </div>
+                      
+
+                      <a href="#uv-step0-2" ng-click='upload.tagsSet = false' class="upload-next-button btn title-button hero-btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Next">Record yours</a>  
+          
+
+                  </div>
+              </div>
+<!--             </div> -->
+          </div>
+      
+</div>
+
+
+<a name='uv-step0-2'></a>
+
+      <div class="row">
+      <div style="background-color:#3d4444" class="upload-our-mission-banner hero-box bg-white font-inverse">
+        <div class="container">
+            <div class="upload-steps2">
+              <span><h1 style="padding:0" class="hero-heading wow fadeInDown" data-wow-duration="0.6s">think deeper</h1></span>
+            </div>
+            </br>
+
+            <div id='video-title-desc'>
+
+                <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s">What are challenges you faced?</p>
+                <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s">What was it like to leave your family?</p>
+                <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s">Have you met people from very different backgrounds than you?</p>
+</br>
+              <a href="#uv-step1-2" class="upload-next-button btn title-button hero-btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Purchase Button">Begin</a>   
+              </br>       
+
+            </div>
+        </div>
+      </div>
+      </div>
+
+
+<a name='uv-step1-2'></a>
+
+    <div id='upload-fe-our-mission-banner' class="hero-box bg-black font-inverse">
+        <div class="container">
+            <div class="upload-steps">
+              <span><h1 style="padding:0" class="hero-heading wow fadeInDown" data-wow-duration="0.6s">step 1: record your video</h1></span>
+           </div>
+            <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s"> This video gives you the opportunity to talk about someting very personal - maybe a challenge, maybe something unexpected. </p>
+            </br>
+
+            <div class="upload-content-box-wrapper content-box-wrapper">
+
+
+              <div id='upload-clipchamp' ng-click='clipchamp()' ng-show='!upload.videoRecorded'>
+              </br>
+                  <a class="btn title-button hero-btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Upload Button">Click to upload</a>
+              </div>
+              </br>
+
+              <div class='upload-success-message' ng-show='upload.videoRecorded'>
+                <span><p style="color: #61B329; font-weight: bold;" class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s"> Your video is making it's way to your profile. Just a few more things. </p></span>
+                <a href="#uv-step2-2" class="btn title-button hero-btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Purchase Button">Click here to continue</a>
+              </div>
+          </br>
+          </br>
+
+            </div>
+
+            </br>
+
+
+        </div>
+        <div class="hero-overlay bg-black opacity-30"></div>
+    </div>
+
+
+<div id="upload-titleAndDesc-cover">
+
+    <!-- anchor point!! -->
+    <a name='uv-step2-2'></a>
+
+      <div class="row">
+      <div style="background-color:#3d4444" class="upload-our-mission-banner hero-box bg-white font-inverse">
+        <div class="container">
+            <div class="upload-steps2">
+              <span><h1 style="padding:0" class="hero-heading wow fadeInDown" data-wow-duration="0.6s">step 2: make a title</h1></span>
+            </div>
+            </br>
+
+<!--             <div id='video-title-desc' ng-show='!upload.title_desc_set && upload.videoRecorded'> -->
+
+                <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s"> Think of a title that... </p>
+
+
+                <div class="upload-input-body">
+                <section class="upload-input-content">
+                  <span class="upload-input-input input--isao">
+                    <input class="upload-toGray input__field input__field--isao" type="text" id="input-38" ng-model='upload.title' size='55' name="video_title" maxlength='70'/>
+                    <label class="input__label input__label--isao" for="input-38" data-content="Video Title">
+                      <span class="input__label-content input__label-content--isao">What would you like to title your video?</span>
+                    </label>
+                  </span>
+                </section>
+                </div>
+
+              <a href="#uv-step3-2" class="upload-next-button btn title-button hero-btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Purchase Button">Next</a>   
+              </br>       
+
+            </div>
+        </div>
+      </div>
+      </div>
+
+
+    <a name='uv-step3-2'></a>
+
+        <div class="row">
+        <div class="hero-box bg-black font-inverse">
+            <div class="container">
+                <div class="upload-steps">
+                  <span><h1 style="padding:0" class="hero-heading wow fadeInDown" data-wow-duration="0.6s">step 3: create a short description</h1></span>
+                </div>
+                </br>
+
+                <div id='video-title-desc'>
+                    <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s"> What is your video about? </p>
+                    </br>
+
+                    <div class="upload-input-body">
+                    <section class="upload-input-content bg-black">
+                      <span class="bg-black upload-input-input input--isao">
+                        <input class="upload-toGray input__field input__field--isao" type="text" id="input-39" ng-model='upload.description' size='55' name="video_description" maxlength='140'/>
+                        <label class="input__label input__label--isao" for="input-38" data-content="Description">
+                          <span class="input__label-content input__label-content--isao">Enter decription here</span>
+                        </label>
+                      </span>
+                    </section>
+                    </div>
+
+
+                     <a href="#uv-step4-2" ng-click='upload.setUnclickable("upload-titleAndDesc-cover2")' class="upload-next-button btn title-button hero-btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Next">Next</a>  
+          
+
+                </div>
+            </div>
+        </div>
+        </div>
+
+</div>
+
+<div id="upload-tagsCover2">
+
+  <a name='uv-step4-2'></a>
+
+        <div class="row" id="upload-tags">
+        <div class="upload-our-mission-banner hero-box bg-white font-inverse">
+            <div class="container">
+                <div class="upload-steps2">
+                  <span><h1 style="padding:0" class="hero-heading wow fadeInDown" data-wow-duration="0.6s">step 4: Add tags</h1></span>
+                </div>
+
+
+              <div id='upload-tagging'>
+                  <div style="display: flex; justify-content: center;">
+                            <div id='upload-show-tags'>
+                              Your tags will appear here
+
+                              <div class='upload-indi-cat'  ng-repeat='(category, value) in checkboxModel'>
+                                <div class='upload-indi-tags' ng-repeat='(tag, value) in checkboxModel[category].tags'>
+                                    <button ng-style='upload.tagStyle[category]' class="btn ra-100 btn-success" ng-show='checkboxModel[category].tags[tag].checked' ng-click='upload.removeTag(category,tag)'> {{checkboxModel[category].tags[tag].name}} </button>
+                                </div>
+                              </div>
+
+                            </div>
+
+                      </div>
+          
+                  <div id='upload-tagging-sect'>
+
+
+
+                    <div ng-repeat='(category, value) in checkboxModel'>
+
+                      <div class='upload-tag-sect' ng-style='upload.tagStyle[category]' id='upload-tag-sect-{{category}}'>
+
+                        <div class='upload-category-name'>
+                          <strong>{{checkboxModel[category].name}}</strong>
+                        </div>
+
+                        <div class="checkboxDiv upload-tags-list">
+                            <form class="ac-custom ac-checkbox ac-cross" autocomplete="off" name="myForm">
+                             <ul>
+                                  <div ng-repeat='(tag, value) in checkboxModel[category].tags'> 
+                                    <!-- take this div above away for checks to appear -->
+                                  <li>
+                                    <input class="upload-toGray" id="cb1" name="cb1" type="checkbox" ng-model="checkboxModel[category].tags[tag].checked">
+                                    <label class='upload-toGray upload-checkbox' for="cb1">{{checkboxModel[category].tags[tag].name}}</label>
+                                  </li>
+                                  </div>
+                              </ul>
+                          </form>
+                        </div>
+
+                        <script src="js/svgcheckbx.js"></script>
+
+                      </div>
+                    </div>
+
+                  </div>
+                    <a href="#uv-thankyou" ng-click='upload.postVideo("upload-tagsCover2")' title='' class="upload-next-button btn title-button hero-btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Finish and upload">Submit Video</a>
+
+              </div>
+            </div>
+        </div>
+      </div>
+
+
+</div>
+<a name='uv-thankyou'></a>
+
+        <div class="row">
+
+<!--             <div ng-show='upload.videoTwoPosted'> -->
+
+              <div class="hero-box bg-black font-inverse">
+                  <div class="container">
+                      <div class="upload-steps">
+                        <span><h1 style="padding:0" class="hero-heading wow fadeInDown" data-wow-duration="0.6s">upload complete!</h1></span>
+                      </div>
+                      </br>
+                      <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s"> {{fname}}, thanks so much for sharing your story... </p>
+                      <p class="hero-text wow bounceInUp" data-wow-duration="0.9s" data-wow-delay="0.2s"> would you like to see what your other classmates have been working on? </p>
+
+
+                      <a ui-sref="group-faces" class="upload-next-button btn title-button hero-btn btn-outline-inverse wow fadeInUp" data-wow-delay="0.4s" title="Next">Yes! continue</a>  
+
+                  </div>
+              </div>
+<!--             </div> -->
+          </div>
+      
+</div>
+    
+
+
+    
+
+

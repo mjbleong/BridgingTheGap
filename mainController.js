@@ -32,6 +32,11 @@ cs142App.config(
           templateUrl: 'components/upload-video/uploadVideo.html',
           controller: 'UploadVideoController'
         })
+        .state('upload-mod', {
+          url: "/upload-video-mod",
+          templateUrl: 'components/upload-video-mod/uploadVideo-mod.html',
+          controller: 'UploadVideoController-mod'
+        })
         .state('alum', {
           url: "/alum",
           templateUrl: 'components/allAlum/allAlumTemplate.html',

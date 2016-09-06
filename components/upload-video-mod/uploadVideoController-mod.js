@@ -1,16 +1,15 @@
 'use strict';
 
-cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resource', '$http', '$rootScope','$location','$firebaseAuth', '$cookies','$route', '$state',
+cs142App.controller('UploadVideoController-mod', ['$scope', '$routeParams', '$resource', '$http', '$rootScope','$location','$firebaseAuth', '$cookies','$route', '$state',
   function ($scope, $routeParams, $resource, $http, $rootScope, $location, $firebaseAuth, $cookies, $route, $state) {
     
     $scope.upload = {};
 
-    console.log('hi');
-
     $scope.upload.videoRecorded = false;
-    $scope.upload.title_desc_set = false;
-    $scope.upload.tagsSet = false;
-    $scope.upload.modalOpen = false;
+    // $scope.upload.title_desc_set = false;
+    // $scope.upload.tagsSet = false;
+    // $scope.upload.modalOpen = false;
+    $scope.upload.videoTwoPosted = false;
 
     $scope.upload.videoId = "";
     $scope.upload.videoUrl = "";
@@ -43,12 +42,30 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
       }
     });
 
+    $scope.upload.setUnclickable = function(thingToGray) {
+      var elementToGray = document.getElementById(thingToGray);
+      console.log("in this thing")
+      console.log(elementToGray);
+      elementToGray.style.backgroundColor = "#D3D3D3";
+      elementToGray.style.zIndex = "500";
+      elementToGray.style.opacity = "0.5";
+      var elemsTwo = elementToGray.getElementsByClassName("upload-toGray");
+      console.log(elemsTwo);
+      for (var i = 0; i < elemsTwo.length; i++) {
+        elemsTwo[i].disabled = true;
+      }
+
+    }
+
     $scope.upload.removeTag = function(cat,tag) {
       $scope.checkboxModel[cat].tags[tag].checked = false;
     }
 
-    $scope.upload.postVideo = function() {
-      $scope.upload.modalOpen = true;
+    $scope.upload.postVideo = function(passIn) {
+      $scope.upload.setUnclickable(passIn);
+      console.log("video posting...");
+      // $scope.upload.tagsSet = true;
+      // $scope.upload.modalOpen = true;
       for (var category in $scope.checkboxModel) {
         for (var tag in $scope.checkboxModel[category].tags) {
           if ($scope.checkboxModel[category].tags[tag].checked == true) {
@@ -58,7 +75,9 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
         }
       }
       firebase.database().ref('videos/' + $scope.upload.videoId + '/title').set($scope.upload.title);
+      console.log($scope.upload.title);
       firebase.database().ref('videos/' + $scope.upload.videoId + '/description').set($scope.upload.description);
+      console.log($scope.upload.description);
       firebase.database().ref('videos/' + $scope.upload.videoId + '/timestamp').set(Date.now()); 
 
       firebase.database().ref("users/" + $cookies.get("userName") + "/groups").once('value').then(function(snapshot) {
@@ -68,6 +87,12 @@ cs142App.controller('UploadVideoController', ['$scope', '$routeParams', '$resour
           firebase.database().ref('groups/' + group + '/videos/videoUrl/' + $scope.upload.videoUrl).set('');
         }
       });
+      $scope.upload.videoRecorded = false;
+      // $scope.upload.title_desc_set = false;
+      $scope.upload.title = "";
+      $scope.upload.description = "";
+      $scope.upload.videoId = "";
+      $scope.upload.videoUrl = "";
     }
 
     // need to get name out here... scoping problem when inside clipchamp
