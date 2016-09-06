@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <title> Storybridge </title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel='stylesheet' type='text/css' href='main.css'>
+
+    <link rel="icon" href="images/sb_icon.png">
+
+        <!-- HELPERS -->
+
+    <link rel="stylesheet" type="text/css" href="../../assets/helpers/animate.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/helpers/backgrounds.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/helpers/boilerplate.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../../assets/helpers/border-radius.css"> //didn't change the site--> 
+    <link rel="stylesheet" type="text/css" href="../../assets/helpers/grid.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/helpers/page-transitions.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/helpers/spacing.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/helpers/typography.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/helpers/utils.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/helpers/colors.css">
+
+    <!-- ELEMENTS -->
+
+    <link rel="stylesheet" type="text/css" href="../../assets/elements/buttons.css">
+
+    <!-- FRONTEND ELEMENTS -->
+
+    <link rel="stylesheet" type="text/css" href="../../assets/frontend-elements/footer.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/frontend-elements/hero-box.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/frontend-elements/icon-box.css"> <!-- affects the our team section -->
+
+    <!-- Frontend theme -->
+
+    <link rel="stylesheet" type="text/css" href="../../assets/themes/frontend/layout.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/themes/frontend/color-schemes/default.css">
+
+    <!-- Components theme -->
+
+    <link rel="stylesheet" type="text/css" href="../../assets/themes/components/default.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/themes/components/border-radius.css">
+
+    <!-- Snippets -->
+    <link rel="stylesheet" type="text/css" href="../../assets/snippets/mobile-navigation.css">
+
+    <!-- Frontend responsive -->
+
+    <link rel="stylesheet" type="text/css" href="../../assets/helpers/responsive-elements.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/helpers/frontend-responsive.css">
+
+    <!-- JS Core -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../../assets/js-core/noframework.waypoints.min.js"></script>
+    <script src="../../assets/js-core/jquery.sticky.js"></script>
+
+
+    <script type="text/javascript">
+        $(window).load(function(){
+            setTimeout(function() {
+                $('#loading').fadeOut( 400, "linear" );
+            }, 300);
+        });
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
+    
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+
+    <script>
+
+        $(window).load(function(){
+          $("#banner-1-sticker").sticky({ topSpacing: 200, center:true, className: "butt" });
+        });
+
+        $(window).load(function(){
+            $("#banner-2-sticker").sticky({topSpacing: 330, center: true, className: "butt2"});
+        });
+
+    </script>
+
+
+
+
+</head>
+
+<body class='intro-full-page'>
+
+    <div id='intro-first-banner' class="hero-box fixed-bg font-inverse">
+
+        <div id='banner-1-sticker'>
+
+            <h2 class="hero-heading wow fadeInDown" data-wow-duration="0.6s">Welcome</h2>
+            <h2 class="hero-heading wow fadeInDown" data-wow-duration="0.6s">to</h2>
+            <img src='images/storybridge_v1.png'/>
+
+        </div>
+
+
+    </div>
+
+    <div id='intro-second-banner' class="hero-box font-inverse">
+
+        <section id="intro-text-section-2">
+
+                <h2> As a college student, you have experiences and knowledge that can help youth from your area and from your high school. Share that experience, because ...<h2>
+
+                <div id='banner-2-sticker'>
+
+                    <h2 id='banner-2-sticker-text_1' class="hero-heading wow fadeInDown" data-wow-duration="0.6s">Your story is inspiring</h2>
+                    <h2 style='display: none;' id='banner-2-sticker-text_2' class='hero-heading wow fadeInDown' data-wow-duration='0.6s'>Your story is unique</h2>
+                    <h2 style='display: none;' id='banner-2-sticker-text_3' class='hero-heading wow fadeInDown' data-wow-duration='0.6s'>Your story is something powerful</h2>
+
+                </div>
+
+                <h2 id='intro-final-text' style='display: none;' id='banner-2-sticker-text_4' class='hero-heading'>Your story is something powerful</h2>
+
+                <div class='intro-text-checkpoint'><a id='checkpoint_1'></a></div>
+                <div class='intro-text-checkpoint'><a id='checkpoint_2'></a></div>
+                <div class='intro-text-checkpoint'><a id='checkpoint_3'></a></div>
+                <div class='intro-text-checkpoint'><a id='checkpoint_4'></a></div>
+
+
+        </section>
+
+    </div>
+
+    <script>
+        var checkpoint_1 = new Waypoint({
+          element: document.getElementById('checkpoint_1'),
+          handler: function(direction) {
+            if (direction == 'down') {
+                var prevText = document.getElementById('banner-2-sticker-text_1');
+                prevText.style.display = 'none';
+                console.log(prevText);
+                console.log(prevText.style.visibility);
+
+                var nextText = document.getElementById('banner-2-sticker-text_2');
+                nextText.style.display = 'initial';
+            }
+          }
+        });
+
+        var checkpoint_2 = new Waypoint({
+            element: document.getElementById('checkpoint_2'),
+            handler: function(direction) {
+                if (direction == 'down') {
+                    var prevText = document.getElementById('banner-2-sticker-text_2');
+                    prevText.style.display = 'none';
+
+                    var nextText = document.getElementById('banner-2-sticker-text_3');
+                    nextText.style.display = 'initial';
+                }
+            }
+        });
+
+        // var checkpoint_3 = new Waypoint({
+        //     element: document.getElementById('checkpoint_3'),
+        //     handler: function(direction) {
+        //         if (direction == 'down') {
+        //             var prevText = document.getElementById('banner-2-sticker-text_3');
+        //             prevText.style.display = 'none';
+
+        //             var nextText = document.getElementById('intro-final-text');
+        //             nextText.style.display = 'block';
+        //         }
+        //     }
+        // })
+    </script>
+
+    <div id='intro-third-banner' class="hero-box full-bg-9 font-inverse" data-top-bottom="background-position: 50% 0px;" data-bottom-top="background-position: 50% -600px;">
+        <div id='intro-third-container' class="container">
+            <h2 class="hero-heading wow fadeInDown" data-wow-duration="0.6s">Join a community of alumni from your high school, college, and area that are passionate about giving back to their community.</h2>
+        </div>
+
+    </div>
+
+    <div id='intro-fourth-banner' class="hero-box blurred-bg-16 hero-box-smaller">
+        <div id='intro-fourth-container' class="container">
+            fkd
+        </div>
+    </div>
+
+
+<!-- FRONTEND ELEMENTS -->
+
+<!-- Skrollr -->
+
+<script type="text/javascript" src="../../assets/widgets/skrollr/skrollr.js"></script>
+
+<!-- HG sticky -->
+
+<script type="text/javascript" src="../../assets/widgets/sticky/sticky.js"></script>
+
+<!-- WOW -->
+
+<script type="text/javascript" src="../../assets/widgets/wow/wow.js"></script>
+
+<!-- WIDGETS -->
+
+<!-- Bootstrap Dropdown -->
+
+<script type="text/javascript" src="../../assets/widgets/dropdown/dropdown.js"></script>
+
+<!-- Bootstrap Tooltip -->
+
+<script type="text/javascript" src="../../assets/widgets/tooltip/tooltip.js"></script>
+
+<!-- Bootstrap Popover -->
+
+<script type="text/javascript" src="../../assets/widgets/popover/popover.js"></script>
+
+<!-- Bootstrap Buttons -->
+
+<script type="text/javascript" src="../../assets/widgets/button/button.js"></script>
+
+<!-- Bootstrap Collapse -->
+
+<script type="text/javascript" src="../../assets/widgets/collapse/collapse.js"></script>
+
+<!-- Input switch alternate -->
+
+<script type="text/javascript" src="../../assets/widgets/input-switch/inputswitch-alt.js"></script>
+
+<!-- Content box -->
+
+<script type="text/javascript" src="../../assets/widgets/content-box/contentbox.js"></script>
+
+<!-- Overlay -->
+
+<script type="text/javascript" src="../../assets/widgets/overlay/overlay.js"></script>
+
+
+<script type="text/javascript" src="../../assets/themes/frontend/layout.js"></script>
+
+</body>
+</html>

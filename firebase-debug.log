@@ -2,25 +2,12 @@
 [debug] Command:      /usr/local/bin/node /usr/local/bin/firebase serve
 [debug] CLI Version:  3.0.4
 [debug] Platform:     darwin
-[debug] Node Version: v4.4.2
-[debug] Time:         Tue Aug 16 2016 16:16:45 GMT-0700 (PDT)
+[debug] Node Version: v6.2.2
+[debug] Time:         Thu Sep 01 2016 14:50:50 GMT-0700 (PDT)
 [debug] ----------------------------------------------------------------------
 [debug] 
 [info] Starting Firebase development server...
 [info] 
-[warn] ⚠  No Firebase project directory detected. Serving static content from /Users/Marcie/Desktop/github/BridgingTheGap
-[info] 
-[info] Server listening at: http://localhost:5000
-[debug] ----------------------------------------------------------------------
-[debug] Command:      /usr/local/bin/node /usr/local/bin/firebase serve
-[debug] CLI Version:  3.0.4
-[debug] Platform:     darwin
-[debug] Node Version: v4.4.2
-[debug] Time:         Sun Aug 21 2016 14:16:30 GMT-0700 (PDT)
-[debug] ----------------------------------------------------------------------
-[debug] 
-[info] Starting Firebase development server...
-[info] 
-[warn] ⚠  No Firebase project directory detected. Serving static content from /Users/Marcie/Desktop/github/BridgingTheGap
+[warn] ⚠  No Firebase project directory detected. Serving static content from /Users/morhm/BridgingTheGap
 [info] 
 [info] Server listening at: http://localhost:5000
