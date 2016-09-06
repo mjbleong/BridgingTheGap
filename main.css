@@ -176,20 +176,6 @@ html, body,
 	padding-bottom: 140px;
 }
 
-.fe-footer {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	height: 350px;
-	background-color: gray;
-	opacity: 70%;
-}
-
-.fe-footer img {
-	margin-right: 50px;
-}
-
 
 #fe-support-us {
 	height: 500px;
@@ -205,21 +191,12 @@ html, body,
 
 .fe-about-us-banner {
 	background-color: #498DA3;
+	padding-top: 60px;
+	padding-bottom: 60px;
 }
 
 .fe-about-us-banner .hero-heading {
 	margin-bottom: 40px;
-}
-
-.fe-about-us-profile {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-.fe-about-us-profile .icon-content {
-	width: 400px;
 }
 
 #fe-nav-stuff {
@@ -252,6 +229,11 @@ html, body,
 	font: m 16px sans-serif;
 
 	padding: 55px 50px;
+}
+
+.footer-distributed a {
+	color: #0060B6;
+	text-decoration: none;
 }
 
 .footer-distributed .footer-left,
@@ -340,8 +322,8 @@ html, body,
 }
 
 .footer-distributed .footer-center p a{
-	color:  #5383d3;
-	text-decoration: none;;
+	color: #ffffff;
+	text-decoration: none;
 }
 
 
