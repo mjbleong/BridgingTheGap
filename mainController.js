@@ -47,6 +47,11 @@ cs142App.config(
           templateUrl: 'components/groups/groupsTemplate.html',
           controller: 'GroupsController'
         })
+        .state('intro', {
+          url: "/intro",
+          templateUrl: 'alum_intro.html',
+          controller: 'MainController'
+        })
         // .state('alum.list', {
         //   url: "/list",
         //   templateUrl: "components/allAlum/profile-view.html"

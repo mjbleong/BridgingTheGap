@@ -1,0 +1,63 @@
+#intro-first-banner {
+	background-color: #454d56;
+
+	text-align: center;
+
+	height: 680px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	z-index: 2;
+}
+
+#banner-1-sticker {
+	margin-top: 25px;
+}
+
+#intro-first-banner img {
+	width: 30vw;
+	min-width: 280px;
+}
+
+#intro-second-banner {
+	background-color: #DC3739;
+	background-image: url('images/long_panel.png');
+
+	text-align: center;
+
+	z-index: 3;
+}
+
+#intro-text-section-2 {
+	padding-top: 100px;
+}
+
+#banner-2-sticker {
+	padding-top: 40px;
+}
+
+.intro-text-checkpoint {
+	height: 350px;
+}
+
+#intro-third-banner {
+	height: 700px;
+
+	z-index: 4;
+}
+
+#intro-third-container {
+	background-color: black;
+
+	padding-top: 30px;
+	padding-bottom: 30px;
+
+	margin-top: 100px;
+}
+
+#intro-third-container h2 {
+	font-size: 33px;
+}
