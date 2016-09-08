@@ -33,6 +33,17 @@
     width: 600px;
 }
 
+#walkthrough-description-success {
+    z-index:100;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -300px;
+    height: 400px;
+    width: 600px;
+}
+
 #walkthrough-down-arrow {
     position: absolute;
     z-index: 100;

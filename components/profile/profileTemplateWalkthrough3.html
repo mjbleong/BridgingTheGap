@@ -28,6 +28,7 @@
        }).appendTo( $outer );
       document.getElementById("box123").style.zIndex = "20";
       document.getElementById("myProfile-profile-description-box").style.zIndex = "20";
+      document.getElementById("myProfile-add-video-thumbnail-parent").style.zIndex = "20";
       $('#myProfile-set-profile-picture-button').on('click', function() {
          console.log("trying to hide overlay");
          $overlay.hide();
@@ -36,21 +37,21 @@
 
       $('.myProfile-Walkthrough2').css('min-height', $(window).height());
       // $("#walkthrough-upload-success").css({top: $(window).height()/2, left: $(window).width/2);
-      $("#walkthrough-upload-success").fadeOut( 5000, function() {
+      $("#walkthrough-description-success").fadeOut( 5000, function() {
           // Animation complete.
       });
 
    });
 </script>
-
-<div id="walkthrough-upload-success">
+BLAHBLAHBLAH
+<div id="walkthrough-description-success">
    <div class="alert alert-success">
       <div class="bg-green alert-icon">
          <i class="glyph-icon icon-check"></i>
       </div>
       <div class="alert-content">
-         <h1>Profile Picture Set!</h1>
-         <h3> Good Job. Let's set your description now.</h3>
+         <h1>Profile Description Set!</h1>
+         <h3> Good Job. Let's make your profile video now.</h3>
       </div>
    </div>
 </div>
@@ -95,10 +96,8 @@
                <textarea elastic id="edit-text-area" class="form-control" type="text" name="comment1" ng-model="main.user.interests" required></textarea>
             </div>
          </blockquote>
-         <a class="btn btn-default" ng-class="{true: 'btn-primary', false: 'btn-danger'}[!editing]" ng-click="editing = !editing; toggleEditModeWalkthrough()">{{!editing && 'Edit Profile' || 'Save Profile'}}</a>
+         <a class="btn btn-default" ng-class="{true: 'btn-primary', false: 'btn-danger'}[!editing]" ng-click="editing = !editing; toggleEditMode()">{{!editing && 'Edit Profile' || 'Save Profile'}}</a>
       </div>
-      <div id="walkthrough-down-arrow"><img src="/images/SetDescriptionArrow.png" /></div>
-
    </div>
    <div class="col-md-9">
       <link rel="stylesheet" type="text/css" href="../../assets/frontend-elements/portfolio-navigation.css">
@@ -109,10 +108,11 @@
 
       <div class="row myProfile-tile-row">
          <div class="col-md-3">
-            <div class="thumbnail-box thumbnail-box-inverse myProfile-hover-hand">
+            <div class="thumbnail-box thumbnail-box-inverse myProfile-hover-hand" id="myProfile-add-video-thumbnail-parent" ng-click='clipchampWalkthrough()'>
                <div class="thumb-overlay bg-black" id="myProfile-add-video-thumbnail"></div>
                   <img ng-src="/images/record_new_profile_video_button.png" alt="new prof pic" />
-            </div>        
+            </div> 
+            <div id="walkthrough-down-arrow"><img src="/images/MakeProfileVideoArrow.png" /></div>
          </div>
          <div class="col-md-3">
             <div class="tile-box tile-box-alt btn-success myProfile-tile">

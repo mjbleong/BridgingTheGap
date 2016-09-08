@@ -686,6 +686,7 @@ app.get('/photosOfUser/:id', function (request, response) {
     });
 });
 
+<<<<<<< 89d3adecdbc5211767e5df9362dfab14375dc4c5
 <<<<<<< c32430fa94fac4fa2a446858773a20ea4d96db88
 // var server = app.listen(3000, function () {
 var server = app.listen(process.env.PORT, function () {
@@ -693,6 +694,10 @@ var server = app.listen(process.env.PORT, function () {
 var server = app.listen(3000, function() {
 //var server = app.listen(process.env.PORT, function () {
 >>>>>>> walkthrough in progress
+=======
+// var server = app.listen(3000, function() {
+var server = app.listen(process.env.PORT, function () {
+>>>>>>> Profile Walkthrough steps 1 to 3
     var port = server.address().port;
     console.log('Listening at http://localhost:' + port + ' exporting the directory ' + __dirname);
 });

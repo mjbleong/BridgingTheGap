@@ -52,7 +52,6 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
     }
 
     $scope.clipchamp = function(data) {
-
       var currDate = new Date();
 
       var yt_title = $scope.main.user.firstname + ' ' + $scope.main.user.lastname + ' ' + currDate;
@@ -91,13 +90,64 @@ cs142App.controller('ProfileController', ['$scope', '$routeParams', '$resource',
       }
       });
 
-  process.open();
-  }
+    process.open();
+    }
+
+    $scope.clipchampWalkthrough = function(data) {
+      var currDate = new Date();
+
+      var yt_title = $scope.main.user.firstname + ' ' + $scope.main.user.lastname + ' ' + currDate;
+
+      var process = clipchamp({
+
+        resolution: "720p",
+        preset: "web",
+        title: "Click submit and you're done. Thanks!",
+        output: "youtube",
+        youtube: {
+          title: yt_title,
+          description: '[no description]'
+        },
+
+        onUploadComplete: function(data) {
+
+          //function to extract id from youtube url
+          function getId(url) {
+            var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            var match = url.match(regExp);
+
+            if (match && match[2].length == 11) {
+                return match[2];
+            } else {
+                return 'error';
+            }
+          };
+
+          var myId = getId(data.url);
+
+          var dbDate = new Date();
+
+          $scope.main.user.intro_url = myId;
+          $scope.main.user.$save();
+          $state.go('myProfile');
+      }
+      });
+
+    process.open();
+    }
 
     $scope.toggleEditMode = function() {
       console.log('toggle');
       console.log($scope.editing);
       $scope.main.user.$save();
+    }
+
+    $scope.toggleEditModeWalkthrough = function() {
+      if(!$scope.editing) {
+        $scope.main.user.$save();
+        $state.go('profileWalkthrough3');
+      }
+
     }
 
     $scope.make = function(link) {
